@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Sherweb.Apis.Distribution</AssemblyName>
+    <PackageId>Sherweb.Apis.Distribution</PackageId>
+    <Version>1.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>$(XtklGenerateNupkg)</IncludeSymbols>
+    <IncludeSource>$(XtklGenerateNupkg)</IncludeSource>
+    <RootNamespace>Sherweb.Apis.Distribution</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Httpclient\" />
+  </ItemGroup>
+
+</Project>
