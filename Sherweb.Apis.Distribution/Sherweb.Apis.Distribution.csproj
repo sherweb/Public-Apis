@@ -1,14 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\PublicNuget.props" />
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Sherweb.Apis.Distribution</AssemblyName>
     <PackageId>Sherweb.Apis.Distribution</PackageId>
-    <Version>1.0</Version>
+    <PackageTags>Sherweb API Client Distribution</PackageTags>
+    <Description>Sherweb Distribution API Client</Description>
+    <Version>0.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>$(XtklGenerateNupkg)</IncludeSymbols>
     <IncludeSource>$(XtklGenerateNupkg)</IncludeSource>
-    <RootNamespace>Sherweb.Apis.Distribution</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
