@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\PublicNuget.props" />
+  
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Sherweb.Apis.AuthorizationServer</AssemblyName>
+    <PackageId>Sherweb.Apis.AuthorizationServer</PackageId>
+	<PackageTags>Sherweb AuthorizationServer API Client</PackageTags>
+	<Description>Sherweb AuthorizationServer API Client</Description>
+    <Version>0.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="HttpClient\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.21" />
+  </ItemGroup>
+
+</Project>
