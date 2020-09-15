@@ -50,3 +50,4 @@ jobs:
       working-directory: ${{env.working-directory}}
     - name: Publish NuGet
       run: dotnet nuget push Sherweb.Apis.*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+      working-directory: ${{env.working-directory}}/bin/Release
