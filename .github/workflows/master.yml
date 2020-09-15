@@ -31,7 +31,7 @@ jobs:
     name: "Master : Distribution"
     runs-on: ubuntu-latest
     env:
-      working-directory: ./Sherweb.Apis.AuthorizationServer
+      working-directory: ./Sherweb.Apis.Distribution
 
     steps:
     - uses: actions/checkout@master
