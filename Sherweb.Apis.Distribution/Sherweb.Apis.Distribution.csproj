@@ -8,6 +8,7 @@
     <PackageTags>Sherweb API Client Distribution</PackageTags>
     <Description>Sherweb Distribution API Client</Description>
     <Version>0.0.1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
