@@ -4,7 +4,7 @@
     <Authors Condition="'$(Authors)'==''">Sherweb</Authors>
     <Company Condition="'$(Company)'==''">Sherweb</Company>
     <PackageIcon>SherwebLogo.png</PackageIcon>
-    <Copyright Condition="'$(Copyright)'==''">© Sherweb $([System.DateTime]::Now.Year)</Copyright>
+    <Copyright Condition="'$(Copyright)'==''">Copyright © Sherweb $([System.DateTime]::Now.Year)</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://www.sherweb.com/</PackageProjectUrl>
     <GeneratePackageOnBuild>$(XtklGenerateNupkg)</GeneratePackageOnBuild>
