@@ -1,4 +1,4 @@
-![Master pipeline](https://github.com/sherweb/Public-API-Test-Repo/workflows/Master%20pipeline/badge.svg?branch=master)
+![Master](https://github.com/sherweb/Public-API-Test-Repo/workflows/Master/badge.svg)
 
 # Public-API-Test-Repo
 
