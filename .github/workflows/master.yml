@@ -5,11 +5,11 @@ on:
     branches: [ master ]
 
 jobs:
-  AuthorizationServer:
+  Authorization:
     name: "Master : Authorization Server"
     runs-on: ubuntu-latest
     env:
-      working-directory: ./Sherweb.Apis.AuthorizationServer
+      working-directory: ./Sherweb.Apis.Authorization
 
     steps:
     - uses: actions/checkout@master
@@ -27,7 +27,7 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
       working-directory: ${{env.working-directory}}
     - name: Publish NuGet
-      run: dotnet nuget push Sherweb.Apis.AuthorizationServer.*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Sherweb.Apis.Authorization.*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
       working-directory: ${{env.working-directory}}/bin/Release
 
   Distribution:
