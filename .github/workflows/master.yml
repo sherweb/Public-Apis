@@ -27,7 +27,7 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
       working-directory: ${{env.working-directory}}
     - name: Publish NuGet
-      run: dotnet nuget push Sherweb.Apis.Authorization.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Sherweb.Apis.Authorization.*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
       working-directory: ${{env.working-directory}}/bin/Release
 
   Distribution:
@@ -52,5 +52,5 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
       working-directory: ${{env.working-directory}}
     - name: Publish NuGet
-      run: dotnet nuget push Sherweb.Apis.Distribution.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Sherweb.Apis.Distribution.*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
       working-directory: ${{env.working-directory}}/bin/Release
