@@ -4,16 +4,16 @@
 // regenerated.
 // </auto-generated>
 
-namespace AuthorizationServer
+namespace Sherweb.Apis.Authorization
 {
     using Models;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Extension methods for XtklAuthorizationServer.
+    /// Extension methods for AuthorizationService.
     /// </summary>
-    public static partial class XtklAuthorizationServerExtensions
+    public static partial class AuthorizationServiceExtensions
     {
             /// <summary>
             /// Token
@@ -33,7 +33,7 @@ namespace AuthorizationServer
             /// <param name='scope'>
             /// The scope of the token you want.
             /// </param>
-            public static Token TokenMethod(this IXtklAuthorizationServer operations, string clientId, string clientSecret, string scope)
+            public static Token TokenMethod(this IAuthorizationService operations, string clientId, string clientSecret, string scope)
             {
                 return operations.TokenMethodAsync(clientId, clientSecret, scope).GetAwaiter().GetResult();
             }
@@ -59,7 +59,7 @@ namespace AuthorizationServer
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<Token> TokenMethodAsync(this IXtklAuthorizationServer operations, string clientId, string clientSecret, string scope, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<Token> TokenMethodAsync(this IAuthorizationService operations, string clientId, string clientSecret, string scope, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.TokenMethodWithHttpMessagesAsync(clientId, clientSecret, scope, null, cancellationToken).ConfigureAwait(false))
                 {

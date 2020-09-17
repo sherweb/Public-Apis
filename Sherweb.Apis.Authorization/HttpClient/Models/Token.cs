@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace AuthorizationServer.Models
+namespace Sherweb.Apis.Authorization.Models
 {
     using Newtonsoft.Json;
     using System.Linq;

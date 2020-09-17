@@ -308,7 +308,14 @@ namespace Sherweb.Apis.Distribution
             };
             CustomInitialize();
         }
+        /// <summary>
+        /// GetAccountsPayable
+        /// </summary>
+        /// <remarks>
+        /// Get your accounts payable data for a specific billing period.
+        /// </remarks>
         /// <param name='date'>
+        /// Specify a date within the desired billing period. Default: Today.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -340,7 +347,7 @@ namespace Sherweb.Apis.Distribution
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "api/billing/accounts-payable").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "billing/accounts-payable").ToString();
             List<string> _queryParameters = new List<string>();
             if (date != null)
             {

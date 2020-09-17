@@ -7,10 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sherweb.Apis.Authorization"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sherweb.Apis.Distribution", "Sherweb.Apis.Distribution\Sherweb.Apis.Distribution.csproj", "{BFE5DA97-00C4-406C-8CA9-809559DCBFE0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{1B9EEDF0-EC61-425E-A779-6B7EB3C0DFD6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4361531E-291B-40E5-8EFF-E98108D1FCFC}"
 	ProjectSection(SolutionItems) = preProject
-		Scripts\GenerateAuthorizationClient.ps1 = Scripts\GenerateAuthorizationClient.ps1
-		Scripts\GenerateDistributionClient.ps1 = Scripts\GenerateDistributionClient.ps1
+		GenerateAuthorizationClient.ps1 = GenerateAuthorizationClient.ps1
+		GenerateDistributionClient.ps1 = GenerateDistributionClient.ps1
+		PublicNuget.props = PublicNuget.props
 	EndProjectSection
 EndProject
 Global

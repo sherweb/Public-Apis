@@ -40,7 +40,14 @@ namespace Sherweb.Apis.Distribution
         ServiceClientCredentials Credentials { get; }
 
 
+        /// <summary>
+        /// GetAccountsPayable
+        /// </summary>
+        /// <remarks>
+        /// Get your accounts payable data for a specific billing period.
+        /// </remarks>
         /// <param name='date'>
+        /// Specify a date within the desired billing period. Default: Today.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.

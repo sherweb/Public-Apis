@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\PublicNuget.props" />
-  
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Sherweb.Apis.AuthorizationServer</AssemblyName>
-    <PackageId>Sherweb.Apis.AuthorizationServer</PackageId>
-	<PackageTags>Sherweb AuthorizationServer API Client</PackageTags>
-	<Description>Sherweb AuthorizationServer API Client</Description>
+    <AssemblyName>Sherweb.Apis.Authorization</AssemblyName>
+    <PackageId>Sherweb.Apis.Authorization</PackageId>
+    <PackageTags>Sherweb Authorization API Client</PackageTags>
+    <Description>Sherweb Authorization API Client</Description>
     <Version>0.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>

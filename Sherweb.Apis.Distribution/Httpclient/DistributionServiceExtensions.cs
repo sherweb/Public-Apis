@@ -15,20 +15,34 @@ namespace Sherweb.Apis.Distribution
     /// </summary>
     public static partial class DistributionServiceExtensions
     {
+            /// <summary>
+            /// GetAccountsPayable
+            /// </summary>
+            /// <remarks>
+            /// Get your accounts payable data for a specific billing period.
+            /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
             /// <param name='date'>
+            /// Specify a date within the desired billing period. Default: Today.
             /// </param>
             public static AccountsPayable GetAccountsPayable(this IDistributionService operations, System.DateTime? date = default(System.DateTime?))
             {
                 return operations.GetAccountsPayableAsync(date).GetAwaiter().GetResult();
             }
 
+            /// <summary>
+            /// GetAccountsPayable
+            /// </summary>
+            /// <remarks>
+            /// Get your accounts payable data for a specific billing period.
+            /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
             /// <param name='date'>
+            /// Specify a date within the desired billing period. Default: Today.
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.

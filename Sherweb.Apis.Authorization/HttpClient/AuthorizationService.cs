@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace AuthorizationServer
+namespace Sherweb.Apis.Authorization
 {
     using Microsoft.Rest;
     using Microsoft.Rest.Serialization;
@@ -17,7 +17,7 @@ namespace AuthorizationServer
     using System.Threading;
     using System.Threading.Tasks;
 
-    public partial class XtklAuthorizationServer : ServiceClient<XtklAuthorizationServer>, IXtklAuthorizationServer
+    public partial class AuthorizationService : ServiceClient<AuthorizationService>, IAuthorizationService
     {
         /// <summary>
         /// The base URI of the service.
@@ -35,31 +35,31 @@ namespace AuthorizationServer
         public JsonSerializerSettings DeserializationSettings { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the XtklAuthorizationServer class.
+        /// Initializes a new instance of the AuthorizationService class.
         /// </summary>
         /// <param name='httpClient'>
         /// HttpClient to be used
         /// </param>
         /// <param name='disposeHttpClient'>
-        /// True: will dispose the provided httpClient on calling XtklAuthorizationServer.Dispose(). False: will not dispose provided httpClient</param>
-        public XtklAuthorizationServer(HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)
+        /// True: will dispose the provided httpClient on calling AuthorizationService.Dispose(). False: will not dispose provided httpClient</param>
+        public AuthorizationService(HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the XtklAuthorizationServer class.
+        /// Initializes a new instance of the AuthorizationService class.
         /// </summary>
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        public XtklAuthorizationServer(params DelegatingHandler[] handlers) : base(handlers)
+        public AuthorizationService(params DelegatingHandler[] handlers) : base(handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the XtklAuthorizationServer class.
+        /// Initializes a new instance of the AuthorizationService class.
         /// </summary>
         /// <param name='rootHandler'>
         /// Optional. The http client handler used to handle http transport.
@@ -67,13 +67,13 @@ namespace AuthorizationServer
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        public XtklAuthorizationServer(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
+        public AuthorizationService(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the XtklAuthorizationServer class.
+        /// Initializes a new instance of the AuthorizationService class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -84,7 +84,7 @@ namespace AuthorizationServer
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public XtklAuthorizationServer(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
+        public AuthorizationService(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (baseUri == null)
             {
@@ -94,7 +94,7 @@ namespace AuthorizationServer
         }
 
         /// <summary>
-        /// Initializes a new instance of the XtklAuthorizationServer class.
+        /// Initializes a new instance of the AuthorizationService class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -108,7 +108,7 @@ namespace AuthorizationServer
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public XtklAuthorizationServer(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        public AuthorizationService(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (baseUri == null)
             {

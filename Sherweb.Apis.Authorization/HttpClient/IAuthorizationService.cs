@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace AuthorizationServer
+namespace Sherweb.Apis.Authorization
 {
     using Microsoft.Rest;
     using Models;
@@ -16,7 +16,7 @@ namespace AuthorizationServer
 
     /// <summary>
     /// </summary>
-    public partial interface IXtklAuthorizationServer : System.IDisposable
+    public partial interface IAuthorizationService : System.IDisposable
     {
         /// <summary>
         /// The base URI of the service.
