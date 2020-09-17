@@ -1,0 +1,1 @@
+autorest --input-file="Scripts/xtkl-distribution-public-api-v1-openAPI.json" --csharp --output-folder=Sherweb.Apis.Distribution\HttpClient --namespace=Sherweb.Apis.Distribution --override-client-name='DistributionService' --add-credentials=true --v3
