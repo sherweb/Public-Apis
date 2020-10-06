@@ -6,7 +6,7 @@
 
 ## Prérequis pour utiliser les APIs
 
-Vous devez avoir ajouté une application avec des clés d'API dans Sherweb Cumulus: https://cumulus.sherweb.com. Dans le menu de gauche, en dessous de sécurité, cliquez sur le menu Apis:
+Vous devez avoir ajouté une application avec des clés d'API dans Sherweb Cumulus: https://cumulus.sherweb.com. Dans le menu de gauche, en dessous de sécurité, cliquez sur le menu APIs:
 
 ![Menu dans Cumulus pour créer les clés d'API](docs/FR_ApiKeysMenu.png)
 
