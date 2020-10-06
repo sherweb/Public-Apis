@@ -1,0 +1,21 @@
+<Project>
+  <PropertyGroup>
+    <XtklGenerateNupkg>false</XtklGenerateNupkg>
+    <Authors Condition="'$(Authors)'==''">Sherweb</Authors>
+    <Company Condition="'$(Company)'==''">Sherweb</Company>
+    <PackageIcon>SherwebLogo.png</PackageIcon>
+    <Copyright Condition="'$(Copyright)'==''">© $([System.DateTime]::Now.Year) Sherweb Inc.</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://www.sherweb.com/</PackageProjectUrl>
+    <GeneratePackageOnBuild>$(XtklGenerateNupkg)</GeneratePackageOnBuild>
+    <IncludeSymbols>$(XtklGenerateNupkg)</IncludeSymbols>
+    <IncludeSource>$(XtklGenerateNupkg)</IncludeSource>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\SherwebLogo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>
