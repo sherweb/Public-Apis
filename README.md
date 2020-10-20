@@ -20,7 +20,7 @@ We have an organization on nuget.org: (https://www.nuget.org/profiles/Sherweb). 
 
 ## Sample code
 
-In the folder Sherweb.SampleCode, you can find all the example on how to use the nugets. All example are made in c#. This is where the clientId, client secret and subscription key are gonna be use. Feel free to submit us any code enhancement.
+In the folder Sherweb.SampleCode, you can find all examples on how to use the nugets. All examples are made in c#. This is where the clientId, client secret and subscription key are gonna be use. Feel free to submit us any code enhancement.
 
 ## Documentation
 
@@ -29,6 +29,10 @@ For all documentation related to these APIs, you can find it here: https://apim-
 ## Contributing
 
 [You can submit bugs and feature requests](https://github.com/sherweb/Public-Apis/issues), and help us verify as they are checked in.
+
+## Support
+
+If you need support, you can send a ticket [here](https://support.sherweb.com/SupportRequest).
 
 ## License
 
