@@ -24,7 +24,7 @@ In the folder Sherweb.SampleCode, you can find all examples on how to use the nu
 
 ## Documentation
 
-For all documentation related to these APIs, you can find it here: https://apim-prod-sherweb.developer.azure-api.net/. 
+For all documentation related to these APIs, you can find it here: https://developers.sherweb.com/. 
 
 ## Contributing
 
