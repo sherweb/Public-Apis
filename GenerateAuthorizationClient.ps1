@@ -1,0 +1,1 @@
+autorest --input-file="Sherweb.Apis.Authorization.OpenAPI.yaml" --csharp --output-folder=Sherweb.Apis.Authorization\HttpClient --namespace=Sherweb.Apis.Authorization --override-client-name='AuthorizationService' --version:3.0.6130

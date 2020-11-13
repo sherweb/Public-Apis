@@ -1,0 +1,72 @@
+name: Pull Requests -> Master
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  AuthorizationServer:
+    name: "PR : Authorization"
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./Sherweb.Apis.Authorization
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Install dependencies
+      run: dotnet restore
+      working-directory: ${{env.working-directory}}
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+      working-directory: ${{env.working-directory}}
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+      working-directory: ${{env.working-directory}}
+
+  Distributor:
+    name: "PR : Distributor"
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./Sherweb.Apis.Distributor
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Install dependencies
+      run: dotnet restore
+      working-directory: ${{env.working-directory}}
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+      working-directory: ${{env.working-directory}}
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+      working-directory: ${{env.working-directory}}
+
+  SampleCode:
+    name: "PR : SampleCode"
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./Sherweb.SampleCode
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Install dependencies
+      run: dotnet restore
+      working-directory: ${{env.working-directory}}
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+      working-directory: ${{env.working-directory}}
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+      working-directory: ${{env.working-directory}}

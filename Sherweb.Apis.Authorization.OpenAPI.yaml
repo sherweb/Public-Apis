@@ -1,0 +1,71 @@
+openapi: 3.0.1
+info:
+  title: Authorization API
+  description: ''
+  version: '1.0'
+servers:
+  - url: https://api.sherweb.com/auth
+paths:
+  /oidc/connect/token:
+    post:
+      summary: Token
+      description: Authenticate and get bearer token.
+      operationId: token
+      requestBody:
+        description: 'Replace client_id and client_secret values by your credentials.  You need to pass a scope depending of which API you are gonna call afterwards. For example, if you call the distributor API, you need to pass the scope "distributor".'
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  description: |
+                    The registered client ID.
+                  type: string
+                client_secret:
+                  description: |
+                    The registered client ID secret.
+                  type: string
+                scope:
+                  description: |
+                    The scope of the token you want.
+                  type: string
+                grant_type:
+                  description: |
+                    The grant_type you want.
+                  type: string
+              required:
+                - client_id
+                - client_secret
+                - scope
+                - grant_type
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+components:
+  schemas:
+    Token:
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: integer
+        token_type:
+          type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
