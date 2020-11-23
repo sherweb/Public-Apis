@@ -27,7 +27,7 @@ namespace Sherweb.SampleCode
             var distributorClient = new DistributorService(
                 new Uri("https://api.sherweb.com/distributor/v1"),
                 svcClientCreds,
-                new SubscriptionKeyHandler()); // Add your subscription key in the SubscriptionKey.cs file
+                new SubscriptionKeyHandler()); // Add your subscription key in the SubscriptionKeyHandler.cs file
 
             var response = distributorClient.GetPayableCharges();
             if (response is ProblemDetails problemDetails)
