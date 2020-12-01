@@ -22,6 +22,13 @@ We have an organization on nuget.org: https://www.nuget.org/profiles/Sherweb. Al
 
 In the folder SampleCode, you will find all the examples on how to use the NuGet packages. All examples are in C#. This is where you will need the clientId, clientSecret and subscriptionKey. Feel free to submit any code enhancements to us.
 
+## Postman
+In the folder Postman, you will find all files allowing you to test the APIs directly with [Postman](https://www.postman.com/). There is a "Collection" for each API plus an "Environement". Here's a quick how-to-use :
+1. Set your ClientId, ClientSecret and SubscriptionKey in the environement.
+2. Use the Authorization collection to retrieve your token.
+3. Set this token in the "Authorization" section of each API call (replace YOUR_TOKEN by your token).
+4. Voilà.
+
 ## Documentation
 
 You can find all the documentation related to these APIs here: https://developers.sherweb.com/.

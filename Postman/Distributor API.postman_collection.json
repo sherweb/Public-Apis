@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "ba2898ea-68e6-411b-9f5b-28f970e94c1b",
+		"name": "Distributor API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetPayableCharges",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "23627776-fde1-4c87-9276-712fe01e8536",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8ca99f78-bfe7-41d9-a56d-9f4fdd7ad82c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "YOUR_TOKEN",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"type": "text",
+						"value": "{{gatewaySubscriptionKey}}"
+					}
+				],
+				"url": {
+					"raw": "{{gatewayBaseUrl}}/distributor/v1/billing/payable-charges",
+					"host": [
+						"{{gatewayBaseUrl}}"
+					],
+					"path": [
+						"distributor",
+						"v1",
+						"billing",
+						"payable-charges"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "yyyy-MM-dd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "YOUR_TOKEN",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d9f51aef-e69a-44f3-b637-fbb11e4f6b78",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "634bbab0-7030-4522-a9f0-131869241fe6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
