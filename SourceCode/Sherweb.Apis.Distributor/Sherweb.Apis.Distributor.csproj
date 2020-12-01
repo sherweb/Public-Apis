@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\PublicNuget.props" />
+  <Import Project="..\..\PublicNuget.props" />
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>

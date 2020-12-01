@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sherweb.Apis.Authorization", "Sherweb.Apis.Authorization\Sherweb.Apis.Authorization.csproj", "{1DDF21EE-A411-4F65-A26B-16BE1616B1FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sherweb.Apis.Authorization", "SourceCode\Sherweb.Apis.Authorization\Sherweb.Apis.Authorization.csproj", "{1DDF21EE-A411-4F65-A26B-16BE1616B1FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4361531E-291B-40E5-8EFF-E98108D1FCFC}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,10 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		GenerateDistributorClient.ps1 = GenerateDistributorClient.ps1
 		PublicNuget.props = PublicNuget.props
 		README.md = README.md
-		Sherweb.Apis.Distributor.OpenAPI.json = Sherweb.Apis.Distributor.OpenAPI.json
+		LISEZMOI.md = LISEZMOI.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sherweb.SampleCode", "Sherweb.SampleCode\Sherweb.SampleCode.csproj", "{E806CE6A-4C49-4350-9A3A-C9481BC909E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sherweb.SampleCode", "SampleCode\Sherweb.SampleCode.csproj", "{E806CE6A-4C49-4350-9A3A-C9481BC909E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{32374418-73E2-43EF-9660-E4A4603B9CB2}"
 	ProjectSection(SolutionItems) = preProject
@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{
 		.github\workflows\pullrequests.yml = .github\workflows\pullrequests.yml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sherweb.Apis.Distributor", "Sherweb.Apis.Distributor\Sherweb.Apis.Distributor.csproj", "{4C3CD97B-D6C6-4782-A236-B9443C482657}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sherweb.Apis.Distributor", "SourceCode\Sherweb.Apis.Distributor\Sherweb.Apis.Distributor.csproj", "{4C3CD97B-D6C6-4782-A236-B9443C482657}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
