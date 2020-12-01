@@ -14,13 +14,13 @@ Add a new application. Make sure to copy the clientId, client secret and subscri
 
 ![Windows to copy over all the required information to connect to the APIs](docs/ApiInformations.png)
 
-## Nugets source code
+## NuGet packages source code
 
-We have an organization on nuget.org: https://www.nuget.org/profiles/Sherweb. All public nugets are there. This repository provides all the source codes for these nugets if you want to build it on your own instead of using the nuget. Each folder is an API and there is a Readme for each. To build the code, you will need to open the .sln file in Visual Studio.
+We have an organization on nuget.org: https://www.nuget.org/profiles/Sherweb. All public NuGet packages are there. This repository provides all the source codes for these NuGet packages if you want to build them on your own instead of using built packages. Each folder is an API and there is a Readme for each. To build the code, you will need to open the .sln file in Visual Studio.
 
 ## Sample code
 
-In the folder Sherweb.SampleCode, you will find all the examples on how to use the nugets. All examples are in c#. This is where you will need the clientId, client secret and subscription key. Feel free to submit any code enhancements to us.
+In the folder SampleCode, you will find all the examples on how to use the NuGet packages. All examples are in C#. This is where you will need the clientId, clientSecret and subscriptionKey. Feel free to submit any code enhancements to us.
 
 ## Documentation
 

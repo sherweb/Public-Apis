@@ -16,11 +16,11 @@ Ajoutez une nouvelle application. Assurez-vous de copier l'identifiant client, l
 
 ## Code source des nugets
 
-Nous avons une organisation chez NuGet (https://www.nuget.org/profiles/Sherweb). Tous les paquets NuGet publics s'y trouvent. Ce dépôt présente tous les codes sources des paquets, si vous voulez les générer vous-même au lieu d'utiliser les paquets NuGet. Chaque dossier est un API et comprend un fichier Lisez-moi. Pour générer un code, vous devez ouvrir le fichier SLN dans Visual Studio.
+Nous avons une organisation chez NuGet (https://www.nuget.org/profiles/Sherweb). Tous les paquets NuGet publics s'y trouvent. Ce dépôt présente tous les codes sources des paquets, si vous voulez les générer vous-même au lieu d'utiliser les paquets NuGet. Chaque dossier est un API et comprend un fichier Lisez-moi. Pour générer un code, vous devez ouvrir le fichier .sln dans Visual Studio.
 
 ## Exemple de code
 
-Dans le dossier « Sherweb.SampleCode », vous pouvez trouver tous les exemples démontrant comment utiliser les paquets NuGet. Tous les exemples sont en langage C#. C'est là que vous aurez besoin de l'identifiant client, du secret client et de la clé d'abonnement. N'hésitez pas à nous soumettre des améliorations de code.
+Dans le dossier « SampleCode », vous pouvez trouver tous les exemples démontrant comment utiliser les paquets NuGet. Tous les exemples sont en langage C#. C'est là que vous aurez besoin de l'identifiant client, du secret client et de la clé d'abonnement. N'hésitez pas à nous soumettre des améliorations de code.
 
 ## Documentation
 
