@@ -10,21 +10,21 @@ You need to have added an application with API keys within the Sherweb partner p
 
 ![Menu in partner portal to create API keys](docs/ApiKeysMenu.png)
 
-Add a new application. Make sure to copy the clientId, client secret and subscription key which are required in order to use the APIs:
+Add a new application. Make sure to copy the *Client Id*, *Client Secret* and *Subscription Key* which are required in order to use the APIs:
 
 ![Windows to copy over all the required information to connect to the APIs](docs/ApiInformations.png)
 
 ## NuGet packages source code
 
-We have an organization on nuget.org: https://www.nuget.org/profiles/Sherweb. All public NuGet packages are there. This repository provides all the source codes for these NuGet packages if you want to build them on your own instead of using built packages. Each folder is an API and there is a Readme for each. To build the code, you will need to open the .sln file in Visual Studio.
+We have an organization on nuget.org: https://www.nuget.org/profiles/Sherweb. All public NuGet packages are there. This repository provides all the source codes for these NuGet packages if you want to build them on your own instead of using built packages. Each folder under **SourceCode** is an API and there is a Readme for each. To build the code, you will need to open the .sln file in Visual Studio.
 
 ## Sample code
 
-In the folder SampleCode, you will find all the examples on how to use the NuGet packages. All examples are in C#. This is where you will need the clientId, clientSecret and subscriptionKey. Feel free to submit any code enhancements to us.
+In the folder **SampleCode**, you will find all the examples on how to use the NuGet packages. All examples are in C#. This is where you will need the *Client Id*, *Client Secret* and *Subscription Key*. Feel free to submit any code enhancements to us.
 
 ## Postman
-In the folder Postman, you will find all files allowing you to test the APIs directly with [Postman](https://www.postman.com/). There is a "Collection" for each API plus an "Environement". Here's a quick how-to-use :
-1. Set your ClientId, ClientSecret and SubscriptionKey in the environement.
+In the folder **Postman**, you will find all files allowing you to test the APIs directly with [Postman](https://www.postman.com/). There is a "Collection" for each API plus an "Environement". Here's a quick how-to-use :
+1. Set your *ClientId*, *ClientSecret* and *SubscriptionKey* in the environment.
 2. Use the Authorization collection to retrieve your token.
 3. Set this token in the "Authorization" section of each API call (replace YOUR_TOKEN by your token).
 4. Voilà.
