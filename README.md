@@ -16,7 +16,7 @@ Add a new application. Make sure to copy the *Client Id*, *Client Secret* and *S
 
 ## NuGet packages source code
 
-We have an organization on nuget.org: https://www.nuget.org/profiles/Sherweb. All public NuGet packages are there. This repository provides all the source codes for these NuGet packages if you want to build them on your own instead of using built packages. Each folder under **SourceCode** is an API and there is a Readme for each. To build the code, you will need to open the .sln file in Visual Studio.
+We have an organization on nuget.org: https://www.nuget.org/profiles/Sherweb. All public NuGet packages are there. This repository provides all the source codes for these NuGet packages if you want to build them on your own instead of using built packages. Each folder under **NugetPackagesSourceCode** is an API and there is a Readme for each.
 
 ## Sample code
 

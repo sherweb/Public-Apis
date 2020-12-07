@@ -16,14 +16,14 @@ Ajoutez une nouvelle application. Assurez-vous de copier le *Client Id*, le *Cli
 
 ## Code source des nugets
 
-Nous avons une organisation chez NuGet (https://www.nuget.org/profiles/Sherweb). Tous les paquets NuGet publics s'y trouvent. Ce dépôt présente tous les codes sources des paquets, si vous voulez les générer vous-même au lieu d'utiliser les paquets NuGet. Chaque dossier sous **SourceCode** est une API et comprend un fichier Lisez-moi. Pour générer un code, vous devez ouvrir le fichier .sln dans Visual Studio.
+Nous avons une organisation chez NuGet (https://www.nuget.org/profiles/Sherweb). Tous les paquets NuGet publics s'y trouvent. Ce dépôt présente le code source de tous les paquets, si vous voulez les générer vous-même au lieu d'utiliser les paquets NuGet. Chaque dossier sous **NugetPackagesSourceCode** est une API et comprend un fichier Lisez-moi.
 
 ## Exemple de code
 
-Dans le dossier « SampleCode », vous pouvez trouver tous les exemples démontrant comment utiliser les paquets NuGet. Tous les exemples sont en langage C#. C'est là que vous aurez besoin de l'identifiant client, du secret client et de la clé d'abonnement. N'hésitez pas à nous soumettre des améliorations de code.
+Dans le dossier **SampleCode**, vous pouvez trouver tous les exemples démontrant comment utiliser les paquets NuGet. Tous les exemples sont en langage C#. C'est là que vous aurez besoin de l'identifiant client, du secret client et de la clé d'abonnement. N'hésitez pas à nous soumettre des améliorations de code.
 
 ## Postman
-Dans le dossier « Postman », vous pouvez trouver les fichiers permettant de tester les APIs avec [Postman](https://www.postman.com/). Il y a une "Collection" pour chaque API plus un "Environement". Voici une explication rapide de comment l'utiliser :
+Dans le dossier **Postman**, vous pouvez trouver les fichiers permettant de tester les APIs avec [Postman](https://www.postman.com/). Il y a une "Collection" pour chaque API plus un "Environement". Voici une explication rapide de comment l'utiliser :
 1. Définissez *ClientId*, *ClientSecret* et *SubscriptionKey* dans l'environnement.
 2. Utilisez la collection "Authorization" pour récupérer votre jeton.
 3. Mettez ce jeton dans la section "Authorization" de chaque appel API (remplacez *YOUR_TOKEN* par votre jeton).
