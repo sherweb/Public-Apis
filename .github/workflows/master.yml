@@ -9,7 +9,7 @@ jobs:
     name: "Master : Authorization"
     runs-on: ubuntu-latest
     env:
-      working-directory: ./Sherweb.Apis.Authorization
+      working-directory: ./NugetPackagesSourceCode/Sherweb.Apis.Authorization
 
     steps:
     - uses: actions/checkout@master
@@ -34,7 +34,7 @@ jobs:
     name: "Master : Distributor"
     runs-on: ubuntu-latest
     env:
-      working-directory: ./Sherweb.Apis.Distributor
+      working-directory: ./NugetPackagesSourceCode/Sherweb.Apis.Distributor
 
     steps:
     - uses: actions/checkout@master
@@ -59,7 +59,7 @@ jobs:
     name: "Master : SampleCode"
     runs-on: ubuntu-latest
     env:
-      working-directory: ./Sherweb.SampleCode
+      working-directory: ./SampleCode
 
     steps:
     - uses: actions/checkout@master

@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\SherwebLogo.png">
+    <None Include="..\..\SherwebLogo.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

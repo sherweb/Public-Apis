@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "19f180b1-1174-42b5-8653-a5c64be521af",
+		"name": "Authorization API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ba60d26-19d1-4adf-8391-83cc81e9a41a",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0c8ac8ba-d7d5-4e79-b400-868847508239",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "distributor",
+							"description": "- Distributor API : distributor",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gatewayBaseUrl}}/auth/oidc/connect/token",
+					"host": [
+						"{{gatewayBaseUrl}}"
+					],
+					"path": [
+						"auth",
+						"oidc",
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "82b43c03-c35f-4376-8b60-3eb570116589",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "65262207-039e-4586-ac89-ed326511c703",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "64204c6c-3119-4025-a0ea-25500b1908dd",
+			"key": "distributor_token",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}
