@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Linq;
 using Microsoft.Rest;
 using Sherweb.Apis.Authorization;
 using Sherweb.Apis.Distributor;
@@ -10,8 +11,9 @@ namespace Sherweb.SampleCode
     {
         static void Main(string[] args)
         {
-            const string clientId = "your clientId";
+            const string clientId = "your client id";
             const string clientSecret = "your client secret";
+            const string subscriptionKey = "your subscription key";
 
             // Get Bearer Token from Authorization API
             var authorizationClient = new AuthorizationService(new Uri("https://api.sherweb.com/auth"));
@@ -27,9 +29,9 @@ namespace Sherweb.SampleCode
             var distributorClient = new DistributorService(
                 new Uri("https://api.sherweb.com/distributor/v1"),
                 svcClientCreds,
-                new SubscriptionKeyHandler()); // Add your subscription key in the SubscriptionKeyHandler.cs file
+                new SubscriptionKeyHandler(subscriptionKey)); // Add your subscription key in the SubscriptionKeyHandler.cs file
 
-            var response = distributorClient.GetPayableCharges();
+            var response = distributorClient.GetPayableCharges(acceptLanguage: "en-CA");
             if (response is ProblemDetails problemDetails)
             {
                 Console.WriteLine($"{nameof(problemDetails.Instance)}={problemDetails.Instance}");
@@ -38,10 +40,9 @@ namespace Sherweb.SampleCode
                 Console.WriteLine($"{nameof(problemDetails.Type)}={problemDetails.Type}");
                 Console.WriteLine($"{nameof(problemDetails.Detail)}={problemDetails.Detail}");
 
-                if (problemDetails.Extensions != null)
+                if (problemDetails.AdditionalProperties != null)
                 {
-                    Console.WriteLine($"{nameof(problemDetails.Detail)}={problemDetails.Detail}");
-                    foreach (var extension in problemDetails.Extensions)
+                    foreach (var extension in problemDetails.AdditionalProperties)
                     {
                         Console.WriteLine($"{nameof(extension.Key)}={extension.Key}");
                         Console.WriteLine($"{nameof(extension.Value)}={extension.Value}");
@@ -59,7 +60,9 @@ namespace Sherweb.SampleCode
 
             foreach (var charge in payableCharges.Charges)
             {
+                var customerDisplayName = charge.Tags.SingleOrDefault(x => x.Name == "CustomerDisplayName")?.Value;
                 Console.WriteLine("-------------------------------------------------");
+                Console.WriteLine($"{nameof(customerDisplayName)}={customerDisplayName}");
                 Console.WriteLine($"{nameof(charge.ProductName)}={charge.ProductName}");
                 Console.WriteLine($"{nameof(charge.ChargeName)}={charge.ChargeName}");
                 Console.WriteLine($"{nameof(charge.Quantity)}={charge.Quantity}");
