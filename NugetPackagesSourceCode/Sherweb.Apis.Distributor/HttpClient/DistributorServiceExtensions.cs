@@ -25,13 +25,16 @@ namespace Sherweb.Apis.Distributor
             /// The operations group for this extension method.
             /// </param>
             /// <param name='date'>
-            /// Specify a date within the desired billing period. Default: Today. For
-            /// example, if the date is March 17th and your billing period is from the 1st
-            /// to the 31st of the month, it will return data from March 1st to March 31st.
+            /// Specify a date within the desired billing period. Format: yyyy-MM-dd.
+            /// Default: Today. For example, if the date is March 17th and your billing
+            /// period is from the 1st to the 31st of the month, it will return data from
+            /// March 1st to March 31st.
             /// </param>
-            public static object GetPayableCharges(this IDistributorService operations, System.DateTime? date = default(System.DateTime?))
+            /// <param name='acceptLanguage'>
+            /// </param>
+            public static object GetPayableCharges(this IDistributorService operations, System.DateTime? date = default(System.DateTime?), string acceptLanguage = "en-EN")
             {
-                return operations.GetPayableChargesAsync(date).GetAwaiter().GetResult();
+                return operations.GetPayableChargesAsync(date, acceptLanguage).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -44,16 +47,19 @@ namespace Sherweb.Apis.Distributor
             /// The operations group for this extension method.
             /// </param>
             /// <param name='date'>
-            /// Specify a date within the desired billing period. Default: Today. For
-            /// example, if the date is March 17th and your billing period is from the 1st
-            /// to the 31st of the month, it will return data from March 1st to March 31st.
+            /// Specify a date within the desired billing period. Format: yyyy-MM-dd.
+            /// Default: Today. For example, if the date is March 17th and your billing
+            /// period is from the 1st to the 31st of the month, it will return data from
+            /// March 1st to March 31st.
+            /// </param>
+            /// <param name='acceptLanguage'>
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> GetPayableChargesAsync(this IDistributorService operations, System.DateTime? date = default(System.DateTime?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetPayableChargesAsync(this IDistributorService operations, System.DateTime? date = default(System.DateTime?), string acceptLanguage = "en-EN", CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetPayableChargesWithHttpMessagesAsync(date, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetPayableChargesWithHttpMessagesAsync(date, acceptLanguage, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

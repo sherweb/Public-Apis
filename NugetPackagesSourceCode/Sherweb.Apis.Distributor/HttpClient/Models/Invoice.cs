@@ -6,6 +6,8 @@
 
 namespace Sherweb.Apis.Distributor.Models
 {
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
     using Newtonsoft.Json;
     using System.Linq;
 
@@ -46,16 +48,19 @@ namespace Sherweb.Apis.Distributor.Models
 
         /// <summary>
         /// </summary>
+        [JsonConverter(typeof(DateJsonConverter))]
         [JsonProperty(PropertyName = "date")]
         public System.DateTime? Date { get; set; }
 
         /// <summary>
         /// </summary>
+        [JsonConverter(typeof(DateJsonConverter))]
         [JsonProperty(PropertyName = "periodFrom")]
         public System.DateTime? PeriodFrom { get; set; }
 
         /// <summary>
         /// </summary>
+        [JsonConverter(typeof(DateJsonConverter))]
         [JsonProperty(PropertyName = "periodTo")]
         public System.DateTime? PeriodTo { get; set; }
 
