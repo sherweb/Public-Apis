@@ -6,6 +6,8 @@
 
 namespace Sherweb.Apis.Distributor.Models
 {
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
     using Newtonsoft.Json;
     using System.Collections;
     using System.Collections.Generic;
@@ -30,8 +32,8 @@ namespace Sherweb.Apis.Distributor.Models
         /// <param name="chargeType">Possible values include: 'Setup',
         /// 'Recurring', 'Usage'</param>
         /// <param name="listPrice">Price before deduction(s).</param>
-        /// <param name="netPrice">List price - deduction(s) - fee(s).</param>
-        /// <param name="subTotal">Quantity * NetPriceProrated.</param>
+        /// <param name="netPrice">ListPrice - deduction(s) - fee(s).</param>
+        /// <param name="subTotal">Quantity * netPriceProrated.</param>
         /// <param name="isBilled">Indicates whether or not a charge has been
         /// billed.</param>
         /// <param name="isProratable">Indicates whether or not the price of a
@@ -100,11 +102,13 @@ namespace Sherweb.Apis.Distributor.Models
 
         /// <summary>
         /// </summary>
+        [JsonConverter(typeof(DateJsonConverter))]
         [JsonProperty(PropertyName = "periodFrom")]
         public System.DateTime? PeriodFrom { get; set; }
 
         /// <summary>
         /// </summary>
+        [JsonConverter(typeof(DateJsonConverter))]
         [JsonProperty(PropertyName = "periodTo")]
         public System.DateTime? PeriodTo { get; set; }
 
@@ -120,7 +124,7 @@ namespace Sherweb.Apis.Distributor.Models
         public double? ListPrice { get; set; }
 
         /// <summary>
-        /// Gets or sets list price - deduction(s) - fee(s).
+        /// Gets or sets listPrice - deduction(s) - fee(s).
         /// </summary>
         [JsonProperty(PropertyName = "netPrice")]
         public double? NetPrice { get; set; }
@@ -131,7 +135,7 @@ namespace Sherweb.Apis.Distributor.Models
         public double? NetPriceProrated { get; set; }
 
         /// <summary>
-        /// Gets or sets quantity * NetPriceProrated.
+        /// Gets or sets quantity * netPriceProrated.
         /// </summary>
         [JsonProperty(PropertyName = "subTotal")]
         public double? SubTotal { get; set; }
