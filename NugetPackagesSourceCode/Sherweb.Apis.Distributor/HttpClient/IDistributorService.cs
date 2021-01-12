@@ -47,10 +47,12 @@ namespace Sherweb.Apis.Distributor
         /// Get your payable charges data for a specific billing period.
         /// </remarks>
         /// <param name='date'>
-        /// Specify a date within the desired billing period. Default: Today.
-        /// For example, if the date is March 17th and your billing period is
-        /// from the 1st to the 31st of the month, it will return data from
-        /// March 1st to March 31st.
+        /// Specify a date within the desired billing period. Format:
+        /// yyyy-MM-dd. Default: Today. For example, if the date is March 17th
+        /// and your billing period is from the 1st to the 31st of the month,
+        /// it will return data from March 1st to March 31st.
+        /// </param>
+        /// <param name='acceptLanguage'>
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -58,7 +60,7 @@ namespace Sherweb.Apis.Distributor
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object>> GetPayableChargesWithHttpMessagesAsync(System.DateTime? date = default(System.DateTime?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object>> GetPayableChargesWithHttpMessagesAsync(System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

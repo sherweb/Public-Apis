@@ -315,9 +315,12 @@ namespace Sherweb.Apis.Distributor
         /// Get your payable charges data for a specific billing period.
         /// </remarks>
         /// <param name='date'>
-        /// Specify a date within the desired billing period. Default: Today. For
-        /// example, if the date is March 17th and your billing period is from the 1st
-        /// to the 31st of the month, it will return data from March 1st to March 31st.
+        /// Specify a date within the desired billing period. Format: yyyy-MM-dd.
+        /// Default: Today. For example, if the date is March 17th and your billing
+        /// period is from the 1st to the 31st of the month, it will return data from
+        /// March 1st to March 31st.
+        /// </param>
+        /// <param name='acceptLanguage'>
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -334,7 +337,7 @@ namespace Sherweb.Apis.Distributor
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> GetPayableChargesWithHttpMessagesAsync(System.DateTime? date = default(System.DateTime?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> GetPayableChargesWithHttpMessagesAsync(System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -344,6 +347,7 @@ namespace Sherweb.Apis.Distributor
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("date", date);
+                tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPayableCharges", tracingParameters);
             }
@@ -353,7 +357,7 @@ namespace Sherweb.Apis.Distributor
             List<string> _queryParameters = new List<string>();
             if (date != null)
             {
-                _queryParameters.Add(string.Format("date={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(date, SerializationSettings).Trim('"'))));
+                _queryParameters.Add(string.Format("date={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(date, new DateJsonConverter()).Trim('"'))));
             }
             if (_queryParameters.Count > 0)
             {
@@ -365,6 +369,14 @@ namespace Sherweb.Apis.Distributor
             _httpRequest.Method = new HttpMethod("GET");
             _httpRequest.RequestUri = new System.Uri(_url);
             // Set Headers
+            if (acceptLanguage != null)
+            {
+                if (_httpRequest.Headers.Contains("Accept-Language"))
+                {
+                    _httpRequest.Headers.Remove("Accept-Language");
+                }
+                _httpRequest.Headers.TryAddWithoutValidation("Accept-Language", acceptLanguage);
+            }
 
 
             if (customHeaders != null)
