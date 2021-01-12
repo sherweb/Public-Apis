@@ -32,7 +32,7 @@ namespace Sherweb.Apis.Distributor
             /// </param>
             /// <param name='acceptLanguage'>
             /// </param>
-            public static object GetPayableCharges(this IDistributorService operations, System.DateTime? date = default(System.DateTime?), string acceptLanguage = "en-EN")
+            public static object GetPayableCharges(this IDistributorService operations, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string))
             {
                 return operations.GetPayableChargesAsync(date, acceptLanguage).GetAwaiter().GetResult();
             }
@@ -57,7 +57,7 @@ namespace Sherweb.Apis.Distributor
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> GetPayableChargesAsync(this IDistributorService operations, System.DateTime? date = default(System.DateTime?), string acceptLanguage = "en-EN", CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetPayableChargesAsync(this IDistributorService operations, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetPayableChargesWithHttpMessagesAsync(date, acceptLanguage, null, cancellationToken).ConfigureAwait(false))
                 {

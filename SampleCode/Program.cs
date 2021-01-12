@@ -14,6 +14,7 @@ namespace Sherweb.SampleCode
             const string clientId = "your client id";
             const string clientSecret = "your client secret";
             const string subscriptionKey = "your subscription key";
+            const string acceptLanguageHeader = "en-CA";
 
             // Get Bearer Token from Authorization API
             var authorizationClient = new AuthorizationService(new Uri("https://api.sherweb.com/auth"));
@@ -29,9 +30,9 @@ namespace Sherweb.SampleCode
             var distributorClient = new DistributorService(
                 new Uri("https://api.sherweb.com/distributor/v1"),
                 svcClientCreds,
-                new SubscriptionKeyHandler(subscriptionKey)); // Add your subscription key in the SubscriptionKeyHandler.cs file
+                new SubscriptionKeyHandler(subscriptionKey));
 
-            var response = distributorClient.GetPayableCharges(acceptLanguage: "en-CA");
+            var response = distributorClient.GetPayableCharges(acceptLanguage: acceptLanguageHeader);
             if (response is ProblemDetails problemDetails)
             {
                 Console.WriteLine($"{nameof(problemDetails.Instance)}={problemDetails.Instance}");
@@ -40,9 +41,9 @@ namespace Sherweb.SampleCode
                 Console.WriteLine($"{nameof(problemDetails.Type)}={problemDetails.Type}");
                 Console.WriteLine($"{nameof(problemDetails.Detail)}={problemDetails.Detail}");
 
-                if (problemDetails.AdditionalProperties != null)
+                if (problemDetails.Extensions != null)
                 {
-                    foreach (var extension in problemDetails.AdditionalProperties)
+                    foreach (var extension in problemDetails.Extensions)
                     {
                         Console.WriteLine($"{nameof(extension.Key)}={extension.Key}");
                         Console.WriteLine($"{nameof(extension.Value)}={extension.Value}");

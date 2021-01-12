@@ -337,7 +337,7 @@ namespace Sherweb.Apis.Distributor
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> GetPayableChargesWithHttpMessagesAsync(System.DateTime? date = default(System.DateTime?), string acceptLanguage = "en-EN", Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> GetPayableChargesWithHttpMessagesAsync(System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;

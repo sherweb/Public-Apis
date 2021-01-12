@@ -28,8 +28,6 @@ namespace Sherweb.Apis.Distributor.Models
         /// <summary>
         /// Initializes a new instance of the ProblemDetails class.
         /// </summary>
-        /// <param name="additionalProperties">Unmatched properties from the
-        /// message are deserialized this collection</param>
         /// <param name="type">A URI reference [RFC3986] that identifies the
         /// problem type. This specification encourages that, when
         /// dereferenced, it provides human-readable documentation for the
@@ -48,14 +46,22 @@ namespace Sherweb.Apis.Distributor.Models
         /// <param name="instance">A URI reference that identifies the specific
         /// occurrence of the problem. It may or may not yield further
         /// information if dereferenced.</param>
-        public ProblemDetails(IDictionary<string, object> additionalProperties = default(IDictionary<string, object>), string type = default(string), string title = default(string), int? status = default(int?), string detail = default(string), string instance = default(string))
+        /// <param name="extensions">Gets the
+        /// System.Collections.Generic.IDictionary`2 for extension members.
+        /// &lt;br&gt;
+        /// Problem type definitions MAY extend the problem details object with
+        /// additional members.
+        /// Extension members appear in the same namespace as other members of
+        /// a problem type.
+        /// </param>
+        public ProblemDetails(string type = default(string), string title = default(string), int? status = default(int?), string detail = default(string), string instance = default(string), IDictionary<string, object> extensions = default(IDictionary<string, object>))
         {
-            AdditionalProperties = additionalProperties;
             Type = type;
             Title = title;
             Status = status;
             Detail = detail;
             Instance = instance;
+            Extensions = extensions;
             CustomInit();
         }
 
@@ -63,13 +69,6 @@ namespace Sherweb.Apis.Distributor.Models
         /// An initialization method that performs custom operations like setting defaults
         /// </summary>
         partial void CustomInit();
-
-        /// <summary>
-        /// Gets or sets unmatched properties from the message are deserialized
-        /// this collection
-        /// </summary>
-        [JsonExtensionData]
-        public IDictionary<string, object> AdditionalProperties { get; set; }
 
         /// <summary>
         /// Gets or sets a URI reference [RFC3986] that identifies the problem
@@ -112,6 +111,19 @@ namespace Sherweb.Apis.Distributor.Models
         /// </summary>
         [JsonProperty(PropertyName = "instance")]
         public string Instance { get; set; }
+
+        /// <summary>
+        /// Gets the System.Collections.Generic.IDictionary`2 for extension
+        /// members.
+        /// &amp;lt;br&amp;gt;
+        /// Problem type definitions MAY extend the problem details object with
+        /// additional members.
+        /// Extension members appear in the same namespace as other members of
+        /// a problem type.
+        ///
+        /// </summary>
+        [JsonProperty(PropertyName = "extensions")]
+        public IDictionary<string, object> Extensions { get; set; }
 
     }
 }
