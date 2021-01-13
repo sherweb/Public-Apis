@@ -14,7 +14,10 @@ namespace Sherweb.SampleCode
             const string clientId = "your client id";
             const string clientSecret = "your client secret";
             const string subscriptionKey = "your subscription key";
-            const string acceptLanguageHeader = "en-CA";
+            
+            // Optional. This should follow [RFC 7231, section 5.3.5: Accept-Language]: https://tools.ietf.org/html/rfc7231#section-5.3.5
+            // Example: en, en-CA;q=0.8, fr-CA;q=0.7
+            const string acceptLanguageHeader = null;  
 
             // Get Bearer Token from Authorization API
             var authorizationClient = new AuthorizationService(new Uri("https://api.sherweb.com/auth"));
