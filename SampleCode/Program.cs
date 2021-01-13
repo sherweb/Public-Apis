@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Linq;
 using Microsoft.Rest;
 using Sherweb.Apis.Authorization;
 using Sherweb.Apis.Distributor;
@@ -10,8 +11,13 @@ namespace Sherweb.SampleCode
     {
         static void Main(string[] args)
         {
-            const string clientId = "your clientId";
+            const string clientId = "your client id";
             const string clientSecret = "your client secret";
+            const string subscriptionKey = "your subscription key";
+            
+            // Optional. This should follow [RFC 7231, section 5.3.5: Accept-Language]: https://tools.ietf.org/html/rfc7231#section-5.3.5
+            // Example: en, en-CA;q=0.8, fr-CA;q=0.7
+            const string acceptLanguageHeader = null;  
 
             // Get Bearer Token from Authorization API
             var authorizationClient = new AuthorizationService(new Uri("https://api.sherweb.com/auth"));
@@ -27,9 +33,9 @@ namespace Sherweb.SampleCode
             var distributorClient = new DistributorService(
                 new Uri("https://api.sherweb.com/distributor/v1"),
                 svcClientCreds,
-                new SubscriptionKeyHandler()); // Add your subscription key in the SubscriptionKeyHandler.cs file
+                new SubscriptionKeyHandler(subscriptionKey));
 
-            var response = distributorClient.GetPayableCharges();
+            var response = distributorClient.GetPayableCharges(acceptLanguage: acceptLanguageHeader);
             if (response is ProblemDetails problemDetails)
             {
                 Console.WriteLine($"{nameof(problemDetails.Instance)}={problemDetails.Instance}");
@@ -40,7 +46,6 @@ namespace Sherweb.SampleCode
 
                 if (problemDetails.Extensions != null)
                 {
-                    Console.WriteLine($"{nameof(problemDetails.Detail)}={problemDetails.Detail}");
                     foreach (var extension in problemDetails.Extensions)
                     {
                         Console.WriteLine($"{nameof(extension.Key)}={extension.Key}");
@@ -59,7 +64,9 @@ namespace Sherweb.SampleCode
 
             foreach (var charge in payableCharges.Charges)
             {
+                var customerDisplayName = charge.Tags.SingleOrDefault(x => x.Name == "CustomerDisplayName")?.Value;
                 Console.WriteLine("-------------------------------------------------");
+                Console.WriteLine($"{nameof(customerDisplayName)}={customerDisplayName}");
                 Console.WriteLine($"{nameof(charge.ProductName)}={charge.ProductName}");
                 Console.WriteLine($"{nameof(charge.ChargeName)}={charge.ChargeName}");
                 Console.WriteLine($"{nameof(charge.Quantity)}={charge.Quantity}");

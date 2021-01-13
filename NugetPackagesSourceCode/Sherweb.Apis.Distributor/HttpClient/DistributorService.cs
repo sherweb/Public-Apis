@@ -321,6 +321,8 @@ namespace Sherweb.Apis.Distributor
         /// March 1st to March 31st.
         /// </param>
         /// <param name='acceptLanguage'>
+        /// Specify language (and culture) following [RFC 7231, section 5.3.5:
+        /// Accept-Language].
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
