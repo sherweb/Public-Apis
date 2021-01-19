@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Sherweb.Apis.Authorization" Version="1.0.0-beta3" />
-    <PackageReference Include="Sherweb.Apis.Distributor" Version="1.0.0-beta5" />
+    <PackageReference Include="Sherweb.Apis.Authorization" Version="1.0.0" />
+    <PackageReference Include="Sherweb.Apis.Distributor" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
