@@ -30,7 +30,7 @@ namespace Sherweb.Apis.Distributor.Models
         /// Initializes a new instance of the Charge class.
         /// </summary>
         /// <param name="chargeType">Possible values include: 'Setup',
-        /// 'Recurring', 'Usage'</param>
+        /// 'Recurring', 'Usage', 'Unknown'</param>
         /// <param name="billingCycleType">Possible values include: 'OneTime',
         /// 'Monthly', 'Yearly'</param>
         /// <param name="listPrice">Price before deduction(s).</param>
@@ -98,7 +98,8 @@ namespace Sherweb.Apis.Distributor.Models
         public string ChargeName { get; set; }
 
         /// <summary>
-        /// Gets or sets possible values include: 'Setup', 'Recurring', 'Usage'
+        /// Gets or sets possible values include: 'Setup', 'Recurring',
+        /// 'Usage', 'Unknown'
         /// </summary>
         [JsonProperty(PropertyName = "chargeType")]
         public string ChargeType { get; set; }
