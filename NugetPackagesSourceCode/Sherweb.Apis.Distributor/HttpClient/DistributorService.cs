@@ -315,7 +315,7 @@ namespace Sherweb.Apis.Distributor
         /// Get your payable charges data for a specific billing period.
         /// </remarks>
         /// <param name='date'>
-        /// Specify a date within the desired billing period. Format: yyyy-MM-dd.
+        /// Specify a date within the desired billing period. Format: yyyy-MM-dd (UTC).
         /// Default: Today. For example, if the date is March 17th and your billing
         /// period is from the 1st to the 31st of the month, it will return data from
         /// March 1st to March 31st.
