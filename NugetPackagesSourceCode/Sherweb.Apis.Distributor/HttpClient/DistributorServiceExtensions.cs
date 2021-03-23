@@ -25,7 +25,7 @@ namespace Sherweb.Apis.Distributor
             /// The operations group for this extension method.
             /// </param>
             /// <param name='date'>
-            /// Specify a date within the desired billing period. Format: yyyy-MM-dd (UTC).
+            /// Specify a date within the desired billing period. Format: yyyy-MM-dd.
             /// Default: Today. For example, if the date is March 17th and your billing
             /// period is from the 1st to the 31st of the month, it will return data from
             /// March 1st to March 31st.
@@ -49,7 +49,7 @@ namespace Sherweb.Apis.Distributor
             /// The operations group for this extension method.
             /// </param>
             /// <param name='date'>
-            /// Specify a date within the desired billing period. Format: yyyy-MM-dd (UTC).
+            /// Specify a date within the desired billing period. Format: yyyy-MM-dd.
             /// Default: Today. For example, if the date is March 17th and your billing
             /// period is from the 1st to the 31st of the month, it will return data from
             /// March 1st to March 31st.

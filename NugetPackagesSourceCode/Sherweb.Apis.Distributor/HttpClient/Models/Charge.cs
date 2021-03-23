@@ -30,9 +30,7 @@ namespace Sherweb.Apis.Distributor.Models
         /// Initializes a new instance of the Charge class.
         /// </summary>
         /// <param name="chargeType">Possible values include: 'Setup',
-        /// 'Recurring', 'Usage', 'Unknown'</param>
-        /// <param name="billingCycleType">Possible values include: 'OneTime',
-        /// 'Monthly', 'Yearly'</param>
+        /// 'Recurring', 'Usage'</param>
         /// <param name="listPrice">Price before deduction(s).</param>
         /// <param name="netPrice">ListPrice - deduction(s) - fee(s).</param>
         /// <param name="subTotal">Quantity * netPriceProrated.</param>
@@ -40,7 +38,7 @@ namespace Sherweb.Apis.Distributor.Models
         /// billed.</param>
         /// <param name="isProratable">Indicates whether or not the price of a
         /// charge is proratable.</param>
-        public Charge(System.Guid? productId = default(System.Guid?), string productName = default(string), string sku = default(string), System.Guid? chargeId = default(System.Guid?), string chargeName = default(string), string chargeType = default(string), string billingCycleType = default(string), System.DateTime? periodFrom = default(System.DateTime?), System.DateTime? periodTo = default(System.DateTime?), double? quantity = default(double?), double? listPrice = default(double?), double? netPrice = default(double?), double? netPriceProrated = default(double?), double? subTotal = default(double?), string currency = default(string), bool? isBilled = default(bool?), bool? isProratable = default(bool?), IList<Deduction> deductions = default(IList<Deduction>), IList<Fee> fees = default(IList<Fee>), Invoice invoice = default(Invoice), IList<Tax> taxes = default(IList<Tax>), IList<Tag> tags = default(IList<Tag>))
+        public Charge(System.Guid? productId = default(System.Guid?), string productName = default(string), string sku = default(string), System.Guid? chargeId = default(System.Guid?), string chargeName = default(string), string chargeType = default(string), System.DateTime? periodFrom = default(System.DateTime?), System.DateTime? periodTo = default(System.DateTime?), double? quantity = default(double?), double? listPrice = default(double?), double? netPrice = default(double?), double? netPriceProrated = default(double?), double? subTotal = default(double?), string currency = default(string), bool? isBilled = default(bool?), bool? isProratable = default(bool?), IList<Deduction> deductions = default(IList<Deduction>), IList<Fee> fees = default(IList<Fee>), Invoice invoice = default(Invoice), IList<Tax> taxes = default(IList<Tax>), IList<Tag> tags = default(IList<Tag>))
         {
             ProductId = productId;
             ProductName = productName;
@@ -48,7 +46,6 @@ namespace Sherweb.Apis.Distributor.Models
             ChargeId = chargeId;
             ChargeName = chargeName;
             ChargeType = chargeType;
-            BillingCycleType = billingCycleType;
             PeriodFrom = periodFrom;
             PeriodTo = periodTo;
             Quantity = quantity;
@@ -98,18 +95,10 @@ namespace Sherweb.Apis.Distributor.Models
         public string ChargeName { get; set; }
 
         /// <summary>
-        /// Gets or sets possible values include: 'Setup', 'Recurring',
-        /// 'Usage', 'Unknown'
+        /// Gets or sets possible values include: 'Setup', 'Recurring', 'Usage'
         /// </summary>
         [JsonProperty(PropertyName = "chargeType")]
         public string ChargeType { get; set; }
-
-        /// <summary>
-        /// Gets or sets possible values include: 'OneTime', 'Monthly',
-        /// 'Yearly'
-        /// </summary>
-        [JsonProperty(PropertyName = "billingCycleType")]
-        public string BillingCycleType { get; set; }
 
         /// <summary>
         /// </summary>

@@ -134,7 +134,7 @@ namespace Sherweb.Apis.Distributor
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public DistributorService(ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
+        internal DistributorService(ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (credentials == null)
             {
@@ -161,7 +161,7 @@ namespace Sherweb.Apis.Distributor
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public DistributorService(ServiceClientCredentials credentials, HttpClient httpClient, bool disposeHttpClient) : this(httpClient, disposeHttpClient)
+        internal DistributorService(ServiceClientCredentials credentials, HttpClient httpClient, bool disposeHttpClient) : this(httpClient, disposeHttpClient)
         {
             if (credentials == null)
             {
@@ -189,7 +189,7 @@ namespace Sherweb.Apis.Distributor
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public DistributorService(ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        internal DistributorService(ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (credentials == null)
             {
@@ -217,7 +217,7 @@ namespace Sherweb.Apis.Distributor
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public DistributorService(System.Uri baseUri, ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
+        internal DistributorService(System.Uri baseUri, ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (baseUri == null)
             {
@@ -253,7 +253,7 @@ namespace Sherweb.Apis.Distributor
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public DistributorService(System.Uri baseUri, ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        internal DistributorService(System.Uri baseUri, ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (baseUri == null)
             {
@@ -315,7 +315,7 @@ namespace Sherweb.Apis.Distributor
         /// Get your payable charges data for a specific billing period.
         /// </remarks>
         /// <param name='date'>
-        /// Specify a date within the desired billing period. Format: yyyy-MM-dd (UTC).
+        /// Specify a date within the desired billing period. Format: yyyy-MM-dd.
         /// Default: Today. For example, if the date is March 17th and your billing
         /// period is from the 1st to the 31st of the month, it will return data from
         /// March 1st to March 31st.
