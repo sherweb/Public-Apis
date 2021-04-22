@@ -1,12 +1,12 @@
-name: Pull Requests -> Master
+name: Beta
 
 on:
-  pull_request:
-    branches: [ master, 'beta/**' ]
+  push:
+    branches: [ 'beta/**' ]
 
 jobs:
-  AuthorizationServer:
-    name: "PR : Authorization"
+  Authorization:
+    name: "Beta : Authorization"
     runs-on: ubuntu-latest
     env:
       working-directory: ./NugetPackagesSourceCode/Sherweb.Apis.Authorization
@@ -26,9 +26,12 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
       working-directory: ${{env.working-directory}}
+    - name: Publish NuGet
+      run: dotnet nuget push Sherweb.Apis.Authorization.*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      working-directory: ${{env.working-directory}}/bin/Release
 
   Distributor:
-    name: "PR : Distributor"
+    name: "Beta : Distributor"
     runs-on: ubuntu-latest
     env:
       working-directory: ./NugetPackagesSourceCode/Sherweb.Apis.Distributor
@@ -48,9 +51,12 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
       working-directory: ${{env.working-directory}}
+    - name: Publish NuGet
+      run: dotnet nuget push Sherweb.Apis.Distributor.*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      working-directory: ${{env.working-directory}}/bin/Release
 
   ServiceProvider:
-    name: "PR : ServiceProvider"
+    name: "Beta : ServiceProvider"
     runs-on: ubuntu-latest
     env:
       working-directory: ./NugetPackagesSourceCode/Sherweb.Apis.ServiceProvider
@@ -70,9 +76,12 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
       working-directory: ${{env.working-directory}}
+    - name: Publish NuGet
+      run: dotnet nuget push Sherweb.Apis.ServiceProvider.*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      working-directory: ${{env.working-directory}}/bin/Release
 
   SampleCode:
-    name: "PR : SampleCode"
+    name: "Beta : SampleCode"
     runs-on: ubuntu-latest
     env:
       working-directory: ./SampleCode

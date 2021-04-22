@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\PublicNuget.props" />
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Sherweb.Apis.ServiceProvider</AssemblyName>
+    <PackageId>Sherweb.Apis.ServiceProvider</PackageId>
+    <PackageTags>Sherweb API Client ServiceProvider</PackageTags>
+    <Description>Sherweb ServiceProvider API Client</Description>
+    <Version>1.0.0-alpha1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.16" />
+  </ItemGroup>
+</Project>

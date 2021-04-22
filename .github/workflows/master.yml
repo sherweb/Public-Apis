@@ -53,9 +53,34 @@ jobs:
       working-directory: ${{env.working-directory}}
     - name: Publish NuGet
       run: dotnet nuget push Sherweb.Apis.Distributor.*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
-      working-directory: ${{env.working-directory}}/bin/Release  
+      working-directory: ${{env.working-directory}}/bin/Release
 
-  SampleCode:    
+  ServiceProvider:
+    name: "Master : ServiceProvider"
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./NugetPackagesSourceCode/Sherweb.Apis.ServiceProvider
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Install dependencies
+      run: dotnet restore
+      working-directory: ${{env.working-directory}}
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+      working-directory: ${{env.working-directory}}
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+      working-directory: ${{env.working-directory}}
+    - name: Publish NuGet
+      run: dotnet nuget push Sherweb.Apis.ServiceProvider.*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      working-directory: ${{env.working-directory}}/bin/Release
+
+  SampleCode:
     name: "Master : SampleCode"
     runs-on: ubuntu-latest
     env:
