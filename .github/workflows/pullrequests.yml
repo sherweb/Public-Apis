@@ -49,11 +49,11 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
       working-directory: ${{env.working-directory}}
 
-  SampleCode:
-    name: "PR : SampleCode"
+  ServiceProvider:
+    name: "PR : ServiceProvider"
     runs-on: ubuntu-latest
     env:
-      working-directory: ./SampleCode
+      working-directory: ./NugetPackagesSourceCode/Sherweb.Apis.ServiceProvider
 
     steps:
     - uses: actions/checkout@master
@@ -71,11 +71,11 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
       working-directory: ${{env.working-directory}}
 
-  ServiceProvider:
-    name: "PR : ServiceProvider"
+  SampleCode:
+    name: "PR : SampleCode"
     runs-on: ubuntu-latest
     env:
-      working-directory: ./NugetPackagesSourceCode/Sherweb.Apis.ServiceProvider
+      working-directory: ./SampleCode
 
     steps:
     - uses: actions/checkout@master
