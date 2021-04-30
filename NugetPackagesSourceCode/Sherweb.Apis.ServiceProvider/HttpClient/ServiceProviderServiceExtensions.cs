@@ -21,7 +21,7 @@ namespace Sherweb.Apis.ServiceProvider
             /// GetCustomers (beta)
             /// </summary>
             /// <remarks>
-            /// Retrieve the list of all your customers.
+            /// Get the list of all your customers.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -42,7 +42,7 @@ namespace Sherweb.Apis.ServiceProvider
             /// GetCustomers (beta)
             /// </summary>
             /// <remarks>
-            /// Retrieve the list of all your customers.
+            /// Get the list of all your customers.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -69,9 +69,9 @@ namespace Sherweb.Apis.ServiceProvider
             /// GetReceivableCharges (beta)
             /// </summary>
             /// <remarks>
-            /// Retrieve the amounts that one of your customers owe you for a specific
-            /// billing period. There are three types of charges that are included in the
-            /// data returned: recurring, usage, and setup.
+            /// Get the amounts that one of your customers owe you for a specific billing
+            /// period. There are three types of charges that are included in the data
+            /// returned: recurring, usage, and setup.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -94,9 +94,9 @@ namespace Sherweb.Apis.ServiceProvider
             /// GetReceivableCharges (beta)
             /// </summary>
             /// <remarks>
-            /// Retrieve the amounts that one of your customers owe you for a specific
-            /// billing period. There are three types of charges that are included in the
-            /// data returned: recurring, usage, and setup.
+            /// Get the amounts that one of your customers owe you for a specific billing
+            /// period. There are three types of charges that are included in the data
+            /// returned: recurring, usage, and setup.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
