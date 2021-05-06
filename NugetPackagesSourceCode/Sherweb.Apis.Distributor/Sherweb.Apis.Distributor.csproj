@@ -7,7 +7,7 @@
     <PackageId>Sherweb.Apis.Distributor</PackageId>
     <PackageTags>Sherweb API Client Distributor</PackageTags>
     <Description>Sherweb Distributor API Client</Description>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
