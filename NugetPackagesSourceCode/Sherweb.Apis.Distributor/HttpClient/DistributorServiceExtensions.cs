@@ -19,7 +19,9 @@ namespace Sherweb.Apis.Distributor
             /// GetPayableCharges
             /// </summary>
             /// <remarks>
-            /// Get your payable charges data for a specific billing period.
+            /// Get your payable charges data for a specific billing period. There are
+            /// three types of charges that are included in the data returned: recurring,
+            /// usage, and setup.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -43,7 +45,9 @@ namespace Sherweb.Apis.Distributor
             /// GetPayableCharges
             /// </summary>
             /// <remarks>
-            /// Get your payable charges data for a specific billing period.
+            /// Get your payable charges data for a specific billing period. There are
+            /// three types of charges that are included in the data returned: recurring,
+            /// usage, and setup.
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
