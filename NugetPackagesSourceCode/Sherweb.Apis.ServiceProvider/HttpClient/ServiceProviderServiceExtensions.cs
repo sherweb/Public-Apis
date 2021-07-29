@@ -7,15 +7,13 @@
 namespace Sherweb.Apis.ServiceProvider
 {
     using Models;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Extension methods for ServiceProviderService.
+    /// Extension methods for ServiceProvidingPublicApiClient.
     /// </summary>
-    public static partial class ServiceProviderServiceExtensions
+    public static partial class ServiceProvidingPublicApiClientExtensions
     {
             /// <summary>
             /// GetCustomers (beta)
@@ -26,16 +24,15 @@ namespace Sherweb.Apis.ServiceProvider
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='includeDeleted'>
-            /// Specify if you want to retrieve deleted customers. Default: False.
+            /// <param name='serviceProviderId'>
             /// </param>
             /// <param name='acceptLanguage'>
             /// Specify language (and culture) following [RFC 7231, section 5.3.5:
             /// Accept-Language].
             /// </param>
-            public static IList<Customer> GetCustomers(this IServiceProviderService operations, bool? includeDeleted = false, string acceptLanguage = default(string))
+            public static Customers GetCustomers(this IServiceProvidingPublicApiClient operations, System.Guid serviceProviderId, string acceptLanguage = default(string))
             {
-                return operations.GetCustomersAsync(includeDeleted, acceptLanguage).GetAwaiter().GetResult();
+                return operations.GetCustomersAsync(serviceProviderId, acceptLanguage).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -47,8 +44,7 @@ namespace Sherweb.Apis.ServiceProvider
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
-            /// <param name='includeDeleted'>
-            /// Specify if you want to retrieve deleted customers. Default: False.
+            /// <param name='serviceProviderId'>
             /// </param>
             /// <param name='acceptLanguage'>
             /// Specify language (and culture) following [RFC 7231, section 5.3.5:
@@ -57,9 +53,9 @@ namespace Sherweb.Apis.ServiceProvider
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<Customer>> GetCustomersAsync(this IServiceProviderService operations, bool? includeDeleted = false, string acceptLanguage = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<Customers> GetCustomersAsync(this IServiceProvidingPublicApiClient operations, System.Guid serviceProviderId, string acceptLanguage = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetCustomersWithHttpMessagesAsync(includeDeleted, acceptLanguage, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetCustomersWithHttpMessagesAsync(serviceProviderId, acceptLanguage, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -76,6 +72,8 @@ namespace Sherweb.Apis.ServiceProvider
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
+            /// <param name='serviceProviderId'>
+            /// </param>
             /// <param name='customerId'>
             /// </param>
             /// <param name='date'>
@@ -88,9 +86,9 @@ namespace Sherweb.Apis.ServiceProvider
             /// Specify language (and culture) following [RFC 7231, section 5.3.5:
             /// Accept-Language].
             /// </param>
-            public static ReceivableCharges GetReceivableCharges(this IServiceProviderService operations, System.Guid customerId, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string))
+            public static ReceivableCharges GetReceivableCharges(this IServiceProvidingPublicApiClient operations, System.Guid serviceProviderId, System.Guid customerId, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string))
             {
-                return operations.GetReceivableChargesAsync(customerId, date, acceptLanguage).GetAwaiter().GetResult();
+                return operations.GetReceivableChargesAsync(serviceProviderId, customerId, date, acceptLanguage).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -103,6 +101,8 @@ namespace Sherweb.Apis.ServiceProvider
             /// </remarks>
             /// <param name='operations'>
             /// The operations group for this extension method.
+            /// </param>
+            /// <param name='serviceProviderId'>
             /// </param>
             /// <param name='customerId'>
             /// </param>
@@ -119,9 +119,9 @@ namespace Sherweb.Apis.ServiceProvider
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<ReceivableCharges> GetReceivableChargesAsync(this IServiceProviderService operations, System.Guid customerId, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<ReceivableCharges> GetReceivableChargesAsync(this IServiceProvidingPublicApiClient operations, System.Guid serviceProviderId, System.Guid customerId, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetReceivableChargesWithHttpMessagesAsync(customerId, date, acceptLanguage, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetReceivableChargesWithHttpMessagesAsync(serviceProviderId, customerId, date, acceptLanguage, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -129,3 +129,4 @@ namespace Sherweb.Apis.ServiceProvider
 
     }
 }
+
