@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace Sherweb.Apis.ServiceProvider.Models
+namespace Sherweb.Apis.ServiceProvider
 {
     using Microsoft.Rest;
     using Models;
