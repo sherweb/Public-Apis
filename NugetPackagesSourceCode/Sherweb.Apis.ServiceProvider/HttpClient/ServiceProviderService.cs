@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace Sherweb.Apis.ServiceProvider
+namespace Sherweb.Apis.ServiceProvider.Models
 {
     using Microsoft.Rest;
     using Microsoft.Rest.Serialization;
@@ -17,7 +17,7 @@ namespace Sherweb.Apis.ServiceProvider
     using System.Threading;
     using System.Threading.Tasks;
 
-    public partial class ServiceProviderService : ServiceClient<ServiceProviderService>, IServiceProviderService
+    public partial class ServiceProvidingPublicApiClient : ServiceClient<ServiceProvidingPublicApiClient>, IServiceProvidingPublicApiClient
     {
         /// <summary>
         /// The base URI of the service.
@@ -40,31 +40,31 @@ namespace Sherweb.Apis.ServiceProvider
         public ServiceClientCredentials Credentials { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the ServiceProviderService class.
+        /// Initializes a new instance of the ServiceProvidingPublicApiClient class.
         /// </summary>
         /// <param name='httpClient'>
         /// HttpClient to be used
         /// </param>
         /// <param name='disposeHttpClient'>
-        /// True: will dispose the provided httpClient on calling ServiceProviderService.Dispose(). False: will not dispose provided httpClient</param>
-        protected ServiceProviderService(HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)
+        /// True: will dispose the provided httpClient on calling ServiceProvidingPublicApiClient.Dispose(). False: will not dispose provided httpClient</param>
+        protected ServiceProvidingPublicApiClient(HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the ServiceProviderService class.
+        /// Initializes a new instance of the ServiceProvidingPublicApiClient class.
         /// </summary>
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        protected ServiceProviderService(params DelegatingHandler[] handlers) : base(handlers)
+        protected ServiceProvidingPublicApiClient(params DelegatingHandler[] handlers) : base(handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the ServiceProviderService class.
+        /// Initializes a new instance of the ServiceProvidingPublicApiClient class.
         /// </summary>
         /// <param name='rootHandler'>
         /// Optional. The http client handler used to handle http transport.
@@ -72,13 +72,13 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        protected ServiceProviderService(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
+        protected ServiceProvidingPublicApiClient(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the ServiceProviderService class.
+        /// Initializes a new instance of the ServiceProvidingPublicApiClient class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -89,7 +89,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        protected ServiceProviderService(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
+        protected ServiceProvidingPublicApiClient(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (baseUri == null)
             {
@@ -99,7 +99,7 @@ namespace Sherweb.Apis.ServiceProvider
         }
 
         /// <summary>
-        /// Initializes a new instance of the ServiceProviderService class.
+        /// Initializes a new instance of the ServiceProvidingPublicApiClient class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -113,7 +113,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        protected ServiceProviderService(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        protected ServiceProvidingPublicApiClient(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (baseUri == null)
             {
@@ -123,7 +123,7 @@ namespace Sherweb.Apis.ServiceProvider
         }
 
         /// <summary>
-        /// Initializes a new instance of the ServiceProviderService class.
+        /// Initializes a new instance of the ServiceProvidingPublicApiClient class.
         /// </summary>
         /// <param name='credentials'>
         /// Required. Subscription credentials which uniquely identify client subscription.
@@ -134,7 +134,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        internal ServiceProviderService(ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
+        internal ServiceProvidingPublicApiClient(ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (credentials == null)
             {
@@ -148,7 +148,7 @@ namespace Sherweb.Apis.ServiceProvider
         }
 
         /// <summary>
-        /// Initializes a new instance of the ServiceProviderService class.
+        /// Initializes a new instance of the ServiceProvidingPublicApiClient class.
         /// </summary>
         /// <param name='credentials'>
         /// Required. Subscription credentials which uniquely identify client subscription.
@@ -157,11 +157,11 @@ namespace Sherweb.Apis.ServiceProvider
         /// HttpClient to be used
         /// </param>
         /// <param name='disposeHttpClient'>
-        /// True: will dispose the provided httpClient on calling ServiceProviderService.Dispose(). False: will not dispose provided httpClient</param>
+        /// True: will dispose the provided httpClient on calling ServiceProvidingPublicApiClient.Dispose(). False: will not dispose provided httpClient</param>
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        internal ServiceProviderService(ServiceClientCredentials credentials, HttpClient httpClient, bool disposeHttpClient) : this(httpClient, disposeHttpClient)
+        internal ServiceProvidingPublicApiClient(ServiceClientCredentials credentials, HttpClient httpClient, bool disposeHttpClient) : this(httpClient, disposeHttpClient)
         {
             if (credentials == null)
             {
@@ -175,7 +175,7 @@ namespace Sherweb.Apis.ServiceProvider
         }
 
         /// <summary>
-        /// Initializes a new instance of the ServiceProviderService class.
+        /// Initializes a new instance of the ServiceProvidingPublicApiClient class.
         /// </summary>
         /// <param name='credentials'>
         /// Required. Subscription credentials which uniquely identify client subscription.
@@ -189,7 +189,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        internal ServiceProviderService(ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        internal ServiceProvidingPublicApiClient(ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (credentials == null)
             {
@@ -203,7 +203,7 @@ namespace Sherweb.Apis.ServiceProvider
         }
 
         /// <summary>
-        /// Initializes a new instance of the ServiceProviderService class.
+        /// Initializes a new instance of the ServiceProvidingPublicApiClient class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -217,7 +217,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        internal ServiceProviderService(System.Uri baseUri, ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
+        internal ServiceProvidingPublicApiClient(System.Uri baseUri, ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (baseUri == null)
             {
@@ -236,7 +236,7 @@ namespace Sherweb.Apis.ServiceProvider
         }
 
         /// <summary>
-        /// Initializes a new instance of the ServiceProviderService class.
+        /// Initializes a new instance of the ServiceProvidingPublicApiClient class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -253,7 +253,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        internal ServiceProviderService(System.Uri baseUri, ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        internal ServiceProvidingPublicApiClient(System.Uri baseUri, ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (baseUri == null)
             {
@@ -314,8 +314,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of all your customers.
         /// </remarks>
-        /// <param name='includeDeleted'>
-        /// Specify if you want to retrieve deleted customers. Default: False.
+        /// <param name='serviceProviderId'>
         /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
@@ -336,7 +335,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<Customer>>> GetCustomersWithHttpMessagesAsync(bool? includeDeleted = false, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<Customers>> GetCustomersWithHttpMessagesAsync(System.Guid serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -345,23 +344,15 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("includeDeleted", includeDeleted);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetCustomers", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "customers").ToString();
-            List<string> _queryParameters = new List<string>();
-            if (includeDeleted != null)
-            {
-                _queryParameters.Add(string.Format("includeDeleted={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(includeDeleted, SerializationSettings).Trim('"'))));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/service-providers/{serviceProviderId}/customers").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -435,7 +426,7 @@ namespace Sherweb.Apis.ServiceProvider
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<IList<Customer>>();
+            var _result = new HttpOperationResponse<Customers>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -444,7 +435,7 @@ namespace Sherweb.Apis.ServiceProvider
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<IList<Customer>>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<Customers>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -471,6 +462,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// period. There are three types of charges that are included in the data
         /// returned: recurring, usage, and setup.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='date'>
@@ -498,7 +491,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<ReceivableCharges>> GetReceivableChargesWithHttpMessagesAsync(System.Guid customerId, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<ReceivableCharges>> GetReceivableChargesWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -507,6 +500,7 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("date", date);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
@@ -515,7 +509,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "billing/receivable-charges").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/billing/service-providers/{serviceProviderId}/receivable-charges").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("customerId={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"'))));
             if (date != null)
@@ -629,3 +624,4 @@ namespace Sherweb.Apis.ServiceProvider
 
     }
 }
+
