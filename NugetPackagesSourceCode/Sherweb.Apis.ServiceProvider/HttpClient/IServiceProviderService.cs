@@ -16,7 +16,7 @@ namespace Sherweb.Apis.ServiceProvider
 
     /// <summary>
     /// </summary>
-    public partial interface IServiceProvidingPublicApiClient : System.IDisposable
+    public partial interface IServiceProviderService : System.IDisposable
     {
         /// <summary>
         /// The base URI of the service.
