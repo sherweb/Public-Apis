@@ -21,7 +21,7 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </summary>
         public Charge()
         {
-            CustomInit();   
+            CustomInit();
         }
 
         /// <summary>
