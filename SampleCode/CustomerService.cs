@@ -7,6 +7,8 @@ namespace Sherweb.SampleCode
     public class CustomerService
     {
         private static IServiceProviderService _serviceProviderClient;
+        
+        private static string _acceptLanguageHeader;
 
         public CustomerService(IServiceProviderService serviceProviderClient)
         {
@@ -18,10 +20,11 @@ namespace Sherweb.SampleCode
             Console.WriteLine();
             Console.WriteLine("CUSTOMERS");
             Customers customers = null;
+            _acceptLanguageHeader = null;
 
             try
             {
-                customers = _serviceProviderClient.GetCustomers(acceptLanguage: null);
+                customers = _serviceProviderClient.GetCustomers(acceptLanguage: _acceptLanguageHeader);
             }
             catch (Exception exception)
             {
