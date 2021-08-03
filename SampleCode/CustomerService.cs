@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Sherweb.Apis.ServiceProvider;
 using Sherweb.Apis.ServiceProvider.Models;
 
@@ -7,24 +7,21 @@ namespace Sherweb.SampleCode
     public class CustomerService
     {
         private static IServiceProviderService _serviceProviderClient;
-        
-        private static string _acceptLanguageHeader;
 
         public CustomerService(IServiceProviderService serviceProviderClient)
         {
             _serviceProviderClient = serviceProviderClient;
         }
 
-        public void ShowCustomers()
+        public void ShowCustomers(string acceptLanguageHeader)
         {
             Console.WriteLine();
             Console.WriteLine("CUSTOMERS");
             Customers customers = null;
-            _acceptLanguageHeader = null;
 
             try
             {
-                customers = _serviceProviderClient.GetCustomers(acceptLanguage: _acceptLanguageHeader);
+                customers = _serviceProviderClient.GetCustomers(acceptLanguage: acceptLanguageHeader);
             }
             catch (Exception exception)
             {
