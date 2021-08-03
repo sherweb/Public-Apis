@@ -19,10 +19,11 @@ namespace Sherweb.SampleCode
             Console.WriteLine();
             Console.WriteLine("CUSTOMER SUBSCRIPTIONS");
             Subscriptions subscriptions = null;
+            _acceptLanguageHeader = null;
 
             try
             {
-                    subscriptions =  _serviceProviderClient.GetCustomerSubscriptions(customerId);
+                    subscriptions =  _serviceProviderClient.GetCustomerSubscriptions(customerId, acceptLanguage: _acceptLanguageHeader);
             }
             catch (Exception exception)
             {
