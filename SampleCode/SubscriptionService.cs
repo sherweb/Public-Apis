@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Sherweb.Apis.ServiceProvider;
 using Sherweb.Apis.ServiceProvider.Models;
@@ -14,16 +14,15 @@ namespace Sherweb.SampleCode
             _serviceProviderClient = serviceProviderClient;
         }
 
-        public void GetSubscriptions(Guid customerId)
+        public void GetSubscriptions(Guid customerId, string acceptLanguageHeader)
         {
             Console.WriteLine();
             Console.WriteLine("CUSTOMER SUBSCRIPTIONS");
             Subscriptions subscriptions = null;
-            _acceptLanguageHeader = null;
 
             try
             {
-                    subscriptions =  _serviceProviderClient.GetCustomerSubscriptions(customerId, acceptLanguage: _acceptLanguageHeader);
+                subscriptions = _serviceProviderClient.GetCustomerSubscriptions(customerId, acceptLanguage: acceptLanguageHeader);
             }
             catch (Exception exception)
             {
@@ -43,7 +42,7 @@ namespace Sherweb.SampleCode
             }
         }
 
-        public void AmendSubscriptions(Guid customerId, List<SubscriptionsAmendmentParameters> body)
+        public void AmendSubscriptions(Guid customerId, List<SubscriptionsAmendmentParameters> body, string acceptLanguageHeader)
         {
             Console.WriteLine();
             Console.WriteLine("AMEND SUBSCRIPTION");
@@ -51,7 +50,7 @@ namespace Sherweb.SampleCode
 
             try
             {
-                subscriptionsAmendment = _serviceProviderClient.CreateSubscriptionsAmendment(customerId, body);
+                subscriptionsAmendment = _serviceProviderClient.CreateSubscriptionsAmendment(customerId, body, acceptLanguage: acceptLanguageHeader);
             }
             catch (Exception exception)
             {
@@ -65,7 +64,7 @@ namespace Sherweb.SampleCode
             Console.WriteLine($"subscriptionsAmendmentId: {subscriptionsAmendment.SubscriptionsAmendmentId}");
         }
 
-        public void GetAmendmentStatus(Guid subscriptionsAmendmentId)
+        public void GetAmendmentStatus(Guid subscriptionsAmendmentId, string acceptLanguageHeader)
         {
             Console.WriteLine();
             Console.WriteLine("AMEND SUBSCRIPTION STATUS");
@@ -73,7 +72,7 @@ namespace Sherweb.SampleCode
 
             try
             {
-                subscriptionsAmendmentStatus = _serviceProviderClient.GetSubscriptionsAmendmentStatus(subscriptionsAmendmentId);
+                subscriptionsAmendmentStatus = _serviceProviderClient.GetSubscriptionsAmendmentStatus(subscriptionsAmendmentId, acceptLanguage: acceptLanguageHeader);
             }
             catch (Exception exception)
             {
