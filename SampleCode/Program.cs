@@ -1,14 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Rest;
 using Sherweb.Apis.Authorization;
 using Sherweb.Apis.Distributor;
 using Sherweb.Apis.Distributor.Factory;
-using Sherweb.Apis.Distributor.Models;
 using Sherweb.Apis.ServiceProvider;
 using Sherweb.Apis.ServiceProvider.Factory;
-using Sherweb.Apis.ServiceProvider.Models;
 
 namespace Sherweb.SampleCode
 {
@@ -30,6 +26,12 @@ namespace Sherweb.SampleCode
 
         private static IServiceProviderService _serviceProviderClient;
 
+        private static SubscriptionService _subscriptionService;
+
+        private static CustomerService _customerService;
+
+        private static DistributionService _distributionService;
+
         static void Main(string[] args)
         {
             _baseUrl = "https://api.sherweb.com";
@@ -47,9 +49,9 @@ namespace Sherweb.SampleCode
 
             _distributorClient = BuildDistributorClient();
             _serviceProviderClient = BuildServiceProviderClient();
-
-            ShowCustomers();
-            ShowPayableCharges();
+            _subscriptionService = new SubscriptionService(_serviceProviderClient);
+            _customerService = new CustomerService(_serviceProviderClient);
+            _distributionService = new DistributionService(_distributorClient);
         }
 
         private static IDistributorService BuildDistributorClient()
@@ -102,65 +104,6 @@ namespace Sherweb.SampleCode
                 new SubscriptionKeyHandler(_subscriptionKey));
 
             return serviceProviderServiceFactory.Create();
-        }
-
-        private static void ShowPayableCharges()
-        {
-            Console.WriteLine();
-            Console.WriteLine("PAYABLE CHARGES");
-            PayableCharges payableCharges = null;
-
-            try
-            {
-                payableCharges = _distributorClient.GetPayableCharges(acceptLanguage: _acceptLanguageHeader);
-            }
-            catch (HttpOperationException exception)
-            {
-                // ProblemDetails returned by the API are handled and converted to a HttpOperationException in the ProblemDetailsHandler of the API Client
-                // https://github.com/sherweb/Public-Apis/blob/7bd9a0ecc37f0fbe3d9085c3e911ade3ca9a0c66/NugetPackagesSourceCode/Sherweb.Apis.Distributor/DelegatingHandlers/OnProblemDetailsHandler.cs
-                Console.WriteLine($"{nameof(exception.Message)}={exception.Message}");
-                return;
-            }
-
-            Console.WriteLine("-------------------------------------------------");
-            Console.WriteLine($"{nameof(payableCharges.PeriodFrom)}={payableCharges.PeriodFrom}");
-            Console.WriteLine($"{nameof(payableCharges.PeriodTo)}={payableCharges.PeriodTo}");
-
-            foreach (var charge in payableCharges.Charges)
-            {
-                var customerDisplayName = charge.Tags.SingleOrDefault(x => x.Name == "CustomerDisplayName")?.Value;
-                Console.WriteLine("-------------------------------------------------");
-                Console.WriteLine($"{nameof(customerDisplayName)}={customerDisplayName}");
-                Console.WriteLine($"{nameof(charge.ProductName)}={charge.ProductName}");
-                Console.WriteLine($"{nameof(charge.ChargeName)}={charge.ChargeName}");
-                Console.WriteLine($"{nameof(charge.Quantity)}={charge.Quantity}");
-                Console.WriteLine($"{nameof(charge.SubTotal)}={charge.SubTotal}");
-            }
-        }
-
-        private static void ShowCustomers()
-        {
-            Console.WriteLine();
-            Console.WriteLine("CUSTOMERS");
-            IList<Customer> customers = null; 
-
-            try
-            {
-                 customers = _serviceProviderClient.GetCustomers(acceptLanguage: _acceptLanguageHeader);
-            }
-            catch (Exception exception)
-            {
-                // ProblemDetails returned by the API are handled and converted to a HttpOperationException in the ProblemDetailsHandler of the API Client
-                // https://github.com/sherweb/Public-Apis/blob/7bd9a0ecc37f0fbe3d9085c3e911ade3ca9a0c66/NugetPackagesSourceCode/Sherweb.Apis.Distributor/DelegatingHandlers/OnProblemDetailsHandler.cs
-                Console.WriteLine($"{nameof(exception.Message)}={exception.Message}");
-                return;
-            }
-
-            foreach (var customer in customers)
-            {
-                Console.WriteLine("-----------------------------");
-                Console.WriteLine($"{nameof(customer.DisplayName)} => {customer.DisplayName}");
-            }
         }
     }
 }
