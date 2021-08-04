@@ -16,7 +16,7 @@ namespace Sherweb.SampleCode
             _distributorClient = distributorService;
         }
 
-        public void ShowPayableCharges()
+        public void ShowPayableCharges(string acceptLanguageHeader)
         {
             Console.WriteLine();
             Console.WriteLine("PAYABLE CHARGES");
@@ -24,7 +24,7 @@ namespace Sherweb.SampleCode
 
             try
             {
-                payableCharges = _distributorClient.GetPayableCharges(acceptLanguage: null);
+                payableCharges = _distributorClient.GetPayableCharges(acceptLanguage: acceptLanguageHeader);
             }
             catch (HttpOperationException exception)
             {
