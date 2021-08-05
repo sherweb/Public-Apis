@@ -85,30 +85,5 @@ namespace Sherweb.SampleCode
             Console.WriteLine("-----------------------------");
             Console.WriteLine($"status => {subscriptionsAmendmentStatus}");
         }
-
-        public void GetCustomers(string acceptLanguageHeader)
-        {
-            Console.WriteLine();
-            Console.WriteLine("CUSTOMERS");
-            Customers customers = null;
-
-            try
-            {
-                customers = _serviceProviderClient.GetCustomers(acceptLanguage: acceptLanguageHeader);
-            }
-            catch (Exception exception)
-            {
-                // ProblemDetails returned by the API are handled and converted to a HttpOperationException in the ProblemDetailsHandler of the API Client
-                // https://github.com/sherweb/Public-Apis/blob/7bd9a0ecc37f0fbe3d9085c3e911ade3ca9a0c66/NugetPackagesSourceCode/Sherweb.Apis.Distributor/DelegatingHandlers/OnProblemDetailsHandler.cs
-                Console.WriteLine($"{nameof(exception.Message)}={exception.Message}");
-                return;
-            }
-
-            foreach (var customer in customers.Items)
-            {
-                Console.WriteLine("-----------------------------");
-                Console.WriteLine($"{nameof(customer.DisplayName)} => {customer.DisplayName}");
-            }
-        }
     }
 }

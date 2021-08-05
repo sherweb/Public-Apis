@@ -116,9 +116,14 @@ namespace Sherweb.SampleCode
                             ProcessDistribution();
                             break;
                         }
-                    case (int)MainMenu.MenuOptions.ServiceProvider:
+                    case (int)MainMenu.MenuOptions.Subscription:
                         {
-                            ProcessServiceProvider();
+                            ProcessSubscription();
+                            break;
+                        }
+                    case (int)MainMenu.MenuOptions.Customer:
+                        {
+                            ProcessCustomer();
                             break;
                         }
                     case 0:
@@ -170,25 +175,20 @@ namespace Sherweb.SampleCode
             }
         }
 
-        private static void ProcessServiceProvider()
+        private static void ProcessSubscription()
         {
             var serviceProviderClient = BuildServiceProviderClient();
             var subscriptionService = new SubscriptionService(serviceProviderClient);
 
             while (true)
             {
-                _menu.PrintMenu(new MainMenu.ServiceProviderOption());
+                _menu.PrintMenu(new MainMenu.SubscriptionOption());
                 var input = Console.ReadLine();
                 if (int.TryParse(input, out _selectedMenuOptions))
                 {
                     switch (_selectedMenuOptions)
                     {
-                        case (int)MainMenu.ServiceProviderOption.GetCustomers:
-                            {
-                                subscriptionService.GetCustomers(_acceptLanguageHeader);
-                                break;
-                            }
-                        case (int)MainMenu.ServiceProviderOption.GetSubscriptions:
+                       case (int)MainMenu.SubscriptionOption.GetSubscriptions:
                             {
                                 Console.WriteLine("Enter CustomerId :");
                                 var customerId = Console.ReadLine();
@@ -199,7 +199,7 @@ namespace Sherweb.SampleCode
 
                                 break;
                             }
-                        case (int)MainMenu.ServiceProviderOption.GetSubscriptionsAmendmentStatus:
+                        case (int)MainMenu.SubscriptionOption.GetSubscriptionsAmendmentStatus:
                             {
                                 Console.WriteLine("Enter Subscription AmendmentId :");
                                 var subscriptionsAmendmentId = Console.ReadLine();
@@ -208,6 +208,42 @@ namespace Sherweb.SampleCode
                                     subscriptionService.GetAmendmentStatus(new Guid(subscriptionsAmendmentId), _acceptLanguageHeader);
                                 }
 
+                                break;
+                            }
+                        case 0:
+                            {
+                                return;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Try again!!");
+                                break;
+                            }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Try again!!");
+                }
+            }
+        }
+
+        private static void ProcessCustomer()
+        {
+            var serviceProviderClient = BuildServiceProviderClient();
+            var customerService = new CustomerService(serviceProviderClient);
+
+            while (true)
+            {
+                _menu.PrintMenu(new MainMenu.CustomerOption());
+                var input = Console.ReadLine();
+                if (int.TryParse(input, out _selectedMenuOptions))
+                {
+                    switch (_selectedMenuOptions)
+                    {
+                        case (int)MainMenu.CustomerOption.GetCustomers:
+                            {
+                                customerService.ShowCustomers(_acceptLanguageHeader);
                                 break;
                             }
                         case 0:

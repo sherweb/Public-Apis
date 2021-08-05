@@ -14,16 +14,21 @@ namespace Sherweb.SampleCode
         {
             Distributor = 1,
 
-            ServiceProvider = 2
+            Subscription = 2,
+
+            Customer=3
         }
 
-        public enum ServiceProviderOption
+        public enum SubscriptionOption
         {
-            GetCustomers = 1,
+           GetSubscriptions = 1,
 
-            GetSubscriptions = 2,
+            GetSubscriptionsAmendmentStatus = 2
+        }
 
-            GetSubscriptionsAmendmentStatus = 3
+        public enum CustomerOption
+        {
+            GetCustomers = 1
         }
 
         public void PrintMenu(Enum e)
