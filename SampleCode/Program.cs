@@ -1,6 +1,7 @@
 #region
 
 using System;
+using System.Collections.Generic;
 
 using Microsoft.Rest;
 
@@ -9,6 +10,7 @@ using Sherweb.Apis.Distributor;
 using Sherweb.Apis.Distributor.Factory;
 using Sherweb.Apis.ServiceProvider;
 using Sherweb.Apis.ServiceProvider.Factory;
+using Sherweb.Apis.ServiceProvider.Models;
 
 #endregion
 
@@ -119,7 +121,7 @@ namespace Sherweb.SampleCode
                     }
                     case (int)MainMenu.MenuOptions.ServiceProvider:
                     {
-                        ProcessSubscription();
+                        ProcessServiceProvider();
                         break;
                     }
                     case 0:
@@ -171,7 +173,7 @@ namespace Sherweb.SampleCode
             }
         }
 
-        private static void ProcessSubscription()
+        private static void ProcessServiceProvider()
         {
             var serviceProviderClient = BuildServiceProviderClient();
             var subscriptionService = new SubscriptionService(serviceProviderClient);
@@ -188,10 +190,9 @@ namespace Sherweb.SampleCode
                         case (int)MainMenu.ServiceProviderOption.GetSubscriptions:
                         {
                             Console.WriteLine("Enter CustomerId :");
-                            var customerId = Console.ReadLine();
-                            if (!string.IsNullOrWhiteSpace(customerId))
+                            if (Guid.TryParse(Console.ReadLine(), out var customerId))
                             {
-                                subscriptionService.GetSubscriptions(new Guid(customerId), _acceptLanguageHeader);
+                                subscriptionService.GetSubscriptions(customerId, _acceptLanguageHeader);
                             }
 
                             break;
@@ -199,10 +200,9 @@ namespace Sherweb.SampleCode
                         case (int)MainMenu.ServiceProviderOption.GetSubscriptionsAmendmentStatus:
                         {
                             Console.WriteLine("Enter Subscription AmendmentId :");
-                            var subscriptionsAmendmentId = Console.ReadLine();
-                            if (!string.IsNullOrWhiteSpace(subscriptionsAmendmentId))
+                            if (Guid.TryParse(Console.ReadLine(), out var subscriptionsAmendmentId))
                             {
-                                subscriptionService.GetAmendmentStatus(new Guid(subscriptionsAmendmentId), _acceptLanguageHeader);
+                                subscriptionService.GetAmendmentStatus(subscriptionsAmendmentId, _acceptLanguageHeader);
                             }
 
                             break;
@@ -211,6 +211,29 @@ namespace Sherweb.SampleCode
                         case (int)MainMenu.ServiceProviderOption.GetCustomers:
                         {
                             customerService.ShowCustomers(_acceptLanguageHeader);
+                            break;
+                        }
+                        case (int)MainMenu.ServiceProviderOption.CreateSubscriptionsAmendment:
+                        {
+                            Console.WriteLine("Enter CustomerId :");
+                            if (Guid.TryParse(Console.ReadLine(), out var customerId))
+                            {
+                                Console.WriteLine("Enter SubscriptionId :");
+                                if (Guid.TryParse(Console.ReadLine(), out var subscriptionId))
+                                {
+                                    Console.WriteLine("Enter new quantity :");
+                                    if (int.TryParse(Console.ReadLine(), out var newQuantity))
+                                    {
+                                        var subscriptionsAmendmentParametersList = new List<SubscriptionsAmendmentParameters>
+                                            { new SubscriptionsAmendmentParameters(subscriptionId, newQuantity) };
+                                        subscriptionService.AmendSubscriptions(
+                                            customerId,
+                                            subscriptionsAmendmentParametersList,
+                                            _acceptLanguageHeader);
+                                    }
+                                }
+                            }
+
                             break;
                         }
                         case 0:

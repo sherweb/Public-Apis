@@ -26,7 +26,9 @@ namespace Sherweb.SampleCode
 
             GetSubscriptions = 2,
 
-            GetSubscriptionsAmendmentStatus = 3
+            GetSubscriptionsAmendmentStatus = 3,
+
+            CreateSubscriptionsAmendment = 4
         }
 
         public void PrintMenu(Enum e)
