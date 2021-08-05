@@ -1,5 +1,8 @@
-﻿using System;
+﻿#region
 
+using System;
+
+#endregion
 
 namespace Sherweb.SampleCode
 {
@@ -14,21 +17,16 @@ namespace Sherweb.SampleCode
         {
             Distributor = 1,
 
-            Subscription = 2,
-
-            Customer=3
+            ServiceProvider = 2
         }
 
-        public enum SubscriptionOption
+        public enum ServiceProviderOption
         {
-           GetSubscriptions = 1,
+            GetCustomers = 1,
 
-            GetSubscriptionsAmendmentStatus = 2
-        }
+            GetSubscriptions = 2,
 
-        public enum CustomerOption
-        {
-            GetCustomers = 1
+            GetSubscriptionsAmendmentStatus = 3
         }
 
         public void PrintMenu(Enum e)
