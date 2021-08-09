@@ -35,6 +35,7 @@ namespace Sherweb.SampleCode
             foreach (var customer in customers.Items)
             {
                 Console.WriteLine("-----------------------------");
+                Console.WriteLine($"CustomerId => {customer.Id}");
                 Console.WriteLine($"{nameof(customer.DisplayName)} => {customer.DisplayName}");
             }
         }
