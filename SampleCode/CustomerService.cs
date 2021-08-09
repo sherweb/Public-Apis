@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+
 using Sherweb.Apis.ServiceProvider;
 using Sherweb.Apis.ServiceProvider.Models;
 
@@ -21,7 +22,7 @@ namespace Sherweb.SampleCode
 
             try
             {
-                customers = _serviceProviderClient.GetCustomers(acceptLanguage: acceptLanguageHeader);
+                customers = _serviceProviderClient.GetCustomers(acceptLanguageHeader);
             }
             catch (Exception exception)
             {
@@ -34,6 +35,7 @@ namespace Sherweb.SampleCode
             foreach (var customer in customers.Items)
             {
                 Console.WriteLine("-----------------------------");
+                Console.WriteLine($"CustomerId => {customer.Id}");
                 Console.WriteLine($"{nameof(customer.DisplayName)} => {customer.DisplayName}");
             }
         }
