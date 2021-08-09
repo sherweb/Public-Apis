@@ -1,11 +1,7 @@
-﻿#region
-
-using System;
+﻿using System;
 
 using Sherweb.Apis.ServiceProvider;
 using Sherweb.Apis.ServiceProvider.Models;
-
-#endregion
 
 namespace Sherweb.SampleCode
 {

@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Collections.Generic;
 
@@ -11,8 +9,6 @@ using Sherweb.Apis.Distributor.Factory;
 using Sherweb.Apis.ServiceProvider;
 using Sherweb.Apis.ServiceProvider.Factory;
 using Sherweb.Apis.ServiceProvider.Models;
-
-#endregion
 
 namespace Sherweb.SampleCode
 {
@@ -115,25 +111,25 @@ namespace Sherweb.SampleCode
                 switch (_selectedMenuOptions)
                 {
                     case (int)MainMenu.MenuOptions.Distributor:
-                    {
-                        ProcessDistribution();
-                        break;
-                    }
+                        {
+                            ProcessDistribution();
+                            break;
+                        }
                     case (int)MainMenu.MenuOptions.ServiceProvider:
-                    {
-                        ProcessServiceProvider();
-                        break;
-                    }
+                        {
+                            ProcessServiceProvider();
+                            break;
+                        }
                     case 0:
-                    {
-                        Environment.Exit(0);
-                        break;
-                    }
+                        {
+                            Environment.Exit(0);
+                            break;
+                        }
                     default:
-                    {
-                        Console.WriteLine("Try again!!");
-                        break;
-                    }
+                        {
+                            Console.WriteLine("Try again!!");
+                            break;
+                        }
                 }
             }
         }
@@ -151,19 +147,19 @@ namespace Sherweb.SampleCode
                     switch (_selectedMenuOptions)
                     {
                         case (int)MainMenu.DistributorOption.GetPayableCharges:
-                        {
-                            distributionService.ShowPayableCharges(_acceptLanguageHeader);
-                            break;
-                        }
+                            {
+                                distributionService.ShowPayableCharges(_acceptLanguageHeader);
+                                break;
+                            }
                         case 0:
-                        {
-                            return;
-                        }
+                            {
+                                return;
+                            }
                         default:
-                        {
-                            Console.WriteLine("Try again!!");
-                            break;
-                        }
+                            {
+                                Console.WriteLine("Try again!!");
+                                break;
+                            }
                     }
                 }
                 else
@@ -188,63 +184,63 @@ namespace Sherweb.SampleCode
                     switch (_selectedMenuOptions)
                     {
                         case (int)MainMenu.ServiceProviderOption.GetSubscriptions:
-                        {
-                            Console.WriteLine("Enter CustomerId :");
-                            if (Guid.TryParse(Console.ReadLine(), out var customerId))
                             {
-                                subscriptionService.GetSubscriptions(customerId, _acceptLanguageHeader);
-                            }
+                                Console.WriteLine("Enter CustomerId :");
+                                if (Guid.TryParse(Console.ReadLine(), out var customerId))
+                                {
+                                    subscriptionService.GetSubscriptions(customerId, _acceptLanguageHeader);
+                                }
 
-                            break;
-                        }
+                                break;
+                            }
                         case (int)MainMenu.ServiceProviderOption.GetSubscriptionsAmendmentStatus:
-                        {
-                            Console.WriteLine("Enter Subscription AmendmentId :");
-                            if (Guid.TryParse(Console.ReadLine(), out var subscriptionsAmendmentId))
                             {
-                                subscriptionService.GetAmendmentStatus(subscriptionsAmendmentId, _acceptLanguageHeader);
-                            }
+                                Console.WriteLine("Enter Subscription AmendmentId :");
+                                if (Guid.TryParse(Console.ReadLine(), out var subscriptionsAmendmentId))
+                                {
+                                    subscriptionService.GetAmendmentStatus(subscriptionsAmendmentId, _acceptLanguageHeader);
+                                }
 
-                            break;
-                        }
+                                break;
+                            }
 
                         case (int)MainMenu.ServiceProviderOption.GetCustomers:
-                        {
-                            customerService.ShowCustomers(_acceptLanguageHeader);
-                            break;
-                        }
-                        case (int)MainMenu.ServiceProviderOption.CreateSubscriptionsAmendment:
-                        {
-                            Console.WriteLine("Enter CustomerId :");
-                            if (Guid.TryParse(Console.ReadLine(), out var customerId))
                             {
-                                Console.WriteLine("Enter SubscriptionId :");
-                                if (Guid.TryParse(Console.ReadLine(), out var subscriptionId))
+                                customerService.ShowCustomers(_acceptLanguageHeader);
+                                break;
+                            }
+                        case (int)MainMenu.ServiceProviderOption.CreateSubscriptionsAmendment:
+                            {
+                                Console.WriteLine("Enter CustomerId :");
+                                if (Guid.TryParse(Console.ReadLine(), out var customerId))
                                 {
-                                    Console.WriteLine("Enter new quantity :");
-                                    if (int.TryParse(Console.ReadLine(), out var newQuantity))
+                                    Console.WriteLine("Enter SubscriptionId :");
+                                    if (Guid.TryParse(Console.ReadLine(), out var subscriptionId))
                                     {
-                                        var subscriptionsAmendmentParametersList = new List<SubscriptionsAmendmentParameters>
+                                        Console.WriteLine("Enter new quantity :");
+                                        if (int.TryParse(Console.ReadLine(), out var newQuantity))
+                                        {
+                                            var subscriptionsAmendmentParametersList = new List<SubscriptionsAmendmentParameters>
                                             { new SubscriptionsAmendmentParameters(subscriptionId, newQuantity) };
-                                        subscriptionService.AmendSubscriptions(
-                                            customerId,
-                                            subscriptionsAmendmentParametersList,
-                                            _acceptLanguageHeader);
+                                            subscriptionService.AmendSubscriptions(
+                                                customerId,
+                                                subscriptionsAmendmentParametersList,
+                                                _acceptLanguageHeader);
+                                        }
                                     }
                                 }
-                            }
 
-                            break;
-                        }
+                                break;
+                            }
                         case 0:
-                        {
-                            return;
-                        }
+                            {
+                                return;
+                            }
                         default:
-                        {
-                            Console.WriteLine("Try again!!");
-                            break;
-                        }
+                            {
+                                Console.WriteLine("Try again!!");
+                                break;
+                            }
                     }
                 }
                 else
