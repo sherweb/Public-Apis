@@ -220,11 +220,14 @@ namespace Sherweb.SampleCode
                                         Console.WriteLine("Enter new quantity :");
                                         if (int.TryParse(Console.ReadLine(), out var newQuantity))
                                         {
-                                            var subscriptionsAmendmentParametersList = new List<SubscriptionsAmendmentParameters>
-                                            { new SubscriptionsAmendmentParameters(subscriptionId, newQuantity) };
+                                            var subscriptionsAmendmentParameterList = new List<SubscriptionsAmendmentParameter>
+                                            { new SubscriptionsAmendmentParameter(subscriptionId, newQuantity) };
+
+                                            var createSubscriptionsAmendmentParameters =
+                                                new CreateSubscriptionsAmendmentParameters(subscriptionsAmendmentParameterList);
                                             subscriptionService.AmendSubscriptions(
                                                 customerId,
-                                                subscriptionsAmendmentParametersList,
+                                                createSubscriptionsAmendmentParameters,
                                                 _acceptLanguageHeader);
                                         }
                                     }
