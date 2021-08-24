@@ -42,7 +42,7 @@ namespace Sherweb.SampleCode
             }
         }
 
-        public void AmendSubscriptions(Guid customerId, List<SubscriptionsAmendmentParameters> body, string acceptLanguageHeader)
+        public void AmendSubscriptions(Guid customerId, CreateSubscriptionsAmendmentParameters body, string acceptLanguageHeader)
         {
             Console.WriteLine();
             Console.WriteLine("AMEND SUBSCRIPTION");
