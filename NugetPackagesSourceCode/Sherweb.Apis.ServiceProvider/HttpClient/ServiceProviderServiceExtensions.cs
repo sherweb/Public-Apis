@@ -7,8 +7,6 @@
 namespace Sherweb.Apis.ServiceProvider
 {
     using Models;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -184,7 +182,7 @@ namespace Sherweb.Apis.ServiceProvider
             /// Specify language (and culture) following [RFC 7231, section 5.3.5:
             /// Accept-Language].
             /// </param>
-            public static SubscriptionsAmendment CreateSubscriptionsAmendment(this IServiceProviderService operations, System.Guid customerId, IList<SubscriptionsAmendmentParameters> body = default(IList<SubscriptionsAmendmentParameters>), string acceptLanguage = default(string))
+            public static SubscriptionsAmendment CreateSubscriptionsAmendment(this IServiceProviderService operations, System.Guid customerId, CreateSubscriptionsAmendmentParameters body = default(CreateSubscriptionsAmendmentParameters), string acceptLanguage = default(string))
             {
                 return operations.CreateSubscriptionsAmendmentAsync(customerId, body, acceptLanguage).GetAwaiter().GetResult();
             }
@@ -209,7 +207,7 @@ namespace Sherweb.Apis.ServiceProvider
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<SubscriptionsAmendment> CreateSubscriptionsAmendmentAsync(this IServiceProviderService operations, System.Guid customerId, IList<SubscriptionsAmendmentParameters> body = default(IList<SubscriptionsAmendmentParameters>), string acceptLanguage = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<SubscriptionsAmendment> CreateSubscriptionsAmendmentAsync(this IServiceProviderService operations, System.Guid customerId, CreateSubscriptionsAmendmentParameters body = default(CreateSubscriptionsAmendmentParameters), string acceptLanguage = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateSubscriptionsAmendmentWithHttpMessagesAsync(customerId, body, acceptLanguage, null, cancellationToken).ConfigureAwait(false))
                 {
