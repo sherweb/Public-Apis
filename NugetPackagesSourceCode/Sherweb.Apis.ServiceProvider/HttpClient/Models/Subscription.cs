@@ -22,12 +22,14 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// <summary>
         /// Initializes a new instance of the Subscription class.
         /// </summary>
-        public Subscription(System.Guid? id = default(System.Guid?), string productName = default(string), string sku = default(string), int? quantity = default(int?))
+        public Subscription(System.Guid? id = default(System.Guid?), string productName = default(string), string description = default(string), string sku = default(string), int? quantity = default(int?), SubscriptionCommitmentTerm commitmentTerm = default(SubscriptionCommitmentTerm))
         {
             Id = id;
             ProductName = productName;
+            Description = description;
             Sku = sku;
             Quantity = quantity;
+            CommitmentTerm = commitmentTerm;
             CustomInit();
         }
 
@@ -48,6 +50,11 @@ namespace Sherweb.Apis.ServiceProvider.Models
 
         /// <summary>
         /// </summary>
+        [JsonProperty(PropertyName = "description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// </summary>
         [JsonProperty(PropertyName = "sku")]
         public string Sku { get; set; }
 
@@ -55,6 +62,11 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </summary>
         [JsonProperty(PropertyName = "quantity")]
         public int? Quantity { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "commitmentTerm")]
+        public SubscriptionCommitmentTerm CommitmentTerm { get; set; }
 
     }
 }
