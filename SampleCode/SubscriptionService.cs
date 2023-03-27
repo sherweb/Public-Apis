@@ -39,6 +39,22 @@ namespace Sherweb.SampleCode
                                   $"{nameof(subscription.ProductName)}: {subscription.ProductName},\n" +
                                   $"{nameof(subscription.Sku)}: {subscription.Sku},\n" +
                                   $"{nameof(subscription.Quantity)}: {subscription.Quantity}.");
+
+                // Is the subscription tied to a commitment
+                if (subscription.CommitmentTerm != null)
+                {
+                    var term = subscription.CommitmentTerm;
+                    Console.WriteLine($"{nameof(term.Type)}: {term.Type},\n" +
+                                      $"{nameof(term.TermEndDate)}: {term.TermEndDate}");
+
+                    // Is the subscription set to auto-renew at the end of the term
+                    if (term.RenewalConfiguration != null)
+                    {
+                        var renewal = term.RenewalConfiguration;
+                        Console.WriteLine($"{nameof(renewal.RenewalDate)}: {renewal.RenewalDate},\n" +
+                                          $"{nameof(renewal.ScheduledQuantity)}: {renewal.ScheduledQuantity}");
+                    }
+                }
             }
         }
 
