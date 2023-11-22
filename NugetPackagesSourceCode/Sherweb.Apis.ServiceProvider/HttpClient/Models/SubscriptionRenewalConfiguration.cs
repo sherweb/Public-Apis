@@ -35,7 +35,7 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// <param name="scheduledQuantity">In the absence of a
         /// ScheduledQuantity, the subscription will renew with the existing
         /// quantity</param>
-        public SubscriptionRenewalConfiguration(System.DateTime? renewalDate = default(System.DateTime?), int? scheduledQuantity = default(int?))
+        public SubscriptionRenewalConfiguration(System.DateTime renewalDate, int? scheduledQuantity = default(int?))
         {
             RenewalDate = renewalDate;
             ScheduledQuantity = scheduledQuantity;
@@ -52,7 +52,7 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </summary>
         [JsonConverter(typeof(DateJsonConverter))]
         [JsonProperty(PropertyName = "renewalDate")]
-        public System.DateTime? RenewalDate { get; set; }
+        public System.DateTime RenewalDate { get; set; }
 
         /// <summary>
         /// Gets or sets in the absence of a ScheduledQuantity, the
@@ -61,5 +61,15 @@ namespace Sherweb.Apis.ServiceProvider.Models
         [JsonProperty(PropertyName = "scheduledQuantity")]
         public int? ScheduledQuantity { get; set; }
 
+        /// <summary>
+        /// Validate the object.
+        /// </summary>
+        /// <exception cref="ValidationException">
+        /// Thrown if validation fails
+        /// </exception>
+        public virtual void Validate()
+        {
+            //Nothing to validate
+        }
     }
 }
