@@ -29,14 +29,14 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </summary>
         /// <param name="chargeType">Possible values include: 'Setup',
         /// 'Recurring', 'Usage', 'Unknown'</param>
-        /// <param name="billingCycleType">Possible values include: 'OneTime',
-        /// 'Monthly', 'Yearly'</param>
         /// <param name="costPrice">Price paid per unit.</param>
         /// <param name="costPriceProrated">Prorated price paid per
         /// unit.</param>
         /// <param name="isProratable">Indicates whether or not the price of
         /// the charge is proratable.</param>
-        public Charge(string productName = default(string), string sku = default(string), System.Guid? chargeId = default(System.Guid?), string chargeName = default(string), string chargeType = default(string), string billingCycleType = default(string), System.DateTime? periodFrom = default(System.DateTime?), System.DateTime? periodTo = default(System.DateTime?), double? quantity = default(double?), double? costPrice = default(double?), double? costPriceProrated = default(double?), string currency = default(string), bool? isProratable = default(bool?))
+        /// <param name="billingCycleType">Possible values include: 'OneTime',
+        /// 'Monthly', 'Yearly'</param>
+        public Charge(string productName, string sku, string chargeName, string chargeType, System.DateTime periodFrom, System.DateTime periodTo, double quantity, double costPrice, double costPriceProrated, string currency, bool isProratable, System.Guid? chargeId = default(System.Guid?), string billingCycleType = default(string))
         {
             ProductName = productName;
             Sku = sku;
@@ -97,30 +97,30 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </summary>
         [JsonConverter(typeof(DateJsonConverter))]
         [JsonProperty(PropertyName = "periodFrom")]
-        public System.DateTime? PeriodFrom { get; set; }
+        public System.DateTime PeriodFrom { get; set; }
 
         /// <summary>
         /// </summary>
         [JsonConverter(typeof(DateJsonConverter))]
         [JsonProperty(PropertyName = "periodTo")]
-        public System.DateTime? PeriodTo { get; set; }
+        public System.DateTime PeriodTo { get; set; }
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "quantity")]
-        public double? Quantity { get; set; }
+        public double Quantity { get; set; }
 
         /// <summary>
         /// Gets or sets price paid per unit.
         /// </summary>
         [JsonProperty(PropertyName = "costPrice")]
-        public double? CostPrice { get; set; }
+        public double CostPrice { get; set; }
 
         /// <summary>
         /// Gets or sets prorated price paid per unit.
         /// </summary>
         [JsonProperty(PropertyName = "costPriceProrated")]
-        public double? CostPriceProrated { get; set; }
+        public double CostPriceProrated { get; set; }
 
         /// <summary>
         /// </summary>
@@ -132,7 +132,36 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// proratable.
         /// </summary>
         [JsonProperty(PropertyName = "isProratable")]
-        public bool? IsProratable { get; set; }
+        public bool IsProratable { get; set; }
 
+        /// <summary>
+        /// Validate the object.
+        /// </summary>
+        /// <exception cref="ValidationException">
+        /// Thrown if validation fails
+        /// </exception>
+        public virtual void Validate()
+        {
+            if (ProductName == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "ProductName");
+            }
+            if (Sku == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Sku");
+            }
+            if (ChargeName == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "ChargeName");
+            }
+            if (ChargeType == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "ChargeType");
+            }
+            if (Currency == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Currency");
+            }
+        }
     }
 }

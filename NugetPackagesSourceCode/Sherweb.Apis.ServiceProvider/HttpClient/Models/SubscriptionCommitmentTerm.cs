@@ -31,7 +31,7 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// 'Biennial', 'Triennial'</param>
         /// <param name="termEndDate">The last day of the commitment
         /// term</param>
-        public SubscriptionCommitmentTerm(string type = default(string), System.DateTime? termEndDate = default(System.DateTime?), SubscriptionRenewalConfiguration renewalConfiguration = default(SubscriptionRenewalConfiguration))
+        public SubscriptionCommitmentTerm(string type, System.DateTime termEndDate, SubscriptionRenewalConfiguration renewalConfiguration = default(SubscriptionRenewalConfiguration))
         {
             Type = type;
             TermEndDate = termEndDate;
@@ -56,12 +56,29 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </summary>
         [JsonConverter(typeof(DateJsonConverter))]
         [JsonProperty(PropertyName = "termEndDate")]
-        public System.DateTime? TermEndDate { get; set; }
+        public System.DateTime TermEndDate { get; set; }
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "renewalConfiguration")]
         public SubscriptionRenewalConfiguration RenewalConfiguration { get; set; }
 
+        /// <summary>
+        /// Validate the object.
+        /// </summary>
+        /// <exception cref="ValidationException">
+        /// Thrown if validation fails
+        /// </exception>
+        public virtual void Validate()
+        {
+            if (Type == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Type");
+            }
+            if (RenewalConfiguration != null)
+            {
+                RenewalConfiguration.Validate();
+            }
+        }
     }
 }

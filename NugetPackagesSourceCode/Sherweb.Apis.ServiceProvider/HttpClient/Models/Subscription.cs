@@ -6,6 +6,7 @@
 
 namespace Sherweb.Apis.ServiceProvider.Models
 {
+    using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
@@ -22,13 +23,24 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// <summary>
         /// Initializes a new instance of the Subscription class.
         /// </summary>
-        public Subscription(System.Guid? id = default(System.Guid?), string productName = default(string), string description = default(string), string sku = default(string), int? quantity = default(int?), SubscriptionCommitmentTerm commitmentTerm = default(SubscriptionCommitmentTerm))
+        /// <param name="billingCycle">A billing cycle, also referred to as a
+        /// billing period, is the interval of time between billing statements
+        /// Although billing cycles are most often set at one month, or one
+        /// year, they may vary in length depending on the SKU
+        /// Possible values: none, daily, weekly, monthly, yearly and
+        /// unknown</param>
+        /// <param name="purchaseDate">Format: yyyy-MM-ddTHH:mm:ss.fffffffK
+        /// (UTC). Example : 2023-11-21T20:27:05.7613888</param>
+        public Subscription(System.Guid id, string productName, string description, string sku, int quantity, string billingCycle, System.DateTime purchaseDate, SubscriptionFees fees = default(SubscriptionFees), SubscriptionCommitmentTerm commitmentTerm = default(SubscriptionCommitmentTerm))
         {
             Id = id;
             ProductName = productName;
             Description = description;
             Sku = sku;
             Quantity = quantity;
+            BillingCycle = billingCycle;
+            PurchaseDate = purchaseDate;
+            Fees = fees;
             CommitmentTerm = commitmentTerm;
             CustomInit();
         }
@@ -41,7 +53,7 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "id")]
-        public System.Guid? Id { get; set; }
+        public System.Guid Id { get; set; }
 
         /// <summary>
         /// </summary>
@@ -61,12 +73,67 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "quantity")]
-        public int? Quantity { get; set; }
+        public int Quantity { get; set; }
+
+        /// <summary>
+        /// Gets or sets a billing cycle, also referred to as a billing period,
+        /// is the interval of time between billing statements
+        /// Although billing cycles are most often set at one month, or one
+        /// year, they may vary in length depending on the SKU
+        /// Possible values: none, daily, weekly, monthly, yearly and unknown
+        /// </summary>
+        [JsonProperty(PropertyName = "billingCycle")]
+        public string BillingCycle { get; set; }
+
+        /// <summary>
+        /// Gets or sets format: yyyy-MM-ddTHH:mm:ss.fffffffK (UTC). Example :
+        /// 2023-11-21T20:27:05.7613888
+        /// </summary>
+        [JsonProperty(PropertyName = "purchaseDate")]
+        public System.DateTime PurchaseDate { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "fees")]
+        public SubscriptionFees Fees { get; set; }
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "commitmentTerm")]
         public SubscriptionCommitmentTerm CommitmentTerm { get; set; }
 
+        /// <summary>
+        /// Validate the object.
+        /// </summary>
+        /// <exception cref="ValidationException">
+        /// Thrown if validation fails
+        /// </exception>
+        public virtual void Validate()
+        {
+            if (ProductName == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "ProductName");
+            }
+            if (Description == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Description");
+            }
+            if (Sku == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Sku");
+            }
+            if (BillingCycle == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "BillingCycle");
+            }
+            if (Fees != null)
+            {
+                Fees.Validate();
+            }
+            if (CommitmentTerm != null)
+            {
+                CommitmentTerm.Validate();
+            }
+        }
     }
 }

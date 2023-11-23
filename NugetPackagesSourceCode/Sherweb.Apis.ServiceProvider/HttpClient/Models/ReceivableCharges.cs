@@ -29,7 +29,7 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// <summary>
         /// Initializes a new instance of the ReceivableCharges class.
         /// </summary>
-        public ReceivableCharges(System.DateTime? periodFrom = default(System.DateTime?), System.DateTime? periodTo = default(System.DateTime?), IList<Charge> charges = default(IList<Charge>))
+        public ReceivableCharges(System.DateTime periodFrom, System.DateTime periodTo, IList<Charge> charges)
         {
             PeriodFrom = periodFrom;
             PeriodTo = periodTo;
@@ -46,18 +46,41 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </summary>
         [JsonConverter(typeof(DateJsonConverter))]
         [JsonProperty(PropertyName = "periodFrom")]
-        public System.DateTime? PeriodFrom { get; set; }
+        public System.DateTime PeriodFrom { get; set; }
 
         /// <summary>
         /// </summary>
         [JsonConverter(typeof(DateJsonConverter))]
         [JsonProperty(PropertyName = "periodTo")]
-        public System.DateTime? PeriodTo { get; set; }
+        public System.DateTime PeriodTo { get; set; }
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "charges")]
         public IList<Charge> Charges { get; set; }
 
+        /// <summary>
+        /// Validate the object.
+        /// </summary>
+        /// <exception cref="ValidationException">
+        /// Thrown if validation fails
+        /// </exception>
+        public virtual void Validate()
+        {
+            if (Charges == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Charges");
+            }
+            if (Charges != null)
+            {
+                foreach (var element in Charges)
+                {
+                    if (element != null)
+                    {
+                        element.Validate();
+                    }
+                }
+            }
+        }
     }
 }

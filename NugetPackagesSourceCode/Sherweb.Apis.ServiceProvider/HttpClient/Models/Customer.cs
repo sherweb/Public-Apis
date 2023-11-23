@@ -26,7 +26,7 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </summary>
         /// <param name="suspendedOn">Format: yyyy-MM-ddTHH:mm:ss.fffffffK
         /// (UTC). Example : 2021-01-13T20:30:05.7613888</param>
-        public Customer(System.Guid? id = default(System.Guid?), string displayName = default(string), IList<string> path = default(IList<string>), System.DateTime? suspendedOn = default(System.DateTime?))
+        public Customer(System.Guid id, string displayName, IList<string> path, System.DateTime? suspendedOn = default(System.DateTime?))
         {
             Id = id;
             DisplayName = displayName;
@@ -43,24 +43,33 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "id")]
-        public System.Guid? Id { get; set; }
+        public System.Guid Id { get; private set; }
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "displayName")]
-        public string DisplayName { get; set; }
+        public string DisplayName { get; private set; }
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "path")]
-        public IList<string> Path { get; set; }
+        public IList<string> Path { get; private set; }
 
         /// <summary>
-        /// Gets or sets format: yyyy-MM-ddTHH:mm:ss.fffffffK (UTC). Example :
+        /// Gets format: yyyy-MM-ddTHH:mm:ss.fffffffK (UTC). Example :
         /// 2021-01-13T20:30:05.7613888
         /// </summary>
         [JsonProperty(PropertyName = "suspendedOn")]
-        public System.DateTime? SuspendedOn { get; set; }
+        public System.DateTime? SuspendedOn { get; private set; }
 
+        /// <summary>
+        /// Validate the object.
+        /// </summary>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown if validation fails
+        /// </exception>
+        public virtual void Validate()
+        {
+        }
     }
 }
