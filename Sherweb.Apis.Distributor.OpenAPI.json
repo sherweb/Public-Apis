@@ -1,1 +1,277 @@
-{"openapi":"3.0.1","info":{"title":"Distributor API","version":"1"},"paths":{"/billing/payable-charges":{"get":{"tags":["PayableCharges"],"summary":"GetPayableCharges","description":"Get your payable charges data for a specific billing period.","operationId":"GetPayableCharges","parameters":[{"name":"date","in":"query","description":"Specify a date within the desired billing period. Default: Today. For example, if the date is March 17th and your billing period is from the 1st to the 31st of the month, it will return data from March 1st to March 31st.","schema":{"type":"string","description":"Specify a date within the desired billing period. Default: Today. For example, if the date is March 17th and your billing period is from the 1st to the 31st of the month, it will return data from March 1st to March 31st.","format":"date-time","nullable":true}}],"responses":{"200":{"description":"Success","content":{"application/json":{"schema":{"$ref":"#/components/schemas/PayableCharges"}}}},"500":{"description":"Server Error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetails"}}}},"400":{"description":"Bad Request","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetails"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetails"}}}},"403":{"description":"Forbidden","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetails"}}}},"404":{"description":"Not Found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetails"}}}},"429":{"description":"Client Error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetails"}}}}}}}},"components":{"schemas":{"ChargeType":{"enum":["Setup","Recurring","Usage"],"type":"string","description":"Setup (occurs only once and can be used for activation, cancellation or setup fees),\r\nRecurring (invoiced on a monthly or yearly basis),\r\nUsage (varies based on the quantity of the product or service consumed by the customer)."},"DeductionType":{"enum":["PromotionalMoney","PromotionalPercentage","PerformancePercentage"],"type":"string","description":"PromotionalMoney (fixed price promotional discount),\r\nPromotionalPercentage (promotional percentage discount),\r\nPerformancePercentage (deduction linked to performance tier)."},"Deduction":{"type":"object","properties":{"code":{"type":"string","nullable":true},"name":{"type":"string","nullable":true},"deductionType":{"$ref":"#/components/schemas/DeductionType"},"value":{"type":"number","format":"double"},"unitValue":{"type":"number","description":"Deduction value prorated per unit.","format":"double"},"totalValue":{"type":"number","description":"Deduction value for line (unitValue * quantity).","format":"double"}},"additionalProperties":false,"description":"Deduction applied to a charge."},"Fee":{"type":"object","properties":{"name":{"type":"string","nullable":true},"unitValue":{"type":"number","format":"double"},"totalValue":{"type":"number","format":"double"},"isTaxable":{"type":"boolean"}},"additionalProperties":false,"description":"Fee associated with a charge."},"Invoice":{"type":"object","properties":{"number":{"type":"string","nullable":true},"date":{"type":"string","format":"date-time"},"periodFrom":{"type":"string","format":"date-time"},"periodTo":{"type":"string","format":"date-time"}},"additionalProperties":false,"description":"Information on the invoice where the charge was applied."},"Tax":{"type":"object","properties":{"name":{"type":"string","nullable":true},"appliedRate":{"type":"number","format":"double"}},"additionalProperties":false,"description":"Tax rate applied to a charge."},"Tag":{"type":"object","properties":{"name":{"type":"string","nullable":true},"value":{"type":"string","nullable":true}},"additionalProperties":false,"description":"Additional information about the charge, including customer information."},"Charge":{"type":"object","properties":{"productId":{"type":"string","format":"uuid","nullable":true},"productName":{"type":"string","nullable":true},"sku":{"type":"string","nullable":true},"chargeId":{"type":"string","format":"uuid","nullable":true},"chargeName":{"type":"string","nullable":true},"chargeType":{"$ref":"#/components/schemas/ChargeType"},"periodFrom":{"type":"string","format":"date-time"},"periodTo":{"type":"string","format":"date-time"},"quantity":{"type":"number","format":"double"},"listPrice":{"type":"number","description":"Price before deduction(s).","format":"double"},"netPrice":{"type":"number","description":"List price - deduction(s) - fee(s).","format":"double"},"netPriceProrated":{"type":"number","format":"double"},"subTotal":{"type":"number","description":"Quantity * NetPriceProrated.","format":"double"},"currency":{"type":"string","nullable":true},"isBilled":{"type":"boolean","description":"Indicates whether or not a charge has been billed."},"isProratable":{"type":"boolean","description":"Indicates whether or not the price of a charge is proratable."},"deductions":{"type":"array","items":{"$ref":"#/components/schemas/Deduction"},"nullable":true},"fees":{"type":"array","items":{"$ref":"#/components/schemas/Fee"},"nullable":true},"invoice":{"$ref":"#/components/schemas/Invoice"},"taxes":{"type":"array","items":{"$ref":"#/components/schemas/Tax"},"nullable":true},"tags":{"type":"array","items":{"$ref":"#/components/schemas/Tag"},"nullable":true}},"additionalProperties":false,"description":"A product is constituted of one or multiple charges."},"PayableCharges":{"type":"object","properties":{"periodFrom":{"type":"string","format":"date-time"},"periodTo":{"type":"string","format":"date-time"},"charges":{"type":"array","items":{"$ref":"#/components/schemas/Charge"},"nullable":true}},"additionalProperties":false,"description":"All charges to pay for a billing period."},"ProblemDetails":{"type":"object","properties":{"type":{"type":"string","description":"A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when\r\ndereferenced, it provide human-readable documentation for the problem type\r\n(e.g., using HTML [W3C.REC-html5-20141028]).  When this member is not present, its value is assumed to be\r\n\"about:blank\".","nullable":true},"title":{"type":"string","description":"A short, human-readable summary of the problem type.It SHOULD NOT change from occurrence to occurrence\r\nof the problem, except for purposes of localization(e.g., using proactive content negotiation;\r\nsee[RFC7231], Section 3.4).","nullable":true},"status":{"type":"integer","description":"The HTTP status code([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.","format":"int32","nullable":true},"detail":{"type":"string","description":"A human-readable explanation specific to this occurrence of the problem.","nullable":true},"instance":{"type":"string","description":"A URI reference that identifies the specific occurrence of the problem.It may or may not yield further information if dereferenced.","nullable":true},"extensions":{"type":"object","additionalProperties":{},"description":"Gets the System.Collections.Generic.IDictionary`2 for extension members.\r\n<br>\r\n    Problem type definitions MAY extend the problem details object with additional members.\r\n    Extension members appear in the same namespace as other members of a problem type.\r\n","nullable":true,"readOnly":true}},"additionalProperties":false,"description":"A machine-readable format for specifying errors in HTTP API responses based on https://tools.ietf.org/html/rfc7807."}}}}
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Distributor API",
+    "version": "1"
+  },
+  "paths": {
+    "/billing/payable-charges": {
+      "get": {
+        "tags": [ "PayableCharges" ],
+        "summary": "GetPayableCharges",
+        "description": "Get your payable charges data for a specific billing period. There are three types of charges that are included in\r\nthe data returned: recurring, usage, and setup.",
+        "operationId": "GetPayableCharges",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Specify a date within the desired billing period. Format: yyyy-MM-dd (UTC). Default: Today. For\r\nexample, if the date is March 17th and your billing period is from the 1st to the 31st of the month, it will return\r\ndata from March 1st to March 31st.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Specify language (and culture) following [RFC 7231, section 5.3.5: Accept-Language].",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/PayableCharges" } } }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChargeType": {
+        "enum": [ "Setup", "Recurring", "Usage", "Unknown" ],
+        "type": "string",
+        "description": "Setup (occurs only once and can be used for activation, cancellation or setup fees),\r\nRecurring (invoiced on a monthly or yearly basis),\r\nUsage (varies based on the quantity of the product or service consumed by the customer),\r\nUnknown (charge type not found. This may happen when querying data from older invoices)."
+      },
+      "DeductionType": {
+        "enum": [ "PromotionalMoney", "PromotionalPercentage", "PerformancePercentage" ],
+        "type": "string",
+        "description": "PromotionalMoney (fixed price promotional discount),\r\nPromotionalPercentage (promotional percentage discount),\r\nPerformancePercentage (deduction linked to performance tier)."
+      },
+      "Deduction": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "deductionType": { "$ref": "#/components/schemas/DeductionType" },
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "unitValue": {
+            "type": "number",
+            "description": "Deduction value prorated per unit.",
+            "format": "double"
+          },
+          "totalValue": {
+            "type": "number",
+            "description": "Deduction value for line (unitValue * quantity).",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Deduction applied to a charge."
+      },
+      "Fee": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "isTaxable": { "type": "boolean" }
+        },
+        "additionalProperties": false,
+        "description": "Fee associated with a charge."
+      },
+      "Invoice": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "periodFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "periodTo": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information on the invoice where the charge was applied."
+      },
+      "Tax": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "appliedRate": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Tax rate applied to a charge."
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Additional information about the charge, including customer information."
+      },
+      "BillingCycleType": {
+        "enum": [ "OneTime", "Monthly", "Yearly" ],
+        "type": "string",
+        "description": "OneTime (charged once, with no recurrence),\r\nMonthly (charged monthly),\r\nYearly (charged yearly)."
+      },
+      "Charge": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "productName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "chargeId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "chargeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "chargeType": { "$ref": "#/components/schemas/ChargeType" },
+          "billingCycleType": { "$ref": "#/components/schemas/BillingCycleType" },
+          "periodFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "periodTo": {
+            "type": "string",
+            "format": "date"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "listPrice": {
+            "type": "number",
+            "description": "Price before deduction(s).",
+            "format": "double"
+          },
+          "netPrice": {
+            "type": "number",
+            "description": "ListPrice - deduction(s) - fee(s).",
+            "format": "double"
+          },
+          "netPriceProrated": {
+            "type": "number",
+            "format": "double"
+          },
+          "subTotal": {
+            "type": "number",
+            "description": "Quantity * netPriceProrated.",
+            "format": "double"
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "isBilled": {
+            "type": "boolean",
+            "description": "Indicates whether or not a charge has been billed."
+          },
+          "isProratable": {
+            "type": "boolean",
+            "description": "Indicates whether or not the price of a charge is proratable."
+          },
+          "deductions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Deduction" },
+            "nullable": true
+          },
+          "fees": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Fee" },
+            "nullable": true
+          },
+          "invoice": { "$ref": "#/components/schemas/Invoice" },
+          "taxes": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Tax" },
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Tag" },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A product is constituted of one or multiple charges."
+      },
+      "PayableCharges": {
+        "type": "object",
+        "properties": {
+          "periodFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "periodTo": {
+            "type": "string",
+            "format": "date"
+          },
+          "charges": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Charge" },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "All charges to pay for a billing period."
+      }
+    }
+  }
+}
