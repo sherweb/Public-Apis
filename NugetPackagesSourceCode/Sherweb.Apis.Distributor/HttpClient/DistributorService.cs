@@ -313,14 +313,15 @@ namespace Sherweb.Apis.Distributor
         /// </summary>
         /// <remarks>
         /// Get your payable charges data for a specific billing period. There are
-        /// three types of charges that are included in the data returned: recurring,
-        /// usage, and setup.
+        /// three types of charges that are included in
+        /// the data returned: recurring, usage, and setup.
         /// </remarks>
         /// <param name='date'>
         /// Specify a date within the desired billing period. Format: yyyy-MM-dd (UTC).
-        /// Default: Today. For example, if the date is March 17th and your billing
-        /// period is from the 1st to the 31st of the month, it will return data from
-        /// March 1st to March 31st.
+        /// Default: Today. For
+        /// example, if the date is March 17th and your billing period is from the 1st
+        /// to the 31st of the month, it will return
+        /// data from March 1st to March 31st.
         /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
