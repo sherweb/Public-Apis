@@ -24,9 +24,9 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// Initializes a new instance of the Subscription class.
         /// </summary>
         /// <param name="billingCycle">A billing cycle, also referred to as a
-        /// billing period, is the interval of time between billing statements
+        /// billing period, is the interval of time between billing statements.
         /// Although billing cycles are most often set at one month, or one
-        /// year, they may vary in length depending on the SKU
+        /// year, they may vary in length depending on the SKU.
         /// Possible values: none, daily, weekly, monthly, yearly and
         /// unknown</param>
         /// <param name="purchaseDate">Format: yyyy-MM-ddTHH:mm:ss.fffffffK
@@ -77,9 +77,9 @@ namespace Sherweb.Apis.ServiceProvider.Models
 
         /// <summary>
         /// Gets or sets a billing cycle, also referred to as a billing period,
-        /// is the interval of time between billing statements
+        /// is the interval of time between billing statements.
         /// Although billing cycles are most often set at one month, or one
-        /// year, they may vary in length depending on the SKU
+        /// year, they may vary in length depending on the SKU.
         /// Possible values: none, daily, weekly, monthly, yearly and unknown
         /// </summary>
         [JsonProperty(PropertyName = "billingCycle")]
