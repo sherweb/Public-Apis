@@ -9,6 +9,8 @@ namespace Sherweb.Apis.ServiceProvider.Models
     using Microsoft.Rest;
     using Microsoft.Rest.Serialization;
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
@@ -31,11 +33,23 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// 'Biennial', 'Triennial'</param>
         /// <param name="termEndDate">The last day of the commitment
         /// term</param>
-        public SubscriptionCommitmentTerm(string type, System.DateTime termEndDate, SubscriptionRenewalConfiguration renewalConfiguration = default(SubscriptionRenewalConfiguration))
+        /// <param name="committedMinimalQuantities">The dates until which the
+        /// subscription quantity may be decreased down to those minimal
+        /// quantities.
+        /// Subscription amendments and renewals impact the results. For
+        /// example, a monthly subscription is
+        /// bought with 10 licenses on feb 1st, and on feb 2nd an amendment +5
+        /// is made. The CommittedMinimalQuantities
+        /// on feb 2nd would give the possibility to decrease down to 0 until
+        /// feb 8 (the end of the initial grace period),
+        /// and down to 10 until feb 9 (the end of the amendment grace
+        /// period).</param>
+        public SubscriptionCommitmentTerm(string type, System.DateTime termEndDate, SubscriptionRenewalConfiguration renewalConfiguration = default(SubscriptionRenewalConfiguration), IList<CommittedMinimalQuantity> committedMinimalQuantities = default(IList<CommittedMinimalQuantity>))
         {
             Type = type;
             TermEndDate = termEndDate;
             RenewalConfiguration = renewalConfiguration;
+            CommittedMinimalQuantities = committedMinimalQuantities;
             CustomInit();
         }
 
@@ -64,6 +78,20 @@ namespace Sherweb.Apis.ServiceProvider.Models
         public SubscriptionRenewalConfiguration RenewalConfiguration { get; set; }
 
         /// <summary>
+        /// Gets or sets the dates until which the subscription quantity may be
+        /// decreased down to those minimal quantities.
+        /// Subscription amendments and renewals impact the results. For
+        /// example, a monthly subscription is
+        /// bought with 10 licenses on feb 1st, and on feb 2nd an amendment +5
+        /// is made. The CommittedMinimalQuantities
+        /// on feb 2nd would give the possibility to decrease down to 0 until
+        /// feb 8 (the end of the initial grace period),
+        /// and down to 10 until feb 9 (the end of the amendment grace period).
+        /// </summary>
+        [JsonProperty(PropertyName = "committedMinimalQuantities")]
+        public IList<CommittedMinimalQuantity> CommittedMinimalQuantities { get; set; }
+
+        /// <summary>
         /// Validate the object.
         /// </summary>
         /// <exception cref="ValidationException">
@@ -78,6 +106,16 @@ namespace Sherweb.Apis.ServiceProvider.Models
             if (RenewalConfiguration != null)
             {
                 RenewalConfiguration.Validate();
+            }
+            if (CommittedMinimalQuantities != null)
+            {
+                foreach (var element in CommittedMinimalQuantities)
+                {
+                    if (element != null)
+                    {
+                        element.Validate();
+                    }
+                }
             }
         }
     }

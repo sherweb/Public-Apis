@@ -1,1 +1,629 @@
-{"openapi":"3.0.1","info":{"title":"Service Provider API (Beta)","version":"1"},"paths":{"/customers":{"get":{"tags":["Customers"],"summary":"GetCustomers (beta)","description":"Get the list of all your customers.","operationId":"GetCustomers","parameters":[{"name":"Accept-Language","in":"header","description":"Specify language (and culture) following [RFC 7231, section 5.3.5: Accept-Language].","schema":{"type":"string"}}],"responses":{"200":{"description":"Success","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Customers"}}}}}}},"/billing/receivable-charges":{"get":{"tags":["ReceivableCharges"],"summary":"GetReceivableCharges (beta)","description":"Get the amounts that one of your customers owe you for a specific billing period. There are three types of charges that are included in the data returned: recurring, usage, and setup.\r\n\u003cdiv style=\u0022color:#FF9B00;background-color:#FCF8E3;padding:1rem;border-radius:5px;border:1px solid #FF9B00;display:inline-block\u0022\u003e\u003csvg width=\u002216\u0022 height=\u002216\u0022 fill=\u0022currentColor\u0022 viewBox=\u00220 0 16 16\u0022\u003e\u003cpath d=\u0022M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z\u0022 /\u003e\u003c/svg\u003e For the time being, you cannot use the Service Provider API rebilling feature (\u003ci\u003eGetReceivableCharges\u003c/i\u003e endpoint) while having a PSA integration enabled.\u003c/div\u003e","operationId":"GetReceivableCharges","parameters":[{"name":"customerId","in":"query","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"date","in":"query","description":"Specify a date within the desired billing period. Format: yyyy-MM-dd (UTC). Default: Today. For example, if the date is March 17th and your billing period is from the 1st to the 31st of the month, it will return data from March 1st to March 31st.","schema":{"type":"string","format":"date"}},{"name":"Accept-Language","in":"header","description":"Specify language (and culture) following [RFC 7231, section 5.3.5: Accept-Language].","schema":{"type":"string"}}],"responses":{"200":{"description":"Success","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ReceivableCharges"}}}}}}},"/billing/subscriptions":{"get":{"tags":["Subscriptions"],"summary":"GetSubscriptions (beta)","description":"Get the list of subscriptions for one of your customers.","operationId":"GetCustomerSubscriptions","parameters":[{"name":"customerId","in":"query","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"Accept-Language","in":"header","description":"Specify language (and culture) following [RFC 7231, section 5.3.5: Accept-Language].","schema":{"type":"string"}}],"responses":{"200":{"description":"Success","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Subscriptions"}}}}}}},"/billing/subscriptions/amendments":{"post":{"tags":["Subscriptions"],"summary":"CreateSubscriptionsAmendment (beta)","description":"Amend subscription quantities for one of your customers.","operationId":"CreateSubscriptionsAmendment","parameters":[{"name":"customerId","in":"query","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"Accept-Language","in":"header","description":"Specify language (and culture) following [RFC 7231, section 5.3.5: Accept-Language].","schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateSubscriptionsAmendmentParameters"}}}},"responses":{"200":{"description":"Success","content":{"application/json":{"schema":{"$ref":"#/components/schemas/SubscriptionsAmendment"}}}}}}},"/billing/subscriptions/amendments/{subscriptionsAmendmentId}/status":{"get":{"tags":["Subscriptions"],"summary":"GetSubscriptionsAmendmentStatus (beta)","description":"Get the status of a subscriptions amendment.","operationId":"GetSubscriptionsAmendmentStatus","parameters":[{"name":"subscriptionsAmendmentId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"Accept-Language","in":"header","description":"Specify language (and culture) following [RFC 7231, section 5.3.5: Accept-Language].","schema":{"type":"string"}}],"responses":{"200":{"description":"Success","content":{"application/json":{"schema":{"$ref":"#/components/schemas/SubscriptionsAmendmentStatus"}}}}}}}},"components":{"schemas":{"BillingCycleType":{"enum":["OneTime","Monthly","Yearly"],"type":"string","description":"OneTime (charged once, with no recurrence),\r\nMonthly (charged monthly),\r\nYearly (charged yearly)."},"Charge":{"required":["chargeName","chargeType","costPrice","costPriceProrated","currency","isProratable","periodFrom","periodTo","productName","quantity","sku"],"type":"object","properties":{"productName":{"minLength":1,"type":"string"},"sku":{"minLength":1,"type":"string"},"chargeId":{"type":"string","format":"uuid","nullable":true},"chargeName":{"minLength":1,"type":"string"},"chargeType":{"$ref":"#/components/schemas/ChargeType"},"billingCycleType":{"$ref":"#/components/schemas/BillingCycleType"},"periodFrom":{"type":"string","format":"date"},"periodTo":{"type":"string","format":"date"},"quantity":{"type":"number","format":"double"},"costPrice":{"type":"number","description":"Price paid per unit.","format":"double"},"costPriceProrated":{"type":"number","description":"Prorated price paid per unit.","format":"double"},"currency":{"minLength":1,"type":"string"},"isProratable":{"type":"boolean","description":"Indicates whether or not the price of the charge is proratable."}},"additionalProperties":false,"description":"A product is constituted of one or multiple charges."},"ChargeType":{"enum":["Setup","Recurring","Usage","Unknown"],"type":"string","description":"Setup (occurs only once and can be used for activation, cancellation or setup fees),\r\nRecurring (invoiced on a monthly or yearly basis),\r\nUsage (varies based on the quantity of the product or service consumed by the customer),\r\nUnknown (charge type not found. This may happen when querying data from older invoices)."},"CommitmentTermType":{"enum":["Monthly","Annual","Biennial","Triennial"],"type":"string"},"CreateSubscriptionsAmendmentParameters":{"type":"object","properties":{"subscriptionAmendmentParameters":{"type":"array","items":{"$ref":"#/components/schemas/SubscriptionsAmendmentParameter"},"nullable":true}},"additionalProperties":false},"Currency":{"enum":["Undefined","Cad","Usd","Eur","Gbp"],"type":"string","description":"Undefined,\r\nCad (Canadian Dollar),\r\nUsd (US Dollar),\r\nEur (Euro),\r\nGbp (British pound sterling)."},"Customer":{"required":["displayName","id","path"],"type":"object","properties":{"id":{"type":"string","format":"uuid","readOnly":true},"displayName":{"minLength":1,"type":"string","readOnly":true},"path":{"type":"array","items":{"type":"string"},"readOnly":true},"suspendedOn":{"type":"string","description":"Format: yyyy-MM-ddTHH:mm:ss.fffffffK (UTC). Example : 2021-01-13T20:30:05.7613888","format":"date-time","nullable":true,"readOnly":true}},"additionalProperties":false},"Customers":{"type":"object","properties":{"items":{"type":"array","items":{"$ref":"#/components/schemas/Customer"},"nullable":true}},"additionalProperties":false},"ReceivableCharges":{"required":["charges","periodFrom","periodTo"],"type":"object","properties":{"periodFrom":{"type":"string","format":"date"},"periodTo":{"type":"string","format":"date"},"charges":{"type":"array","items":{"$ref":"#/components/schemas/Charge"}}},"additionalProperties":false,"description":"All charges to pay for a billing period."},"Subscription":{"required":["billingCycle","description","id","productName","purchaseDate","quantity","sku"],"type":"object","properties":{"id":{"type":"string","format":"uuid"},"productName":{"minLength":1,"type":"string"},"description":{"minLength":1,"type":"string"},"sku":{"minLength":1,"type":"string"},"quantity":{"type":"integer","format":"int32"},"billingCycle":{"minLength":1,"type":"string","description":"A billing cycle, also referred to as a billing period, is the interval of time between billing statements\r\nAlthough billing cycles are most often set at one month, or one year, they may vary in length depending on the SKU\r\nPossible values: none, daily, weekly, monthly, yearly and unknown"},"purchaseDate":{"type":"string","description":"Format: yyyy-MM-ddTHH:mm:ss.fffffffK (UTC). Example : 2023-11-21T20:27:05.7613888","format":"date-time"},"fees":{"$ref":"#/components/schemas/SubscriptionFees"},"commitmentTerm":{"$ref":"#/components/schemas/SubscriptionCommitmentTerm"}},"additionalProperties":false},"SubscriptionCommitmentTerm":{"required":["termEndDate","type"],"type":"object","properties":{"type":{"$ref":"#/components/schemas/CommitmentTermType"},"termEndDate":{"type":"string","description":"The last day of the commitment term","format":"date"},"renewalConfiguration":{"$ref":"#/components/schemas/SubscriptionRenewalConfiguration"}},"additionalProperties":false,"description":"Null for subscriptions that are not tied to a commitment","nullable":true},"SubscriptionFees":{"required":["currency","recurringFee","setupFee"],"type":"object","properties":{"recurringFee":{"type":"number","description":"The recurring amount charge every cycle","format":"double"},"setupFee":{"type":"number","description":"The initial amount charge at the end of the first cycle","format":"double"},"currency":{"$ref":"#/components/schemas/Currency"}},"additionalProperties":false,"description":"Null for subscriptions that have no corresponding catalog item","nullable":true},"SubscriptionRenewalConfiguration":{"required":["renewalDate"],"type":"object","properties":{"renewalDate":{"type":"string","description":"The first day of the next commitment term","format":"date"},"scheduledQuantity":{"type":"integer","description":"In the absence of a ScheduledQuantity, the subscription will renew with the existing quantity","format":"int32","nullable":true}},"additionalProperties":false,"description":"Null for subscriptions that will not auto-renew at the end of the commitment term","nullable":true},"Subscriptions":{"type":"object","properties":{"items":{"type":"array","items":{"$ref":"#/components/schemas/Subscription"},"nullable":true}},"additionalProperties":false},"SubscriptionsAmendment":{"type":"object","properties":{"subscriptionsAmendmentId":{"type":"string","format":"uuid"}},"additionalProperties":false},"SubscriptionsAmendmentParameter":{"required":["newQuantity","subscriptionId"],"type":"object","properties":{"subscriptionId":{"type":"string","format":"uuid"},"newQuantity":{"type":"integer","format":"int32"}},"additionalProperties":false,"description":"Subscription ID to amend, paired with its new intended quantity."},"SubscriptionsAmendmentStatus":{"enum":["Pending","Processing","Success","Failure","Canceled","PartialSuccess"],"type":"string"}}}}
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Service Provider API (Beta)",
+    "version": "1"
+  },
+  "paths": {
+    "/customers": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "GetCustomers (beta)",
+        "description": "Get the list of all your customers.",
+        "operationId": "GetCustomers",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Specify language (and culture) following [RFC 7231, section 5.3.5: Accept-Language].",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customers"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/receivable-charges": {
+      "get": {
+        "tags": [
+          "ReceivableCharges"
+        ],
+        "summary": "GetReceivableCharges (beta)",
+        "description": "Get the amounts that one of your customers owe you for a specific billing period. There are three types of charges that are included in the data returned: recurring, usage, and setup.\r\n<div style=\"color:#FF9B00;background-color:#FCF8E3;padding:1rem;border-radius:5px;border:1px solid #FF9B00;display:inline-block\"><svg width=\"16\" height=\"16\" fill=\"currentColor\" viewBox=\"0 0 16 16\"><path d=\"M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z\" /></svg> For the time being, you cannot use the Service Provider API rebilling feature (<i>GetReceivableCharges</i> endpoint) while having a PSA integration enabled.</div>",
+        "operationId": "GetReceivableCharges",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Specify a date within the desired billing period. Format: yyyy-MM-dd (UTC). Default: Today. For example, if the date is March 17th and your billing period is from the 1st to the 31st of the month, it will return data from March 1st to March 31st.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Specify language (and culture) following [RFC 7231, section 5.3.5: Accept-Language].",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReceivableCharges"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/subscriptions": {
+      "get": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "GetSubscriptions (beta)",
+        "description": "Get the list of subscriptions for one of your customers.",
+        "operationId": "GetCustomerSubscriptions",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Specify language (and culture) following [RFC 7231, section 5.3.5: Accept-Language].",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscriptions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/subscriptions/amendments": {
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "CreateSubscriptionsAmendment (beta)",
+        "description": "Amend subscription quantities for one of your customers.",
+        "operationId": "CreateSubscriptionsAmendment",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Specify language (and culture) following [RFC 7231, section 5.3.5: Accept-Language].",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSubscriptionsAmendmentParameters"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionsAmendment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/subscriptions/amendments/{subscriptionsAmendmentId}/status": {
+      "get": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "GetSubscriptionsAmendmentStatus (beta)",
+        "description": "Get the status of a subscriptions amendment.",
+        "operationId": "GetSubscriptionsAmendmentStatus",
+        "parameters": [
+          {
+            "name": "subscriptionsAmendmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "Specify language (and culture) following [RFC 7231, section 5.3.5: Accept-Language].",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionsAmendmentStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BillingCycleType": {
+        "enum": [
+          "OneTime",
+          "Monthly",
+          "Yearly"
+        ],
+        "type": "string",
+        "description": "OneTime (charged once, with no recurrence),\r\nMonthly (charged monthly),\r\nYearly (charged yearly)."
+      },
+      "Charge": {
+        "required": [
+          "chargeName",
+          "chargeType",
+          "costPrice",
+          "costPriceProrated",
+          "currency",
+          "isProratable",
+          "periodFrom",
+          "periodTo",
+          "productName",
+          "quantity",
+          "sku"
+        ],
+        "type": "object",
+        "properties": {
+          "productName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sku": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "chargeId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "chargeName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "chargeType": {
+            "$ref": "#/components/schemas/ChargeType"
+          },
+          "billingCycleType": {
+            "$ref": "#/components/schemas/BillingCycleType"
+          },
+          "periodFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "periodTo": {
+            "type": "string",
+            "format": "date"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "costPrice": {
+            "type": "number",
+            "description": "Price paid per unit.",
+            "format": "double"
+          },
+          "costPriceProrated": {
+            "type": "number",
+            "description": "Prorated price paid per unit.",
+            "format": "double"
+          },
+          "currency": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "isProratable": {
+            "type": "boolean",
+            "description": "Indicates whether or not the price of the charge is proratable."
+          }
+        },
+        "additionalProperties": false,
+        "description": "A product is constituted of one or multiple charges."
+      },
+      "ChargeType": {
+        "enum": [
+          "Setup",
+          "Recurring",
+          "Usage",
+          "Unknown"
+        ],
+        "type": "string",
+        "description": "Setup (occurs only once and can be used for activation, cancellation or setup fees),\r\nRecurring (invoiced on a monthly or yearly basis),\r\nUsage (varies based on the quantity of the product or service consumed by the customer),\r\nUnknown (charge type not found. This may happen when querying data from older invoices)."
+      },
+      "CommitmentTermType": {
+        "enum": [
+          "Monthly",
+          "Annual",
+          "Biennial",
+          "Triennial"
+        ],
+        "type": "string"
+      },
+      "CommittedMinimalQuantity": {
+        "required": [
+          "committedUntil",
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "committedUntil": {
+            "type": "string",
+            "description": "Format: yyyy-MM-ddTHH:mm:ss.fffffffK (UTC). Example : 2024-11-21T20:27:05.7613888",
+            "format": "date"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The date until which the subscription quantity may be decreased down to this minimal quantity"
+      },
+      "CreateSubscriptionsAmendmentParameters": {
+        "type": "object",
+        "properties": {
+          "subscriptionAmendmentParameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionsAmendmentParameter"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Currency": {
+        "enum": [
+          "Undefined",
+          "Cad",
+          "Usd",
+          "Eur",
+          "Gbp"
+        ],
+        "type": "string",
+        "description": "Undefined,\r\nCad (Canadian Dollar),\r\nUsd (US Dollar),\r\nEur (Euro),\r\nGbp (British pound sterling)."
+      },
+      "Customer": {
+        "required": [
+          "displayName",
+          "id",
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "displayName": {
+            "minLength": 1,
+            "type": "string",
+            "readOnly": true
+          },
+          "path": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "readOnly": true
+          },
+          "suspendedOn": {
+            "type": "string",
+            "description": "Format: yyyy-MM-ddTHH:mm:ss.fffffffK (UTC). Example : 2021-01-13T20:30:05.7613888",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Customers": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Customer"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReceivableCharges": {
+        "required": [
+          "charges",
+          "periodFrom",
+          "periodTo"
+        ],
+        "type": "object",
+        "properties": {
+          "periodFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "periodTo": {
+            "type": "string",
+            "format": "date"
+          },
+          "charges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Charge"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "description": "All charges to pay for a billing period."
+      },
+      "Subscription": {
+        "required": [
+          "billingCycle",
+          "description",
+          "id",
+          "productName",
+          "purchaseDate",
+          "quantity",
+          "sku"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sku": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "billingCycle": {
+            "minLength": 1,
+            "type": "string",
+            "description": "A billing cycle, also referred to as a billing period, is the interval of time between billing statements.\r\nAlthough billing cycles are most often set at one month, or one year, they may vary in length depending on the SKU.\r\nPossible values: none, daily, weekly, monthly, yearly and unknown"
+          },
+          "purchaseDate": {
+            "type": "string",
+            "description": "Format: yyyy-MM-ddTHH:mm:ss.fffffffK (UTC). Example : 2023-11-21T20:27:05.7613888",
+            "format": "date-time"
+          },
+          "fees": {
+            "$ref": "#/components/schemas/SubscriptionFees"
+          },
+          "commitmentTerm": {
+            "$ref": "#/components/schemas/SubscriptionCommitmentTerm"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionCommitmentTerm": {
+        "required": [
+          "termEndDate",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/CommitmentTermType"
+          },
+          "termEndDate": {
+            "type": "string",
+            "description": "The last day of the commitment term",
+            "format": "date"
+          },
+          "renewalConfiguration": {
+            "$ref": "#/components/schemas/SubscriptionRenewalConfiguration"
+          },
+          "committedMinimalQuantities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommittedMinimalQuantity"
+            },
+            "description": "The dates until which the subscription quantity may be decreased down to those minimal quantities.\r\nSubscription amendments and renewals impact the results. For example, a monthly subscription is\r\nbought with 10 licenses on feb 1st, and on feb 2nd an amendment +5 is made. The CommittedMinimalQuantities\r\non feb 2nd would give the possibility to decrease down to 0 until feb 8 (the end of the initial grace period),\r\nand down to 10 until feb 9 (the end of the amendment grace period).",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Null for subscriptions that are not tied to a commitment",
+        "nullable": true
+      },
+      "SubscriptionFees": {
+        "required": [
+          "currency",
+          "recurringFee",
+          "setupFee"
+        ],
+        "type": "object",
+        "properties": {
+          "recurringFee": {
+            "type": "number",
+            "description": "The recurring amount charge every cycle",
+            "format": "double"
+          },
+          "setupFee": {
+            "type": "number",
+            "description": "The initial amount charge at the end of the first cycle",
+            "format": "double"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Null for subscriptions that have no corresponding catalog item",
+        "nullable": true
+      },
+      "SubscriptionRenewalConfiguration": {
+        "required": [
+          "renewalDate"
+        ],
+        "type": "object",
+        "properties": {
+          "renewalDate": {
+            "type": "string",
+            "description": "The first day of the next commitment term",
+            "format": "date"
+          },
+          "scheduledQuantity": {
+            "type": "integer",
+            "description": "In the absence of a ScheduledQuantity, the subscription will renew with the existing quantity",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Null for subscriptions that will not auto-renew at the end of the commitment term",
+        "nullable": true
+      },
+      "Subscriptions": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subscription"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionsAmendment": {
+        "type": "object",
+        "properties": {
+          "subscriptionsAmendmentId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionsAmendmentParameter": {
+        "required": [
+          "newQuantity",
+          "subscriptionId"
+        ],
+        "type": "object",
+        "properties": {
+          "subscriptionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "newQuantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Subscription ID to amend, paired with its new intended quantity."
+      },
+      "SubscriptionsAmendmentStatus": {
+        "enum": [
+          "Pending",
+          "Processing",
+          "Success",
+          "Failure",
+          "Canceled",
+          "PartialSuccess"
+        ],
+        "type": "string"
+      }
+    }
+  }
+}

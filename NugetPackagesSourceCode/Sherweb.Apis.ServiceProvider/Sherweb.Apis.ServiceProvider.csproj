@@ -6,7 +6,7 @@
     <PackageId>Sherweb.Apis.ServiceProvider</PackageId>
     <PackageTags>Sherweb API Client ServiceProvider</PackageTags>
     <Description>Sherweb ServiceProvider API Client</Description>
-    <Version>1.0.0-beta07</Version>
+    <Version>1.0.0-beta08</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
