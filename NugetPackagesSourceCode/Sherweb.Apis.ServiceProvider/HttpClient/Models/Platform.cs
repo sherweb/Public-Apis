@@ -11,27 +11,23 @@ namespace Sherweb.Apis.ServiceProvider.Models
     using System.Collections.Generic;
     using System.Linq;
 
-    public partial class Customer
+    public partial class Platform
     {
         /// <summary>
-        /// Initializes a new instance of the Customer class.
+        /// Initializes a new instance of the Platform class.
         /// </summary>
-        public Customer()
+        public Platform()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the Customer class.
+        /// Initializes a new instance of the Platform class.
         /// </summary>
-        /// <param name="suspendedOn">Format: yyyy-MM-ddTHH:mm:ss.fffffffK
-        /// (UTC). Example : 2021-01-13T20:30:05.7613888</param>
-        public Customer(System.Guid id, string displayName, IList<string> path, System.DateTime? suspendedOn = default(System.DateTime?))
+        public Platform(System.Guid id, IList<Translation> name = default(IList<Translation>))
         {
             Id = id;
-            DisplayName = displayName;
-            Path = path;
-            SuspendedOn = suspendedOn;
+            Name = name;
             CustomInit();
         }
 
@@ -43,24 +39,12 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "id")]
-        public System.Guid Id { get; private set; }
+        public System.Guid Id { get; set; }
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "displayName")]
-        public string DisplayName { get; private set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "path")]
-        public IList<string> Path { get; private set; }
-
-        /// <summary>
-        /// Gets format: yyyy-MM-ddTHH:mm:ss.fffffffK (UTC). Example :
-        /// 2021-01-13T20:30:05.7613888
-        /// </summary>
-        [JsonProperty(PropertyName = "suspendedOn")]
-        public System.DateTime? SuspendedOn { get; private set; }
+        [JsonProperty(PropertyName = "name")]
+        public IList<Translation> Name { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -70,6 +54,16 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </exception>
         public virtual void Validate()
         {
+            if (Name != null)
+            {
+                foreach (var element in Name)
+                {
+                    if (element != null)
+                    {
+                        element.Validate();
+                    }
+                }
+            }
         }
     }
 }

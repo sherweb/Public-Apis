@@ -7,33 +7,30 @@
 namespace Sherweb.Apis.ServiceProvider.Models
 {
     using Microsoft.Rest;
-    using Microsoft.Rest.Serialization;
     using Newtonsoft.Json;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
-    /// <summary>
-    /// All charges to pay for a billing period.
-    /// </summary>
-    public partial class ReceivableCharges
+    public partial class CustomerCatalogItemsPricingInformationDto
     {
         /// <summary>
-        /// Initializes a new instance of the ReceivableCharges class.
+        /// Initializes a new instance of the
+        /// CustomerCatalogItemsPricingInformationDto class.
         /// </summary>
-        public ReceivableCharges()
+        public CustomerCatalogItemsPricingInformationDto()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the ReceivableCharges class.
+        /// Initializes a new instance of the
+        /// CustomerCatalogItemsPricingInformationDto class.
         /// </summary>
-        public ReceivableCharges(System.DateTime periodFrom, System.DateTime periodTo, IList<Charge> charges)
+        public CustomerCatalogItemsPricingInformationDto(System.Guid customerId, IList<CatalogItemPricingInformationDto> catalogItems)
         {
-            PeriodFrom = periodFrom;
-            PeriodTo = periodTo;
-            Charges = charges;
+            CustomerId = customerId;
+            CatalogItems = catalogItems;
             CustomInit();
         }
 
@@ -44,20 +41,13 @@ namespace Sherweb.Apis.ServiceProvider.Models
 
         /// <summary>
         /// </summary>
-        [JsonConverter(typeof(DateJsonConverter))]
-        [JsonProperty(PropertyName = "periodFrom")]
-        public System.DateTime PeriodFrom { get; set; }
+        [JsonProperty(PropertyName = "customerId")]
+        public System.Guid CustomerId { get; set; }
 
         /// <summary>
         /// </summary>
-        [JsonConverter(typeof(DateJsonConverter))]
-        [JsonProperty(PropertyName = "periodTo")]
-        public System.DateTime PeriodTo { get; set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "charges")]
-        public IList<Charge> Charges { get; set; }
+        [JsonProperty(PropertyName = "catalogItems")]
+        public IList<CatalogItemPricingInformationDto> CatalogItems { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -67,13 +57,13 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (Charges == null)
+            if (CatalogItems == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Charges");
+                throw new ValidationException(ValidationRules.CannotBeNull, "CatalogItems");
             }
-            if (Charges != null)
+            if (CatalogItems != null)
             {
-                foreach (var element in Charges)
+                foreach (var element in CatalogItems)
                 {
                     if (element != null)
                     {

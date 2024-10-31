@@ -7,33 +7,31 @@
 namespace Sherweb.Apis.ServiceProvider.Models
 {
     using Microsoft.Rest;
-    using Microsoft.Rest.Serialization;
     using Newtonsoft.Json;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
-    /// <summary>
-    /// All charges to pay for a billing period.
-    /// </summary>
-    public partial class ReceivableCharges
+    public partial class CustomerPlatformMeterUsagesDto
     {
         /// <summary>
-        /// Initializes a new instance of the ReceivableCharges class.
+        /// Initializes a new instance of the CustomerPlatformMeterUsagesDto
+        /// class.
         /// </summary>
-        public ReceivableCharges()
+        public CustomerPlatformMeterUsagesDto()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the ReceivableCharges class.
+        /// Initializes a new instance of the CustomerPlatformMeterUsagesDto
+        /// class.
         /// </summary>
-        public ReceivableCharges(System.DateTime periodFrom, System.DateTime periodTo, IList<Charge> charges)
+        public CustomerPlatformMeterUsagesDto(System.Guid customerId, System.Guid platformId, IList<MeterUsageDto> meterUsages)
         {
-            PeriodFrom = periodFrom;
-            PeriodTo = periodTo;
-            Charges = charges;
+            CustomerId = customerId;
+            PlatformId = platformId;
+            MeterUsages = meterUsages;
             CustomInit();
         }
 
@@ -44,20 +42,18 @@ namespace Sherweb.Apis.ServiceProvider.Models
 
         /// <summary>
         /// </summary>
-        [JsonConverter(typeof(DateJsonConverter))]
-        [JsonProperty(PropertyName = "periodFrom")]
-        public System.DateTime PeriodFrom { get; set; }
+        [JsonProperty(PropertyName = "customerId")]
+        public System.Guid CustomerId { get; set; }
 
         /// <summary>
         /// </summary>
-        [JsonConverter(typeof(DateJsonConverter))]
-        [JsonProperty(PropertyName = "periodTo")]
-        public System.DateTime PeriodTo { get; set; }
+        [JsonProperty(PropertyName = "platformId")]
+        public System.Guid PlatformId { get; set; }
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "charges")]
-        public IList<Charge> Charges { get; set; }
+        [JsonProperty(PropertyName = "meterUsages")]
+        public IList<MeterUsageDto> MeterUsages { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -67,13 +63,13 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (Charges == null)
+            if (MeterUsages == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Charges");
+                throw new ValidationException(ValidationRules.CannotBeNull, "MeterUsages");
             }
-            if (Charges != null)
+            if (MeterUsages != null)
             {
-                foreach (var element in Charges)
+                foreach (var element in MeterUsages)
                 {
                     if (element != null)
                     {
