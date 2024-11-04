@@ -46,7 +46,8 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// information if dereferenced.</param>
         /// <param name="extensions">Gets the
         /// System.Collections.Generic.IDictionary`2 for extension members.
-        /// &lt;br&gt;
+        ///
+        ///
         /// Problem type definitions MAY extend the problem details object with
         /// additional members.
         /// Extension members appear in the same namespace as other members of
@@ -113,7 +114,8 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// <summary>
         /// Gets the System.Collections.Generic.IDictionary`2 for extension
         /// members.
-        /// &amp;lt;br&amp;gt;
+        ///
+        ///
         /// Problem type definitions MAY extend the problem details object with
         /// additional members.
         /// Extension members appear in the same namespace as other members of

@@ -35,12 +35,11 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// An open commitment term means it is not tied to a commitment
         /// period.
         /// Possible values: monthly, yearly, biennial, triennial, open</param>
-        public CatalogItem(string sku, IList<Translation> name, IList<Translation> description, string vendor, string billingCycle, string commitmentTerm)
+        public CatalogItem(string sku, IList<Translation> name, IList<Translation> description, string billingCycle, string commitmentTerm)
         {
             Sku = sku;
             Name = name;
             Description = description;
-            Vendor = vendor;
             BillingCycle = billingCycle;
             CommitmentTerm = commitmentTerm;
             CustomInit();
@@ -65,11 +64,6 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </summary>
         [JsonProperty(PropertyName = "description")]
         public IList<Translation> Description { get; set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "vendor")]
-        public string Vendor { get; set; }
 
         /// <summary>
         /// Gets or sets a billing cycle, also referred to as a billing period,
@@ -110,10 +104,6 @@ namespace Sherweb.Apis.ServiceProvider.Models
             if (Description == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Description");
-            }
-            if (Vendor == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Vendor");
             }
             if (BillingCycle == null)
             {

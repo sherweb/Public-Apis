@@ -12,23 +12,26 @@ namespace Sherweb.Apis.ServiceProvider.Models
     using System.Collections.Generic;
     using System.Linq;
 
-    public partial class PlaceOrderRequest
+    public partial class CustomerPlatformMeterUsagesDto
     {
         /// <summary>
-        /// Initializes a new instance of the PlaceOrderRequest class.
+        /// Initializes a new instance of the CustomerPlatformMeterUsagesDto
+        /// class.
         /// </summary>
-        public PlaceOrderRequest()
+        public CustomerPlatformMeterUsagesDto()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the PlaceOrderRequest class.
+        /// Initializes a new instance of the CustomerPlatformMeterUsagesDto
+        /// class.
         /// </summary>
-        public PlaceOrderRequest(IList<CartItem> cartItems, string orderedBy = default(string))
+        public CustomerPlatformMeterUsagesDto(System.Guid customerId, System.Guid platformId, IList<MeterUsageDto> meterUsages)
         {
-            CartItems = cartItems;
-            OrderedBy = orderedBy;
+            CustomerId = customerId;
+            PlatformId = platformId;
+            MeterUsages = meterUsages;
             CustomInit();
         }
 
@@ -39,13 +42,18 @@ namespace Sherweb.Apis.ServiceProvider.Models
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "cartItems")]
-        public IList<CartItem> CartItems { get; set; }
+        [JsonProperty(PropertyName = "customerId")]
+        public System.Guid CustomerId { get; set; }
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "orderedBy")]
-        public string OrderedBy { get; set; }
+        [JsonProperty(PropertyName = "platformId")]
+        public System.Guid PlatformId { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "meterUsages")]
+        public IList<MeterUsageDto> MeterUsages { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -55,13 +63,13 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (CartItems == null)
+            if (MeterUsages == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "CartItems");
+                throw new ValidationException(ValidationRules.CannotBeNull, "MeterUsages");
             }
-            if (CartItems != null)
+            if (MeterUsages != null)
             {
-                foreach (var element in CartItems)
+                foreach (var element in MeterUsages)
                 {
                     if (element != null)
                     {

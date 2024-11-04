@@ -8,27 +8,25 @@ namespace Sherweb.Apis.ServiceProvider.Models
 {
     using Microsoft.Rest;
     using Newtonsoft.Json;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Linq;
 
-    public partial class PlaceOrderRequest
+    public partial class CustomerPlatformDetailsDto
     {
         /// <summary>
-        /// Initializes a new instance of the PlaceOrderRequest class.
+        /// Initializes a new instance of the CustomerPlatformDetailsDto class.
         /// </summary>
-        public PlaceOrderRequest()
+        public CustomerPlatformDetailsDto()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the PlaceOrderRequest class.
+        /// Initializes a new instance of the CustomerPlatformDetailsDto class.
         /// </summary>
-        public PlaceOrderRequest(IList<CartItem> cartItems, string orderedBy = default(string))
+        public CustomerPlatformDetailsDto(System.Guid customerId, PlatformDetailsDto platformDetails)
         {
-            CartItems = cartItems;
-            OrderedBy = orderedBy;
+            CustomerId = customerId;
+            PlatformDetails = platformDetails;
             CustomInit();
         }
 
@@ -39,13 +37,13 @@ namespace Sherweb.Apis.ServiceProvider.Models
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "cartItems")]
-        public IList<CartItem> CartItems { get; set; }
+        [JsonProperty(PropertyName = "customerId")]
+        public System.Guid CustomerId { get; set; }
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "orderedBy")]
-        public string OrderedBy { get; set; }
+        [JsonProperty(PropertyName = "platformDetails")]
+        public PlatformDetailsDto PlatformDetails { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -55,19 +53,13 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (CartItems == null)
+            if (PlatformDetails == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "CartItems");
+                throw new ValidationException(ValidationRules.CannotBeNull, "PlatformDetails");
             }
-            if (CartItems != null)
+            if (PlatformDetails != null)
             {
-                foreach (var element in CartItems)
-                {
-                    if (element != null)
-                    {
-                        element.Validate();
-                    }
-                }
+                PlatformDetails.Validate();
             }
         }
     }

@@ -136,6 +136,50 @@ namespace Sherweb.Apis.ServiceProvider
         Task<HttpOperationResponse> ConfigurePlatformsWithHttpMessagesAsync(System.Guid customerId, ConfigurePlatformsRequest body = default(ConfigurePlatformsRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// GetCustomerPlatformDetails (beta)
+        /// </summary>
+        /// <remarks>
+        /// Get platform details for a given customer.
+        /// </remarks>
+        /// <param name='customerId'>
+        /// </param>
+        /// <param name='platformId'>
+        /// </param>
+        /// <param name='acceptLanguage'>
+        /// Specify language (and culture) following [RFC 7231, section 5.3.5:
+        /// Accept-Language].
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<CustomerPlatformDetailsDto>> GetCustomerPlatformDetailsWithHttpMessagesAsync(System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// GetCustomerMeterUsages (beta)
+        /// </summary>
+        /// <remarks>
+        /// Get meter usages for a given customer/platform.
+        /// </remarks>
+        /// <param name='customerId'>
+        /// </param>
+        /// <param name='platformId'>
+        /// </param>
+        /// <param name='acceptLanguage'>
+        /// Specify language (and culture) following [RFC 7231, section 5.3.5:
+        /// Accept-Language].
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<CustomerPlatformMeterUsagesDto>> GetCustomerMeterUsagesWithHttpMessagesAsync(System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// GetCustomers (beta)
         /// </summary>
         /// <remarks>
@@ -325,6 +369,28 @@ namespace Sherweb.Apis.ServiceProvider
         /// The cancellation token.
         /// </param>
         Task<HttpOperationResponse<Subscriptions>> GetCustomerSubscriptionsWithHttpMessagesAsync(System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// GetCustomerSubscriptionMeters
+        /// </summary>
+        /// <remarks>
+        /// Get the list of subscriptions meters for one of your customers.
+        /// </remarks>
+        /// <param name='customerId'>
+        /// </param>
+        /// <param name='platformId'>
+        /// </param>
+        /// <param name='acceptLanguage'>
+        /// Specify language (and culture) following [RFC 7231, section 5.3.5:
+        /// Accept-Language].
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<CustomerSubscriptionMetersDto>> GetCustomerSubscriptionMetersWithHttpMessagesAsync(System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetCustomerSubscriptionsDetails (beta)

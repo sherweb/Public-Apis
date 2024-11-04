@@ -12,23 +12,23 @@ namespace Sherweb.Apis.ServiceProvider.Models
     using System.Collections.Generic;
     using System.Linq;
 
-    public partial class PlaceOrderRequest
+    public partial class PlatformDetailsDto
     {
         /// <summary>
-        /// Initializes a new instance of the PlaceOrderRequest class.
+        /// Initializes a new instance of the PlatformDetailsDto class.
         /// </summary>
-        public PlaceOrderRequest()
+        public PlatformDetailsDto()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the PlaceOrderRequest class.
+        /// Initializes a new instance of the PlatformDetailsDto class.
         /// </summary>
-        public PlaceOrderRequest(IList<CartItem> cartItems, string orderedBy = default(string))
+        public PlatformDetailsDto(System.Guid platformId, IDictionary<string, string> details)
         {
-            CartItems = cartItems;
-            OrderedBy = orderedBy;
+            PlatformId = platformId;
+            Details = details;
             CustomInit();
         }
 
@@ -39,13 +39,13 @@ namespace Sherweb.Apis.ServiceProvider.Models
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "cartItems")]
-        public IList<CartItem> CartItems { get; set; }
+        [JsonProperty(PropertyName = "platformId")]
+        public System.Guid PlatformId { get; set; }
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "orderedBy")]
-        public string OrderedBy { get; set; }
+        [JsonProperty(PropertyName = "details")]
+        public IDictionary<string, string> Details { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -55,19 +55,9 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (CartItems == null)
+            if (Details == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "CartItems");
-            }
-            if (CartItems != null)
-            {
-                foreach (var element in CartItems)
-                {
-                    if (element != null)
-                    {
-                        element.Validate();
-                    }
-                }
+                throw new ValidationException(ValidationRules.CannotBeNull, "Details");
             }
         }
     }

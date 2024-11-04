@@ -225,6 +225,106 @@ namespace Sherweb.Apis.ServiceProvider
             }
 
             /// <summary>
+            /// GetCustomerPlatformDetails (beta)
+            /// </summary>
+            /// <remarks>
+            /// Get platform details for a given customer.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='customerId'>
+            /// </param>
+            /// <param name='platformId'>
+            /// </param>
+            /// <param name='acceptLanguage'>
+            /// Specify language (and culture) following [RFC 7231, section 5.3.5:
+            /// Accept-Language].
+            /// </param>
+            public static CustomerPlatformDetailsDto GetCustomerPlatformDetails(this IServiceProviderService operations, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string))
+            {
+                return operations.GetCustomerPlatformDetailsAsync(customerId, platformId, acceptLanguage).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// GetCustomerPlatformDetails (beta)
+            /// </summary>
+            /// <remarks>
+            /// Get platform details for a given customer.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='customerId'>
+            /// </param>
+            /// <param name='platformId'>
+            /// </param>
+            /// <param name='acceptLanguage'>
+            /// Specify language (and culture) following [RFC 7231, section 5.3.5:
+            /// Accept-Language].
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<CustomerPlatformDetailsDto> GetCustomerPlatformDetailsAsync(this IServiceProviderService operations, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetCustomerPlatformDetailsWithHttpMessagesAsync(customerId, platformId, acceptLanguage, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// GetCustomerMeterUsages (beta)
+            /// </summary>
+            /// <remarks>
+            /// Get meter usages for a given customer/platform.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='customerId'>
+            /// </param>
+            /// <param name='platformId'>
+            /// </param>
+            /// <param name='acceptLanguage'>
+            /// Specify language (and culture) following [RFC 7231, section 5.3.5:
+            /// Accept-Language].
+            /// </param>
+            public static CustomerPlatformMeterUsagesDto GetCustomerMeterUsages(this IServiceProviderService operations, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string))
+            {
+                return operations.GetCustomerMeterUsagesAsync(customerId, platformId, acceptLanguage).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// GetCustomerMeterUsages (beta)
+            /// </summary>
+            /// <remarks>
+            /// Get meter usages for a given customer/platform.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='customerId'>
+            /// </param>
+            /// <param name='platformId'>
+            /// </param>
+            /// <param name='acceptLanguage'>
+            /// Specify language (and culture) following [RFC 7231, section 5.3.5:
+            /// Accept-Language].
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<CustomerPlatformMeterUsagesDto> GetCustomerMeterUsagesAsync(this IServiceProviderService operations, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetCustomerMeterUsagesWithHttpMessagesAsync(customerId, platformId, acceptLanguage, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// GetCustomers (beta)
             /// </summary>
             /// <remarks>
@@ -649,6 +749,56 @@ namespace Sherweb.Apis.ServiceProvider
             public static async Task<Subscriptions> GetCustomerSubscriptionsAsync(this IServiceProviderService operations, System.Guid customerId, string acceptLanguage = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetCustomerSubscriptionsWithHttpMessagesAsync(customerId, acceptLanguage, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// GetCustomerSubscriptionMeters
+            /// </summary>
+            /// <remarks>
+            /// Get the list of subscriptions meters for one of your customers.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='customerId'>
+            /// </param>
+            /// <param name='platformId'>
+            /// </param>
+            /// <param name='acceptLanguage'>
+            /// Specify language (and culture) following [RFC 7231, section 5.3.5:
+            /// Accept-Language].
+            /// </param>
+            public static CustomerSubscriptionMetersDto GetCustomerSubscriptionMeters(this IServiceProviderService operations, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string))
+            {
+                return operations.GetCustomerSubscriptionMetersAsync(customerId, platformId, acceptLanguage).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// GetCustomerSubscriptionMeters
+            /// </summary>
+            /// <remarks>
+            /// Get the list of subscriptions meters for one of your customers.
+            /// </remarks>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='customerId'>
+            /// </param>
+            /// <param name='platformId'>
+            /// </param>
+            /// <param name='acceptLanguage'>
+            /// Specify language (and culture) following [RFC 7231, section 5.3.5:
+            /// Accept-Language].
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<CustomerSubscriptionMetersDto> GetCustomerSubscriptionMetersAsync(this IServiceProviderService operations, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetCustomerSubscriptionMetersWithHttpMessagesAsync(customerId, platformId, acceptLanguage, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
