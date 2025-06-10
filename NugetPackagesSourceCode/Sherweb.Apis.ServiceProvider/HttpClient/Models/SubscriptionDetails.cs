@@ -25,13 +25,14 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </summary>
         /// <param name="purchaseDate">Format: yyyy-MM-ddTHH:mm:ss.fffffffK
         /// (UTC). Example : 2023-11-21T20:27:05.7613888</param>
-        public SubscriptionDetails(System.Guid id, string productName, string description, string sku, int quantity, System.DateTime purchaseDate, SubscriptionCommitmentTerm commitmentTerm = default(SubscriptionCommitmentTerm))
+        public SubscriptionDetails(System.Guid id, string productName, string description, string sku, int quantity, bool renewalSettingsConfigurable, System.DateTime purchaseDate, SubscriptionCommitmentTerm commitmentTerm = default(SubscriptionCommitmentTerm))
         {
             Id = id;
             ProductName = productName;
             Description = description;
             Sku = sku;
             Quantity = quantity;
+            RenewalSettingsConfigurable = renewalSettingsConfigurable;
             PurchaseDate = purchaseDate;
             CommitmentTerm = commitmentTerm;
             CustomInit();
@@ -66,6 +67,11 @@ namespace Sherweb.Apis.ServiceProvider.Models
         /// </summary>
         [JsonProperty(PropertyName = "quantity")]
         public int Quantity { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "renewalSettingsConfigurable")]
+        public bool RenewalSettingsConfigurable { get; private set; }
 
         /// <summary>
         /// Gets or sets format: yyyy-MM-ddTHH:mm:ss.fffffffK (UTC). Example :
