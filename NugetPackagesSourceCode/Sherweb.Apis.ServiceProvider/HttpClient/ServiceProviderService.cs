@@ -17,6 +17,9 @@ namespace Sherweb.Apis.ServiceProvider
     using System.Threading;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Service Providers Public API v1.
+    /// </summary>
     public partial class ServiceProviderService : ServiceClient<ServiceProviderService>, IServiceProviderService
     {
         /// <summary>
@@ -314,6 +317,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of catalog items available for a customer.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -335,7 +340,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<CustomerCatalog>> GetCustomerCatalogWithHttpMessagesAsync(System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<CustomerCatalog>> GetCustomerCatalogWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -344,6 +349,7 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
@@ -351,7 +357,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "customer-catalogs/{customerId}").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/customer-catalogs/{customerId}").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             _url = _url.Replace("{customerId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"')));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
@@ -470,6 +477,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// Call us to disable pricing visibility for a customer.
         /// &lt;/div&gt;
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='body'>
@@ -493,7 +502,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<CustomerCatalogItemsPricingInformationDto>> GetCustomerCatalogItemsPricingInformationWithHttpMessagesAsync(System.Guid customerId, GetCustomerCatalogItemsPricingInformationRequest body = default(GetCustomerCatalogItemsPricingInformationRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<CustomerCatalogItemsPricingInformationDto>> GetCustomerCatalogItemsPricingInformationWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, GetCustomerCatalogItemsPricingInformationRequest body = default(GetCustomerCatalogItemsPricingInformationRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (body != null)
             {
@@ -507,6 +516,7 @@ namespace Sherweb.Apis.ServiceProvider
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("body", body);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
@@ -514,7 +524,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "customer-catalogs/{customerId}/catalog-items-pricing").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/customer-catalogs/{customerId}/catalog-items-pricing").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             _url = _url.Replace("{customerId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"')));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
@@ -629,6 +640,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of all configured platforms for a customer.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -650,7 +663,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<CustomerConfiguredPlatforms>> GetCustomerPlatformsConfigurationsWithHttpMessagesAsync(System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<CustomerConfiguredPlatforms>> GetCustomerPlatformsConfigurationsWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -659,6 +672,7 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
@@ -666,7 +680,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "customers/{customerId}/platforms-configurations").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/customers/{customerId}/platforms-configurations").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             _url = _url.Replace("{customerId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"')));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
@@ -775,6 +790,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Configure platforms required parameters.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='body'>
@@ -795,7 +812,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse> ConfigurePlatformsWithHttpMessagesAsync(System.Guid customerId, ConfigurePlatformsRequest body = default(ConfigurePlatformsRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse> ConfigurePlatformsWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, ConfigurePlatformsRequest body = default(ConfigurePlatformsRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (body != null)
             {
@@ -809,6 +826,7 @@ namespace Sherweb.Apis.ServiceProvider
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("body", body);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
@@ -816,7 +834,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "customers/{customerId}/platforms-configurations").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/customers/{customerId}/platforms-configurations").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             _url = _url.Replace("{customerId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"')));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
@@ -913,6 +932,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get platform details for a given customer.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='platformId'>
@@ -936,7 +957,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<CustomerPlatformDetailsDto>> GetCustomerPlatformDetailsWithHttpMessagesAsync(System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<CustomerPlatformDetailsDto>> GetCustomerPlatformDetailsWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -945,6 +966,7 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("platformId", platformId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
@@ -953,7 +975,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "customers/{customerId}/platforms/{platformId}/details").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/customers/{customerId}/platforms/{platformId}/details").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             _url = _url.Replace("{customerId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"')));
             _url = _url.Replace("{platformId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(platformId, SerializationSettings).Trim('"')));
             // Create HTTP transport objects
@@ -1063,6 +1086,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get meter usages for a given customer/platform.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='platformId'>
@@ -1086,7 +1111,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<CustomerPlatformMeterUsagesDto>> GetCustomerMeterUsagesWithHttpMessagesAsync(System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<CustomerPlatformMeterUsagesDto>> GetCustomerMeterUsagesWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -1095,6 +1120,7 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("platformId", platformId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
@@ -1103,7 +1129,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "customers/{customerId}/platforms/{platformId}/meter-usages").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/customers/{customerId}/platforms/{platformId}/meter-usages").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             _url = _url.Replace("{customerId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"')));
             _url = _url.Replace("{platformId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(platformId, SerializationSettings).Trim('"')));
             // Create HTTP transport objects
@@ -1213,6 +1240,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of all your customers.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -1232,7 +1261,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<Customers>> GetCustomersWithHttpMessagesAsync(string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<Customers>> GetCustomersWithHttpMessagesAsync(System.Guid serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -1241,13 +1270,15 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetCustomers", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "customers").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/customers").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -1357,6 +1388,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </remarks>
         /// <param name='body'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -1384,7 +1417,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> ValidatePlaceOrderWithHttpMessagesAsync(PlaceOrderRequest body, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> ValidatePlaceOrderWithHttpMessagesAsync(PlaceOrderRequest body, System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (body == null)
             {
@@ -1402,6 +1435,7 @@ namespace Sherweb.Apis.ServiceProvider
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("body", body);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
@@ -1409,7 +1443,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "orders/validate").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/orders/validate").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("customerId={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"'))));
             if (_queryParameters.Count > 0)
@@ -1531,6 +1566,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </remarks>
         /// <param name='body'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -1558,7 +1595,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> PlaceOrderWithHttpMessagesAsync(PlaceOrderRequest body, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> PlaceOrderWithHttpMessagesAsync(PlaceOrderRequest body, System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (body == null)
             {
@@ -1576,6 +1613,7 @@ namespace Sherweb.Apis.ServiceProvider
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("body", body);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
@@ -1583,7 +1621,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "orders").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/orders").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("customerId={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"'))));
             if (_queryParameters.Count > 0)
@@ -1721,6 +1760,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of all available platforms.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -1737,11 +1778,21 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="SerializationException">
         /// Thrown when unable to deserialize the response
         /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<PlatformsCollection>> GetAllPlatformsWithHttpMessagesAsync(string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<PlatformsCollection>> GetAllPlatformsWithHttpMessagesAsync(string serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (serviceProviderId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "serviceProviderId");
+            }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -1749,13 +1800,15 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetAllPlatforms", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "platforms").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/platforms").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(serviceProviderId));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -1867,6 +1920,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// CultureInfo.InvariantCulture ("iv") is used as a fallback when language
         /// tags were not provided or not supported.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='body'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -1885,14 +1940,24 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="SerializationException">
         /// Thrown when unable to deserialize the response
         /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<PlatformsForSkusCollection>> GetPlatformsForSkusWithHttpMessagesAsync(GetPlatformsForSkusRequest body = default(GetPlatformsForSkusRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<PlatformsForSkusCollection>> GetPlatformsForSkusWithHttpMessagesAsync(string serviceProviderId, GetPlatformsForSkusRequest body = default(GetPlatformsForSkusRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (body != null)
             {
                 body.Validate();
+            }
+            if (serviceProviderId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "serviceProviderId");
             }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -1902,13 +1967,15 @@ namespace Sherweb.Apis.ServiceProvider
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("body", body);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPlatformsForSkus", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "platforms/platforms-for-skus").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/platforms/platforms-for-skus").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(serviceProviderId));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -2026,6 +2093,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// CultureInfo.InvariantCulture ("iv") is used as a fallback when language
         /// tags were not provided or not supported.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='body'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -2044,14 +2113,24 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="SerializationException">
         /// Thrown when unable to deserialize the response
         /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<PlatformRequiredParametersCollection>> GetPlatformRequiredParametersWithHttpMessagesAsync(GetPlatformRequiredParametersRequest body = default(GetPlatformRequiredParametersRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<PlatformRequiredParametersCollection>> GetPlatformRequiredParametersWithHttpMessagesAsync(string serviceProviderId, GetPlatformRequiredParametersRequest body = default(GetPlatformRequiredParametersRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (body != null)
             {
                 body.Validate();
+            }
+            if (serviceProviderId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "serviceProviderId");
             }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -2061,13 +2140,15 @@ namespace Sherweb.Apis.ServiceProvider
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("body", body);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPlatformRequiredParameters", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "platforms/required-parameters").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/platforms/required-parameters").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(serviceProviderId));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -2195,13 +2276,23 @@ namespace Sherweb.Apis.ServiceProvider
         /// PSA integration enabled.
         /// &lt;/div&gt;
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='date'>
-        /// Specify a date within the desired billing period. Format: yyyy-MM-dd (UTC).
-        /// Default: Today. For example, if the date is March 17th and your billing
-        /// period is from the 1st to the 31st of the month, it will return data from
-        /// March 1st to March 31st.
+        /// Format - date (as full-date in RFC3339). Specify any date Format:
+        /// yyyy-MM-dd (UTC).
+        ///
+        /// The date will return the charges of either
+        ///
+        /// (a) the associated (and invoiced) billing period within which the specified
+        /// date falls, or
+        ///
+        /// (b) the most recent invoiced charges for the last billing period.
+        ///
+        /// See the periodFrom and periodTo in your results to verify which billing
+        /// period you have queried.
         /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
@@ -2222,7 +2313,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<ReceivableCharges>> GetReceivableChargesWithHttpMessagesAsync(System.Guid customerId, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<ReceivableCharges>> GetReceivableChargesWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -2231,6 +2322,7 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("date", date);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
@@ -2239,7 +2331,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "billing/receivable-charges").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/billing/receivable-charges").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("customerId={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"'))));
             if (date != null)
@@ -2359,6 +2452,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// GetCustomerSubscriptionDetails,GetCustomerSubscriptionPricingInformation
         /// endpoints instead.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -2381,7 +2476,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// A response object containing the response body and response headers.
         /// </return>
         [System.Obsolete("This operation is deprecated. Please do not use it any longer.")]
-        public async Task<HttpOperationResponse<Subscriptions>> GetCustomerSubscriptionsWithHttpMessagesAsync(System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<Subscriptions>> GetCustomerSubscriptionsWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -2390,6 +2485,7 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
@@ -2397,7 +2493,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "billing/subscriptions").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/billing/subscriptions").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("customerId={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"'))));
             if (_queryParameters.Count > 0)
@@ -2511,6 +2608,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of subscriptions meters for one of your customers.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='platformId'>
@@ -2534,7 +2633,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<CustomerSubscriptionMetersDto>> GetCustomerSubscriptionMetersWithHttpMessagesAsync(System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<CustomerSubscriptionMetersDto>> GetCustomerSubscriptionMetersWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -2543,6 +2642,7 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("platformId", platformId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
@@ -2551,7 +2651,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "billing/subscriptions/meters").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/billing/subscriptions/meters").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("customerId={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"'))));
             _queryParameters.Add(string.Format("platformId={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(platformId, SerializationSettings).Trim('"'))));
@@ -2666,6 +2767,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of subscriptions details for one of your customers.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -2687,7 +2790,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<CustomerSubscriptions>> GetCustomerSubscriptionsDetailsWithHttpMessagesAsync(System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<CustomerSubscriptions>> GetCustomerSubscriptionsDetailsWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -2696,6 +2799,7 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
@@ -2703,7 +2807,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "billing/subscriptions/details").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/billing/subscriptions/details").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("customerId={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"'))));
             if (_queryParameters.Count > 0)
@@ -2827,6 +2932,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// Call us to disable pricing visibility for a customer.
         /// &lt;/div&gt;
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -2848,7 +2955,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<CustomerSubscriptionsPricingInformation>> GetCustomerSubscriptionsPricingInformationWithHttpMessagesAsync(System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<CustomerSubscriptionsPricingInformation>> GetCustomerSubscriptionsPricingInformationWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -2857,6 +2964,7 @@ namespace Sherweb.Apis.ServiceProvider
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
@@ -2864,7 +2972,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "billing/subscriptions/pricing-information").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/billing/subscriptions/pricing-information").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("customerId={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"'))));
             if (_queryParameters.Count > 0)
@@ -2978,6 +3087,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Amend subscription quantities for one of your customers.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='body'>
@@ -3001,7 +3112,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<SubscriptionsAmendment>> CreateSubscriptionsAmendmentWithHttpMessagesAsync(System.Guid customerId, CreateSubscriptionsAmendmentParameters body = default(CreateSubscriptionsAmendmentParameters), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<SubscriptionsAmendment>> CreateSubscriptionsAmendmentWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, CreateSubscriptionsAmendmentParameters body = default(CreateSubscriptionsAmendmentParameters), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -3011,6 +3122,7 @@ namespace Sherweb.Apis.ServiceProvider
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("body", body);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("customerId", customerId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
@@ -3018,7 +3130,8 @@ namespace Sherweb.Apis.ServiceProvider
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "billing/subscriptions/amendments").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/billing/subscriptions/amendments").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(serviceProviderId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("customerId={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"'))));
             if (_queryParameters.Count > 0)
@@ -3142,6 +3255,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </param>
         /// <param name='customerId'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -3167,7 +3282,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<SubscriptionsCancellation>> CancelSubscriptionsWithHttpMessagesAsync(SubscriptionsCancellationRequest body, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<SubscriptionsCancellation>> CancelSubscriptionsWithHttpMessagesAsync(SubscriptionsCancellationRequest body, System.Guid customerId, string serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (body == null)
             {
@@ -3176,6 +3291,10 @@ namespace Sherweb.Apis.ServiceProvider
             if (body != null)
             {
                 body.Validate();
+            }
+            if (serviceProviderId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "serviceProviderId");
             }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -3186,13 +3305,15 @@ namespace Sherweb.Apis.ServiceProvider
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("body", body);
                 tracingParameters.Add("customerId", customerId);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CancelSubscriptions", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "billing/subscriptions/cancellations").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/billing/subscriptions/cancellations").ToString();
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(serviceProviderId));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("customerId={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(customerId, SerializationSettings).Trim('"'))));
             if (_queryParameters.Count > 0)
@@ -3314,6 +3435,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </remarks>
         /// <param name='subscriptionsAmendmentId'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -3330,12 +3453,22 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="SerializationException">
         /// Thrown when unable to deserialize the response
         /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
         [System.Obsolete("This operation is deprecated. Please do not use it any longer.")]
-        public async Task<HttpOperationResponse<string>> GetSubscriptionsAmendmentStatusWithHttpMessagesAsync(System.Guid subscriptionsAmendmentId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<string>> GetSubscriptionsAmendmentStatusWithHttpMessagesAsync(System.Guid subscriptionsAmendmentId, string serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (serviceProviderId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "serviceProviderId");
+            }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -3344,14 +3477,16 @@ namespace Sherweb.Apis.ServiceProvider
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("subscriptionsAmendmentId", subscriptionsAmendmentId);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetSubscriptionsAmendmentStatus", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "billing/subscriptions/amendments/{subscriptionsAmendmentId}/status").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/billing/subscriptions/amendments/{subscriptionsAmendmentId}/status").ToString();
             _url = _url.Replace("{subscriptionsAmendmentId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(subscriptionsAmendmentId, SerializationSettings).Trim('"')));
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(serviceProviderId));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -3461,6 +3596,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </remarks>
         /// <param name='subscriptionsCancellationId'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -3477,12 +3614,22 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="SerializationException">
         /// Thrown when unable to deserialize the response
         /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
         [System.Obsolete("This operation is deprecated. Please do not use it any longer.")]
-        public async Task<HttpOperationResponse<string>> GetSubscriptionsCancellationStatusWithHttpMessagesAsync(System.Guid subscriptionsCancellationId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<string>> GetSubscriptionsCancellationStatusWithHttpMessagesAsync(System.Guid subscriptionsCancellationId, string serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (serviceProviderId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "serviceProviderId");
+            }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -3491,14 +3638,16 @@ namespace Sherweb.Apis.ServiceProvider
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("subscriptionsCancellationId", subscriptionsCancellationId);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetSubscriptionsCancellationStatus", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "billing/subscriptions/cancellations/{subscriptionsCancellationId}/status").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/billing/subscriptions/cancellations/{subscriptionsCancellationId}/status").ToString();
             _url = _url.Replace("{subscriptionsCancellationId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(subscriptionsCancellationId, SerializationSettings).Trim('"')));
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(serviceProviderId));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -3608,6 +3757,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </remarks>
         /// <param name='trackingId'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -3624,11 +3775,21 @@ namespace Sherweb.Apis.ServiceProvider
         /// <exception cref="SerializationException">
         /// Thrown when unable to deserialize the response
         /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<string>> TrackRequestWithHttpMessagesAsync(System.Guid trackingId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<string>> TrackRequestWithHttpMessagesAsync(System.Guid trackingId, string serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (serviceProviderId == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "serviceProviderId");
+            }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -3637,14 +3798,16 @@ namespace Sherweb.Apis.ServiceProvider
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("trackingId", trackingId);
+                tracingParameters.Add("serviceProviderId", serviceProviderId);
                 tracingParameters.Add("acceptLanguage", acceptLanguage);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "TrackRequest", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "tracking/{trackingId}").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "v1/tracking/{trackingId}").ToString();
             _url = _url.Replace("{trackingId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(trackingId, SerializationSettings).Trim('"')));
+            _url = _url.Replace("{serviceProviderId}", System.Uri.EscapeDataString(serviceProviderId));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;

@@ -11,22 +11,22 @@ namespace Sherweb.Apis.ServiceProvider.Models
     using System.Collections.Generic;
     using System.Linq;
 
-    public partial class ProductQuantityConstraintsViolationsProblemDetails
+    public partial class RepurchasingSinglePurchasableSkusProblemDetails
     {
         /// <summary>
         /// Initializes a new instance of the
-        /// ProductQuantityConstraintsViolationsProblemDetails class.
+        /// RepurchasingSinglePurchasableSkusProblemDetails class.
         /// </summary>
-        public ProductQuantityConstraintsViolationsProblemDetails()
+        public RepurchasingSinglePurchasableSkusProblemDetails()
         {
             CustomInit();
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// ProductQuantityConstraintsViolationsProblemDetails class.
+        /// RepurchasingSinglePurchasableSkusProblemDetails class.
         /// </summary>
-        public ProductQuantityConstraintsViolationsProblemDetails(string type = default(string), string title = default(string), int? status = default(int?), string detail = default(string), string instance = default(string), IDictionary<string, object> extensions = default(IDictionary<string, object>))
+        public RepurchasingSinglePurchasableSkusProblemDetails(string type = default(string), string title = default(string), int? status = default(int?), string detail = default(string), string instance = default(string), IDictionary<string, object> extensions = default(IDictionary<string, object>))
         {
             Type = type;
             Title = title;

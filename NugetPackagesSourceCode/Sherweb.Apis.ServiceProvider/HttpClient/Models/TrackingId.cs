@@ -37,12 +37,12 @@ namespace Sherweb.Apis.ServiceProvider.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets references a request that was made (order, amendment,
+        /// Gets or sets references a request that was made (order, amendment,
         /// cancellation, ...).
         /// Can be used to obtain the request status.
         /// </summary>
         [JsonProperty(PropertyName = "requestTrackingId")]
-        public System.Guid RequestTrackingId { get; private set; }
+        public System.Guid RequestTrackingId { get; set; }
 
         /// <summary>
         /// Validate the object.

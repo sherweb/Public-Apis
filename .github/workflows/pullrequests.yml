@@ -16,7 +16,7 @@ jobs:
     - name: Setup Dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 8.x.x
     - name: Install dependencies
       run: dotnet restore
       working-directory: ${{env.working-directory}}
@@ -38,7 +38,7 @@ jobs:
     - name: Setup Dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 8.x.x
     - name: Install dependencies
       run: dotnet restore
       working-directory: ${{env.working-directory}}
@@ -60,7 +60,7 @@ jobs:
     - name: Setup Dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 8.x.x
     - name: Install dependencies
       run: dotnet restore
       working-directory: ${{env.working-directory}}
@@ -82,7 +82,7 @@ jobs:
     - name: Setup Dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 8.x.x
     - name: Install dependencies
       run: dotnet restore
       working-directory: ${{env.working-directory}}

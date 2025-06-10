@@ -15,6 +15,7 @@ namespace Sherweb.Apis.ServiceProvider
     using System.Threading.Tasks;
 
     /// <summary>
+    /// Service Providers Public API v1.
     /// </summary>
     public partial interface IServiceProviderService : System.IDisposable
     {
@@ -46,6 +47,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of catalog items available for a customer.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -58,7 +61,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<CustomerCatalog>> GetCustomerCatalogWithHttpMessagesAsync(System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<CustomerCatalog>> GetCustomerCatalogWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetCustomerCatalogItemsPricingInformation (beta)
@@ -77,6 +80,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// Call us to disable pricing visibility for a customer.
         /// &lt;/div&gt;
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='body'>
@@ -91,7 +96,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<CustomerCatalogItemsPricingInformationDto>> GetCustomerCatalogItemsPricingInformationWithHttpMessagesAsync(System.Guid customerId, GetCustomerCatalogItemsPricingInformationRequest body = default(GetCustomerCatalogItemsPricingInformationRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<CustomerCatalogItemsPricingInformationDto>> GetCustomerCatalogItemsPricingInformationWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, GetCustomerCatalogItemsPricingInformationRequest body = default(GetCustomerCatalogItemsPricingInformationRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetCustomerPlatformsConfigurations (beta)
@@ -99,6 +104,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of all configured platforms for a customer.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -111,7 +118,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<CustomerConfiguredPlatforms>> GetCustomerPlatformsConfigurationsWithHttpMessagesAsync(System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<CustomerConfiguredPlatforms>> GetCustomerPlatformsConfigurationsWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// ConfigurePlatforms (beta)
@@ -119,6 +126,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Configure platforms required parameters.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='body'>
@@ -133,7 +142,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse> ConfigurePlatformsWithHttpMessagesAsync(System.Guid customerId, ConfigurePlatformsRequest body = default(ConfigurePlatformsRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse> ConfigurePlatformsWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, ConfigurePlatformsRequest body = default(ConfigurePlatformsRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetCustomerPlatformDetails (beta)
@@ -141,6 +150,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get platform details for a given customer.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='platformId'>
@@ -155,7 +166,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<CustomerPlatformDetailsDto>> GetCustomerPlatformDetailsWithHttpMessagesAsync(System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<CustomerPlatformDetailsDto>> GetCustomerPlatformDetailsWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetCustomerMeterUsages (beta)
@@ -163,6 +174,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get meter usages for a given customer/platform.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='platformId'>
@@ -177,7 +190,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<CustomerPlatformMeterUsagesDto>> GetCustomerMeterUsagesWithHttpMessagesAsync(System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<CustomerPlatformMeterUsagesDto>> GetCustomerMeterUsagesWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetCustomers (beta)
@@ -185,6 +198,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of all your customers.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -195,7 +210,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<Customers>> GetCustomersWithHttpMessagesAsync(string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<Customers>> GetCustomersWithHttpMessagesAsync(System.Guid serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// ValidatePlaceOrder (beta)
@@ -205,6 +220,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </remarks>
         /// <param name='body'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -217,7 +234,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object>> ValidatePlaceOrderWithHttpMessagesAsync(PlaceOrderRequest body, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object>> ValidatePlaceOrderWithHttpMessagesAsync(PlaceOrderRequest body, System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// PlaceOrder (beta)
@@ -227,6 +244,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </remarks>
         /// <param name='body'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -239,7 +258,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object>> PlaceOrderWithHttpMessagesAsync(PlaceOrderRequest body, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object>> PlaceOrderWithHttpMessagesAsync(PlaceOrderRequest body, System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetAllPlatforms (beta)
@@ -247,6 +266,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of all available platforms.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -257,7 +278,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<PlatformsCollection>> GetAllPlatformsWithHttpMessagesAsync(string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<PlatformsCollection>> GetAllPlatformsWithHttpMessagesAsync(string serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetPlatformsForSkus (beta)
@@ -269,6 +290,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// CultureInfo.InvariantCulture ("iv") is used as a fallback when
         /// language tags were not provided or not supported.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='body'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -281,7 +304,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<PlatformsForSkusCollection>> GetPlatformsForSkusWithHttpMessagesAsync(GetPlatformsForSkusRequest body = default(GetPlatformsForSkusRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<PlatformsForSkusCollection>> GetPlatformsForSkusWithHttpMessagesAsync(string serviceProviderId, GetPlatformsForSkusRequest body = default(GetPlatformsForSkusRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetPlatformRequiredParameters (beta)
@@ -293,6 +316,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// CultureInfo.InvariantCulture ("iv") is used as a fallback when
         /// language tags were not provided or not supported.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='body'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -305,7 +330,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<PlatformRequiredParametersCollection>> GetPlatformRequiredParametersWithHttpMessagesAsync(GetPlatformRequiredParametersRequest body = default(GetPlatformRequiredParametersRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<PlatformRequiredParametersCollection>> GetPlatformRequiredParametersWithHttpMessagesAsync(string serviceProviderId, GetPlatformRequiredParametersRequest body = default(GetPlatformRequiredParametersRequest), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetReceivableCharges (beta)
@@ -328,13 +353,23 @@ namespace Sherweb.Apis.ServiceProvider
         /// endpoint) while having a PSA integration enabled.
         /// &lt;/div&gt;
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='date'>
-        /// Specify a date within the desired billing period. Format:
-        /// yyyy-MM-dd (UTC). Default: Today. For example, if the date is March
-        /// 17th and your billing period is from the 1st to the 31st of the
-        /// month, it will return data from March 1st to March 31st.
+        /// Format - date (as full-date in RFC3339). Specify any date Format:
+        /// yyyy-MM-dd (UTC).
+        ///
+        /// The date will return the charges of either
+        ///
+        /// (a) the associated (and invoiced) billing period within which the
+        /// specified date falls, or
+        ///
+        /// (b) the most recent invoiced charges for the last billing period.
+        ///
+        /// See the periodFrom and periodTo in your results to verify which
+        /// billing period you have queried.
         /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
@@ -346,7 +381,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<ReceivableCharges>> GetReceivableChargesWithHttpMessagesAsync(System.Guid customerId, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<ReceivableCharges>> GetReceivableChargesWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, System.DateTime? date = default(System.DateTime?), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetSubscriptions (deprecated)
@@ -356,6 +391,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// GetCustomerSubscriptionDetails,GetCustomerSubscriptionPricingInformation
         /// endpoints instead.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -368,7 +405,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<Subscriptions>> GetCustomerSubscriptionsWithHttpMessagesAsync(System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<Subscriptions>> GetCustomerSubscriptionsWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetCustomerSubscriptionMeters
@@ -376,6 +413,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of subscriptions meters for one of your customers.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='platformId'>
@@ -390,7 +429,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<CustomerSubscriptionMetersDto>> GetCustomerSubscriptionMetersWithHttpMessagesAsync(System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<CustomerSubscriptionMetersDto>> GetCustomerSubscriptionMetersWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, System.Guid platformId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetCustomerSubscriptionsDetails (beta)
@@ -398,6 +437,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Get the list of subscriptions details for one of your customers.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -410,7 +451,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<CustomerSubscriptions>> GetCustomerSubscriptionsDetailsWithHttpMessagesAsync(System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<CustomerSubscriptions>> GetCustomerSubscriptionsDetailsWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetCustomerSubscriptionsPricingInformation (beta)
@@ -430,6 +471,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// Call us to disable pricing visibility for a customer.
         /// &lt;/div&gt;
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='acceptLanguage'>
@@ -442,7 +485,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<CustomerSubscriptionsPricingInformation>> GetCustomerSubscriptionsPricingInformationWithHttpMessagesAsync(System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<CustomerSubscriptionsPricingInformation>> GetCustomerSubscriptionsPricingInformationWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// CreateSubscriptionsAmendment (beta)
@@ -450,6 +493,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// <remarks>
         /// Amend subscription quantities for one of your customers.
         /// </remarks>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='customerId'>
         /// </param>
         /// <param name='body'>
@@ -464,7 +509,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<SubscriptionsAmendment>> CreateSubscriptionsAmendmentWithHttpMessagesAsync(System.Guid customerId, CreateSubscriptionsAmendmentParameters body = default(CreateSubscriptionsAmendmentParameters), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<SubscriptionsAmendment>> CreateSubscriptionsAmendmentWithHttpMessagesAsync(System.Guid serviceProviderId, System.Guid customerId, CreateSubscriptionsAmendmentParameters body = default(CreateSubscriptionsAmendmentParameters), string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// CancelSubscriptions (beta)
@@ -476,6 +521,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </param>
         /// <param name='customerId'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -486,7 +533,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<SubscriptionsCancellation>> CancelSubscriptionsWithHttpMessagesAsync(SubscriptionsCancellationRequest body, System.Guid customerId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<SubscriptionsCancellation>> CancelSubscriptionsWithHttpMessagesAsync(SubscriptionsCancellationRequest body, System.Guid customerId, string serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetSubscriptionsAmendmentStatus (deprecated)
@@ -496,6 +543,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </remarks>
         /// <param name='subscriptionsAmendmentId'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -506,7 +555,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<string>> GetSubscriptionsAmendmentStatusWithHttpMessagesAsync(System.Guid subscriptionsAmendmentId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<string>> GetSubscriptionsAmendmentStatusWithHttpMessagesAsync(System.Guid subscriptionsAmendmentId, string serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// GetSubscriptionsCancellationStatus (deprecated)
@@ -516,6 +565,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </remarks>
         /// <param name='subscriptionsCancellationId'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -526,7 +577,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<string>> GetSubscriptionsCancellationStatusWithHttpMessagesAsync(System.Guid subscriptionsCancellationId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<string>> GetSubscriptionsCancellationStatusWithHttpMessagesAsync(System.Guid subscriptionsCancellationId, string serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// TrackRequest (beta)
@@ -537,6 +588,8 @@ namespace Sherweb.Apis.ServiceProvider
         /// </remarks>
         /// <param name='trackingId'>
         /// </param>
+        /// <param name='serviceProviderId'>
+        /// </param>
         /// <param name='acceptLanguage'>
         /// Specify language (and culture) following [RFC 7231, section 5.3.5:
         /// Accept-Language].
@@ -547,7 +600,7 @@ namespace Sherweb.Apis.ServiceProvider
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<string>> TrackRequestWithHttpMessagesAsync(System.Guid trackingId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<string>> TrackRequestWithHttpMessagesAsync(System.Guid trackingId, string serviceProviderId, string acceptLanguage = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }
